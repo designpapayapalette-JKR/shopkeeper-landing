@@ -89,7 +89,7 @@ export default function MerchantLoginPage() {
 
         <p className="text-xs text-text-secondary font-medium text-center mt-8">
           Don&apos;t have an account?{" "}
-          <Link href="/register" className="text-primary font-bold">Start your free trial</Link>
+          <Link href="https://app.papayapalette.online/register" className="text-primary font-bold">Start your free trial</Link>
         </p>
       </div>
     </div>

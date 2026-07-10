@@ -542,19 +542,19 @@ export default function LandingPage() {
             <a href="#features" className="hover:text-foreground transition-colors">Features</a>
             <a href="#pricing" className="hover:text-foreground transition-colors">Pricing</a>
             <a href="#faq" className="hover:text-foreground transition-colors">FAQs</a>
-            <Link href="/dashboard" className="hover:text-foreground transition-colors">Portal</Link>
+            <Link href="https://app.papayapalette.online/dashboard" className="hover:text-foreground transition-colors">Portal</Link>
             <Link href="/admin" className="hover:text-foreground transition-colors">Admin</Link>
           </nav>
 
           <div className="flex items-center gap-3">
             <Link
-              href="/dashboard"
+              href="https://app.papayapalette.online/dashboard"
               className="text-xs font-bold text-text-secondary hover:text-foreground px-3 py-1.5 transition-colors uppercase tracking-wider"
             >
               Log In
             </Link>
             <Link
-              href="/register"
+              href="https://app.papayapalette.online/register"
               className="bg-primary hover:opacity-95 text-white dark:text-background font-bold text-xs px-4 py-2 rounded-radius transition-all shadow-sm uppercase tracking-wider"
             >
               Get Invite Access
@@ -733,7 +733,7 @@ export default function LandingPage() {
                   )}
 
                   <Link
-                    href="/register"
+                    href="https://app.papayapalette.online/register"
                     className="w-full bg-secondary hover:bg-muted text-foreground py-3 rounded-radius text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center mb-8 border border-border"
                   >
                     Get Invite Access
@@ -795,7 +795,7 @@ export default function LandingPage() {
                   )}
 
                   <Link
-                    href="/register"
+                    href="https://app.papayapalette.online/register"
                     className="w-full bg-primary hover:opacity-90 text-white dark:text-background py-3 rounded-radius text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center mb-8 shadow-sm"
                   >
                     Get Invite Access
@@ -852,7 +852,7 @@ export default function LandingPage() {
                   )}
 
                   <Link
-                    href="/register"
+                    href="https://app.papayapalette.online/register"
                     className="w-full bg-secondary hover:bg-muted text-foreground py-3 rounded-radius text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center mb-8 border border-border"
                   >
                     Get Invite Access
@@ -940,7 +940,7 @@ export default function LandingPage() {
           <p className="text-sm text-text-secondary font-medium">We're inviting shops into our private beta — free for 30 days, no credit card required.</p>
           <div className="flex flex-wrap items-center justify-center gap-3">
             <Link
-              href="/register"
+              href="https://app.papayapalette.online/register"
               className="bg-primary hover:opacity-95 text-white dark:text-background font-bold text-xs px-6 py-3 rounded-radius transition-all shadow-sm uppercase tracking-wider"
             >
               Get Invite Access
