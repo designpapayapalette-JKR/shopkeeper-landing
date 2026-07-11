@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, Suspense } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Store, Check, AlertCircle } from "lucide-react";
 import { API_BASE } from "@/lib/config";
@@ -20,7 +20,6 @@ export default function RegisterPage() {
 }
 
 function RegisterForm() {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const [companyName, setCompanyName] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -63,7 +62,7 @@ function RegisterForm() {
         return;
       }
       setMerchantSession(json.accessToken, json.refreshToken);
-      router.push("/dashboard");
+      window.location.href = "https://app.papayapalette.online/dashboard";
     } catch (err: any) {
       setError(err.message ?? "Something went wrong.");
     } finally {

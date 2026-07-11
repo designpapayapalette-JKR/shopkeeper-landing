@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Store, AlertCircle } from "lucide-react";
 import { merchantLogin } from "@/lib/merchantSession";
@@ -11,7 +10,6 @@ import { merchantLogin } from "@/lib/merchantSession";
 // to sign into the mobile app, via the same /auth/login endpoint. This is a
 // completely separate login from the SaaS Super Admin panel (/admin/login).
 export default function MerchantLoginPage() {
-  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -27,7 +25,7 @@ export default function MerchantLoginPage() {
         setError(result.error);
         return;
       }
-      router.push("/dashboard");
+      window.location.href = "https://app.papayapalette.online/dashboard";
     } catch (err: any) {
       setError(err.message ?? "Something went wrong.");
     } finally {
