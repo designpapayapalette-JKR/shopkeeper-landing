@@ -577,7 +577,7 @@ export default function LandingPage() {
         }
         description="GST, retail, or estimate invoices with custom tax slabs per item, printed straight to any Bluetooth, USB, or Wi-Fi thermal printer. Track stock across warehouses, manage udhar ledgers, and live-track field agents — with a full audit trail on everything, in one clean workspace."
         showEmail={false}
-        primaryCta={{ label: "Get Invite Access", href: "/register" }}
+        primaryCta={{ label: "Get Invite Access", href: "https://app.papayapalette.online/register" }}
         secondaryCta={{ label: "Explore Features ↓", href: "#features" }}
         socialProof="Currently invite-only during our private beta — free to use."
         tabs={tabs}
