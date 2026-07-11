@@ -42,6 +42,7 @@ import {
   Shirt,
   Laptop,
   Check,
+  Download as DownloadIcon,
   Signal,
   Wifi,
   Battery,
@@ -540,10 +541,10 @@ export default function LandingPage() {
 
           <nav className="hidden md:flex items-center gap-6 text-xs font-bold text-text-secondary uppercase tracking-wider">
             <a href="#features" className="hover:text-foreground transition-colors">Features</a>
+            <a href="#download" className="hover:text-foreground transition-colors">Download App</a>
             <a href="#pricing" className="hover:text-foreground transition-colors">Pricing</a>
             <a href="#faq" className="hover:text-foreground transition-colors">FAQs</a>
             <Link href="https://app.papayapalette.online/dashboard" className="hover:text-foreground transition-colors">Portal</Link>
-            <Link href="/admin" className="hover:text-foreground transition-colors">Admin</Link>
           </nav>
 
           <div className="flex items-center gap-3">
@@ -603,6 +604,63 @@ export default function LandingPage() {
             productivity={<ProductivityCard />}
             shortcuts={<ShortcutsCard />}
           />
+        </div>
+      </section>
+
+      {/* Download App Section */}
+      <section id="download" className="py-24 bg-background border-b border-border transition-colors duration-200">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-xl mb-16">
+            <span className="text-xs font-bold text-primary uppercase tracking-widest font-mono">Mobile App</span>
+            <h2 className="text-3xl tracking-tight text-foreground font-light mt-2">Download the Shopkeeper App</h2>
+            <p className="mt-2 text-sm text-text-secondary font-medium">
+              Download the companion Android app for your staff and field agents. Links always point to the latest build.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 max-w-3xl">
+            <a
+              href="https://github.com/designpapayapalette-JKR/shopkeeper-app/releases/download/beta-latest/shopkeeper-app-latest.apk"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-card border border-border p-6 rounded-radius hover:border-primary/50 hover:shadow-md transition-all duration-300 flex items-start gap-4"
+            >
+              <div className="w-12 h-12 rounded-radius bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
+                <Smartphone size={22} className="text-primary" strokeWidth={2} />
+              </div>
+              <div>
+                <h3 className="text-sm font-extrabold text-foreground mb-1">Shopkeeper App</h3>
+                <p className="text-xs text-text-secondary leading-relaxed font-medium mb-2">
+                  For owners, managers, and staff — POS billing, inventory, ledger, expenses, attendance, and more.
+                </p>
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-primary">
+                  <DownloadIcon size={14} />
+                  Download APK
+                </span>
+              </div>
+            </a>
+
+            <a
+              href="https://github.com/designpapayapalette-JKR/agent-app/releases/download/beta-latest/agent-app-latest.apk"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-card border border-border p-6 rounded-radius hover:border-primary/50 hover:shadow-md transition-all duration-300 flex items-start gap-4"
+            >
+              <div className="w-12 h-12 rounded-radius bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
+                <UserCog size={22} className="text-primary" strokeWidth={2} />
+              </div>
+              <div>
+                <h3 className="text-sm font-extrabold text-foreground mb-1">Agent App</h3>
+                <p className="text-xs text-text-secondary leading-relaxed font-medium mb-2">
+                  For field agents — attendance check-in, expense logging, task management, GPS tracking, and walkie-talkie.
+                </p>
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-primary">
+                  <DownloadIcon size={14} />
+                  Download APK
+                </span>
+              </div>
+            </a>
+          </div>
         </div>
       </section>
 
