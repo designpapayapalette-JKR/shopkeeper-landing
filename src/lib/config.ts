@@ -19,3 +19,9 @@ export const APP_DOWNLOAD_URL =
 export const AGENT_APP_DOWNLOAD_URL =
   process.env.NEXT_PUBLIC_AGENT_APP_DOWNLOAD_URL ||
   "https://github.com/designpapayapalette-JKR/agent-app/releases/download/beta-latest/agent-app-latest.apk";
+// Offline Windows desktop edition — hosted on Vercel Blob rather than a
+// GitHub release since the desktop app's source repo is private (contains
+// license/anti-tamper enforcement code that isn't meant to be public).
+export const DESKTOP_APP_DOWNLOAD_URL =
+  process.env.NEXT_PUBLIC_DESKTOP_APP_DOWNLOAD_URL ||
+  "https://ngcc7dhf9zqcd9sa.public.blob.vercel-storage.com/shopkeeper-desktop-latest-XnhUSU0lfGHkxkgPkOyV83KZZyIHxF.exe";
