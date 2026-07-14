@@ -18,9 +18,24 @@ const inter = Inter({
   weight: ["300", "400", "500", "600", "700"],
 });
 
+const TITLE = "managemycounter - All-in-One Retail POS & Field Operations ERP";
+const DESCRIPTION =
+  "GST billing in seconds. Stock, staff, and field agents — all in sync, in one app built for Indian shopkeepers. Free during beta, no credit card required.";
+
 export const metadata: Metadata = {
-  title: "managemycounter - All-in-One Retail POS & Field Operations ERP",
-  description: "Manage POS billing, GST compliance, credit ledgers, multi-warehouse stock, and live-track field agents on maps from one unified platform.",
+  title: TITLE,
+  description: DESCRIPTION,
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+    type: "website",
+    siteName: "managemycounter",
+  },
+  twitter: {
+    card: "summary",
+    title: TITLE,
+    description: DESCRIPTION,
+  },
 };
 
 export default function RootLayout({

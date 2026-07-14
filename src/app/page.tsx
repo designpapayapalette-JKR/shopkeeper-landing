@@ -175,7 +175,7 @@ const TRUST_POINTS = [
   {
     icon: ShieldCheck,
     title: "Your data, secured",
-    description: "Company data is isolated per tenant with role-based access, so owners, staff, and field agents only see what they need to.",
+    description: "Passwords are hashed, traffic is encrypted end-to-end, and every company's data is isolated at the database level — role-based access means staff and field agents only see what they need to.",
   },
   {
     icon: Smartphone,
@@ -569,21 +569,61 @@ export default function LandingPage() {
         <AuroraBackground />
         <PreviewSwitchHero
         className="bg-transparent"
-        badge={{ tag: "BETA", label: "Free for 30 days with an invite — no card needed" }}
+        badge={{ tag: "BETA", label: "Free during beta — no credit card, ever" }}
         title={
           <>
-            Billing, GST & inventory for <span className="font-serif italic font-normal text-primary">shopkeepers</span> & <span className="font-serif italic font-normal text-foreground">field forces</span>.
+            GST billing in seconds. Everything else, <span className="font-serif italic font-normal text-primary">automatic</span>.
           </>
         }
-        description="GST, retail, or estimate invoices with custom tax slabs per item, printed straight to any Bluetooth, USB, or Wi-Fi thermal printer. Track stock across warehouses, manage udhar ledgers, and live-track field agents — with a full audit trail on everything, in one clean workspace."
+        description="Retail, GST, or estimate invoices with custom tax slabs — printed straight to any Bluetooth, USB, or Wi-Fi thermal printer. Stock synced across warehouses, udhar ledgers that update themselves, and live GPS tracking for your field team — one workspace, built for shopkeepers and their field forces."
         showEmail={false}
         primaryCta={{ label: "Get Invite Access", href: "https://app.papayapalette.online/register" }}
         secondaryCta={{ label: "Explore Features ↓", href: "#features" }}
-        socialProof="Currently invite-only during our private beta — free to use."
+        socialProof="Invite-only while we're in private beta — every invited shop gets full access, free."
         tabs={tabs}
         logos={SEGMENTS}
         />
       </div>
+
+      {/* How It Works — reduces signup hesitation by showing exactly how
+          little friction there is (real flow: invite code → instant
+          account, no approval wait, no card). */}
+      <section className="py-20 border-b border-border">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="text-center max-w-xl mx-auto mb-14 space-y-2">
+            <span className="text-xs font-bold text-primary uppercase tracking-widest">Getting Started</span>
+            <h2 className="text-3xl tracking-tight text-foreground font-light">Up and billing in under 5 minutes</h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                step: "01",
+                title: "Get your invite code",
+                description: "Ask whoever invited you, or request access — we're onboarding shops directly during the beta.",
+              },
+              {
+                step: "02",
+                title: "Set up your shop",
+                description: "Enter your code and business details. Your account is live instantly — no approval wait, no card required.",
+              },
+              {
+                step: "03",
+                title: "Start billing",
+                description: "Your dashboard is ready the moment you sign in. Issue your first GST invoice in under a minute.",
+              },
+            ].map((s, idx) => (
+              <Reveal key={idx} delay={idx * 0.08}>
+                <div className="bg-card border border-border rounded-radius p-6 h-full">
+                  <span className="text-3xl font-black text-primary/25 tracking-tight">{s.step}</span>
+                  <h3 className="text-sm font-extrabold text-foreground mt-3 mb-2">{s.title}</h3>
+                  <p className="text-xs text-text-secondary leading-relaxed font-medium">{s.description}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Bento Grid Featured Showcase */}
       <section id="features" className="py-24 bg-secondary/40 border-b border-border transition-colors duration-200">
@@ -652,7 +692,7 @@ export default function LandingPage() {
               <div>
                 <h3 className="text-sm font-extrabold text-foreground mb-1">Agent App</h3>
                 <p className="text-xs text-text-secondary leading-relaxed font-medium mb-2">
-                  For field agents — attendance check-in, expense logging, task management, GPS tracking, and walkie-talkie.
+                  For field agents — attendance check-in, expense logging, task management, and live GPS tracking.
                 </p>
                 <span className="inline-flex items-center gap-1.5 text-xs font-bold text-primary">
                   <DownloadIcon size={14} />
@@ -794,19 +834,20 @@ export default function LandingPage() {
                     <p className="text-xs text-muted-foreground mt-1">Perfect for single retail counters and local shopkeepers.</p>
                   </div>
 
-                  <div className="flex items-baseline gap-1 mb-6">
-                    <span className="text-4xl font-black tracking-tight text-foreground">
+                  <div className="flex items-baseline gap-1 mb-2">
+                    <span className="text-4xl font-black tracking-tight text-foreground line-through decoration-2 decoration-muted-foreground/40">
                       ₹{billingPeriod === "monthly" ? starterMonthly.toLocaleString() : starterYearly.toLocaleString()}
                     </span>
                     <span className="text-muted-foreground text-xs font-bold">
                       /{billingPeriod === "monthly" ? "month" : "year"}
                     </span>
                   </div>
+                  <p className="text-xs font-bold text-emerald-600 dark:text-emerald-400 mb-6">₹0 during beta — free, full access</p>
 
                   {billingPeriod === "yearly" && (
                     <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-radius p-2.5 mb-6">
                       <p className="text-emerald-600 dark:text-emerald-400 text-xs font-semibold text-center">
-                        Save ₹{starterSavings.toLocaleString()} annually
+                        Save ₹{starterSavings.toLocaleString()} annually once billing starts
                       </p>
                     </div>
                   )}
@@ -815,7 +856,7 @@ export default function LandingPage() {
                     href="https://app.papayapalette.online/register"
                     className="w-full bg-secondary hover:bg-muted text-foreground py-3 rounded-radius text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center mb-8 border border-border"
                   >
-                    Get Invite Access
+                    Start Free — No Card
                   </Link>
 
                   <div className="border-t border-border/40 pt-6 mt-auto">
@@ -856,19 +897,20 @@ export default function LandingPage() {
                     <p className="text-xs text-muted-foreground mt-1">For shops with warehouse networks, employees, and delivery agents.</p>
                   </div>
 
-                  <div className="flex items-baseline gap-1 mb-6">
-                    <span className="text-4xl font-black tracking-tight text-foreground">
+                  <div className="flex items-baseline gap-1 mb-2">
+                    <span className="text-4xl font-black tracking-tight text-foreground line-through decoration-2 decoration-muted-foreground/40">
                       ₹{billingPeriod === "monthly" ? proMonthly.toLocaleString() : proYearly.toLocaleString()}
                     </span>
                     <span className="text-muted-foreground text-xs font-bold">
                       /{billingPeriod === "monthly" ? "month" : "year"}
                     </span>
                   </div>
+                  <p className="text-xs font-bold text-primary mb-6">₹0 during beta — free, full access</p>
 
                   {billingPeriod === "yearly" && (
                     <div className="bg-primary/10 border border-primary/20 rounded-radius p-2.5 mb-6">
                       <p className="text-primary dark:text-primary-foreground text-xs font-semibold text-center">
-                        Save ₹{proSavings.toLocaleString()} annually
+                        Save ₹{proSavings.toLocaleString()} annually once billing starts
                       </p>
                     </div>
                   )}
@@ -877,7 +919,7 @@ export default function LandingPage() {
                     href="https://app.papayapalette.online/register"
                     className="w-full bg-primary hover:opacity-90 text-white dark:text-background py-3 rounded-radius text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center mb-8 shadow-sm"
                   >
-                    Get Invite Access
+                    Start Free — No Card
                   </Link>
 
                   <div className="border-t border-border/40 pt-6 mt-auto">
@@ -913,19 +955,20 @@ export default function LandingPage() {
                     <p className="text-xs text-muted-foreground mt-1">For wholesale distribution chains and large business houses.</p>
                   </div>
 
-                  <div className="flex items-baseline gap-1 mb-6">
-                    <span className="text-4xl font-black tracking-tight text-foreground">
+                  <div className="flex items-baseline gap-1 mb-2">
+                    <span className="text-4xl font-black tracking-tight text-foreground line-through decoration-2 decoration-muted-foreground/40">
                       ₹{billingPeriod === "monthly" ? enterpriseMonthly.toLocaleString() : enterpriseYearly.toLocaleString()}
                     </span>
                     <span className="text-muted-foreground text-xs font-bold">
                       /{billingPeriod === "monthly" ? "month" : "year"}
                     </span>
                   </div>
+                  <p className="text-xs font-bold text-emerald-600 dark:text-emerald-400 mb-6">₹0 during beta — free, full access</p>
 
                   {billingPeriod === "yearly" && (
                     <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-radius p-2.5 mb-6">
                       <p className="text-emerald-600 dark:text-emerald-400 text-xs font-semibold text-center">
-                        Save ₹{enterpriseSavings.toLocaleString()} annually
+                        Save ₹{enterpriseSavings.toLocaleString()} annually once billing starts
                       </p>
                     </div>
                   )}
@@ -934,7 +977,7 @@ export default function LandingPage() {
                     href="https://app.papayapalette.online/register"
                     className="w-full bg-secondary hover:bg-muted text-foreground py-3 rounded-radius text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center mb-8 border border-border"
                   >
-                    Get Invite Access
+                    Start Free — No Card
                   </Link>
 
                   <div className="border-t border-border/40 pt-6 mt-auto">
