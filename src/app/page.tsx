@@ -382,7 +382,7 @@ export default function LandingPage() {
     },
     {
       question: "How do field agents log their location and expenses?",
-      answer: "Agents use the companion Shopkeeper staff app. It registers remote check-ins, streams location coordinates securely during active duty, and supports camera uploads for expense receipts."
+      answer: "Agents use the companion managemycounter staff app. It registers remote check-ins, streams location coordinates securely during active duty, and supports camera uploads for expense receipts."
     },
     {
       question: "What hardware is compatible with receipt printing?",
@@ -535,9 +535,8 @@ export default function LandingPage() {
           <div className="flex items-center gap-3">
             <span className="inline-flex items-center gap-2 text-lg font-black tracking-tight uppercase text-foreground">
               <Store size={20} className="text-primary" strokeWidth={2.5} />
-              Shopkeeper
+              managemycounter
             </span>
-            <span className="bg-secondary text-foreground text-[10px] font-bold px-2 py-0.5 rounded-radius border border-border">ERP</span>
           </div>
 
           <nav className="hidden md:flex items-center gap-6 text-xs font-bold text-text-secondary uppercase tracking-wider">
@@ -613,7 +612,7 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="max-w-xl mb-16">
             <span className="text-xs font-bold text-primary uppercase tracking-widest font-mono">Mobile App</span>
-            <h2 className="text-3xl tracking-tight text-foreground font-light mt-2">Download the Shopkeeper App</h2>
+            <h2 className="text-3xl tracking-tight text-foreground font-light mt-2">Download the managemycounter App</h2>
             <p className="mt-2 text-sm text-text-secondary font-medium">
               Download the companion Android app for your staff and field agents. Links always point to the latest build.
             </p>
@@ -630,7 +629,7 @@ export default function LandingPage() {
                 <Smartphone size={22} className="text-primary" strokeWidth={2} />
               </div>
               <div>
-                <h3 className="text-sm font-extrabold text-foreground mb-1">Shopkeeper App</h3>
+                <h3 className="text-sm font-extrabold text-foreground mb-1">managemycounter App</h3>
                 <p className="text-xs text-text-secondary leading-relaxed font-medium mb-2">
                   For owners, managers, and staff — POS billing, inventory, ledger, expenses, attendance, and more.
                 </p>
@@ -723,7 +722,7 @@ export default function LandingPage() {
       <section className="py-24">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center max-w-xl mx-auto mb-14 space-y-2">
-            <span className="text-xs font-bold text-primary uppercase tracking-widest">Why Shopkeeper</span>
+            <span className="text-xs font-bold text-primary uppercase tracking-widest">Why managemycounter</span>
             <h2 className="text-3xl tracking-tight font-light">Built for Bharat&apos;s shopkeepers</h2>
             <p className="text-sm text-text-secondary font-medium">Designed from the ground up for how retail actually works in Indian towns and cities.</p>
           </div>
@@ -1040,10 +1039,10 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
           <span className="inline-flex items-center gap-2 text-xs font-black tracking-tight uppercase text-foreground">
             <Store size={16} className="text-primary" strokeWidth={2.5} />
-            Shopkeeper SaaS
+            managemycounter
           </span>
           <p className="text-[10px] text-text-secondary font-bold uppercase tracking-wider">
-            © {new Date().getFullYear()} Shopkeeper. All rights reserved. Built for retail growth.
+            © {new Date().getFullYear()} managemycounter. All rights reserved. Built for retail growth.
           </p>
         </div>
       </footer>

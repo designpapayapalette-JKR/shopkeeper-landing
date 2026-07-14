@@ -1,6 +1,6 @@
-# Shopkeeper Landing
+# managemycounter Landing
 
-Marketing/landing site for Shopkeeper ERP, built with Next.js (App Router). Links out to the merchant sign-up flow on `shopkeeper-web` and to the latest mobile app builds (`shopkeeper-app`, `agent-app`) via GitHub releases.
+Marketing/landing site for managemycounter, built with Next.js (App Router). Links out to the merchant sign-up flow on `shopkeeper-web` and to the latest mobile app builds (`shopkeeper-app`, `agent-app`) via GitHub releases.
 
 ## Development
 

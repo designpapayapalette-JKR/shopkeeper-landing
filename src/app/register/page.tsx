@@ -75,12 +75,12 @@ function RegisterForm() {
       <div className="w-full max-w-md">
         <Link href="/" className="inline-flex items-center gap-2 text-lg font-black tracking-tight uppercase mb-8">
           <Store size={20} className="text-primary" strokeWidth={2.5} />
-          Shopkeeper
+          managemycounter
         </Link>
 
         <h1 className="text-2xl font-semibold tracking-tight mb-2">Start your free trial</h1>
         <p className="text-sm text-text-secondary font-medium mb-8">
-          Shopkeeper is in private beta — you need an invite code to sign up. Ask whoever invited you, or{" "}
+          managemycounter is in private beta — you need an invite code to sign up. Ask whoever invited you, or{" "}
           <a href="mailto:hello@shopkeeper.app" className="text-primary font-bold">request access</a>.
         </p>
 

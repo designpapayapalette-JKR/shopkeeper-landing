@@ -19,7 +19,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Shopkeeper SaaS - All-in-One Retail POS & Field Operations ERP",
+  title: "managemycounter - All-in-One Retail POS & Field Operations ERP",
   description: "Manage POS billing, GST compliance, credit ledgers, multi-warehouse stock, and live-track field agents on maps from one unified platform.",
 };
 

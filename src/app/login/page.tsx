@@ -38,12 +38,12 @@ export default function MerchantLoginPage() {
       <div className="w-full max-w-md">
         <Link href="/" className="inline-flex items-center gap-2 text-lg font-black tracking-tight uppercase mb-8">
           <Store size={20} className="text-primary" strokeWidth={2.5} />
-          Shopkeeper
+          managemycounter
         </Link>
 
         <h1 className="text-2xl font-semibold tracking-tight mb-2">Log in to your business</h1>
         <p className="text-sm text-text-secondary font-medium mb-8">
-          Use the same email and password you use to sign into the Shopkeeper mobile app.
+          Use the same email and password you use to sign into the managemycounter mobile app.
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
