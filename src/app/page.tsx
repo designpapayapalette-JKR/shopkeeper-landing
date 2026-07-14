@@ -20,6 +20,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { BentoGridShowcase } from "@/components/ui/bento-product-features";
+import { APP_DOWNLOAD_URL, AGENT_APP_DOWNLOAD_URL } from "@/lib/config";
 import {
   Settings2,
   Command,
@@ -620,7 +621,7 @@ export default function LandingPage() {
 
           <div className="grid md:grid-cols-2 gap-6 max-w-3xl">
             <a
-              href="https://github.com/designpapayapalette-JKR/shopkeeper-app/releases/download/beta-latest/shopkeeper-app-latest.apk"
+              href={APP_DOWNLOAD_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="bg-card border border-border p-6 rounded-radius hover:border-primary/50 hover:shadow-md transition-all duration-300 flex items-start gap-4"
@@ -641,7 +642,7 @@ export default function LandingPage() {
             </a>
 
             <a
-              href="https://github.com/designpapayapalette-JKR/agent-app/releases/download/beta-latest/agent-app-latest.apk"
+              href={AGENT_APP_DOWNLOAD_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="bg-card border border-border p-6 rounded-radius hover:border-primary/50 hover:shadow-md transition-all duration-300 flex items-start gap-4"

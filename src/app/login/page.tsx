@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Store, AlertCircle } from "lucide-react";
+import { Store, AlertCircle, HelpCircle } from "lucide-react";
 import { merchantLogin } from "@/lib/merchantSession";
 
 // Merchant Portal login — the web version of the app. Uses the exact same
@@ -75,6 +75,12 @@ export default function MerchantLoginPage() {
               <p className="text-xs font-semibold text-red-600 dark:text-red-400">{error}</p>
             </div>
           )}
+
+          <div className="flex items-center justify-end">
+            <Link href="https://app.papayapalette.online/forgot-password" className="text-xs font-semibold text-primary hover:underline">
+              Forgot password?
+            </Link>
+          </div>
 
           <button
             type="submit"
