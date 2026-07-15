@@ -155,9 +155,34 @@ const FEATURES = [
     icon: UserCog,
   },
   {
-    title: "Challan & Transit Workflows",
-    description: "Generate delivery challans directly from invoices. Log vehicle and driver data and track transit stages.",
+    title: "Delivery Challans",
+    description: "GST Rule 55-compliant challans with reason for movement, place of supply, and per-item HSN/taxable value — not just a vehicle/driver note.",
     icon: BarChart3,
+  },
+  {
+    title: "Credit & Debit Notes",
+    description: "Issue GST-compliant credit and debit notes against any invoice for returns, price corrections, and post-sale adjustments.",
+    icon: Receipt,
+  },
+  {
+    title: "Bank Reconciliation",
+    description: "Import bank statements and match them against recorded payments — spot missing or mismatched entries before they become a problem.",
+    icon: IndianRupee,
+  },
+  {
+    title: "Recurring Invoices",
+    description: "Set up subscription or contract billing once — invoices generate and send automatically on schedule.",
+    icon: Receipt,
+  },
+  {
+    title: "Financial Reports",
+    description: "Balance Sheet, Stock Valuation, Trial Balance, and Aging reports — the numbers your CA actually asks for, generated from your live data.",
+    icon: BarChart3,
+  },
+  {
+    title: "Export & Print, Everywhere",
+    description: "Every module with data — ledgers, reports, inventory, invoices — exports to Excel or prints cleanly, in one click.",
+    icon: DownloadIcon,
   },
   {
     title: "Direct Invoice Sharing",
@@ -704,11 +729,11 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Top 10 Core Capabilities Grid */}
+      {/* Core Capabilities Grid */}
       <section className="py-24 bg-background border-b border-border transition-colors duration-200">
         <div className="max-w-6xl mx-auto px-6">
           <div className="max-w-xl mb-16">
-            <span className="text-xs font-bold text-primary uppercase tracking-widest font-mono">10 Core Capabilities</span>
+            <span className="text-xs font-bold text-primary uppercase tracking-widest font-mono">Core Capabilities</span>
             <h2 className="text-3xl tracking-tight text-foreground font-light mt-2">Built for growth & precision</h2>
             <p className="mt-2 text-sm text-text-secondary font-medium">
               Everything you need to orchestrate physical stock, back-office bookkeeping, and physical field forces.
@@ -910,8 +935,10 @@ export default function LandingPage() {
                         "Up to 5 Staff/Agent accounts",
                         "Live GPS Field Tracking & Maps",
                         "Expense upload & supervisor approval",
-                        "Delivery Challan & Transit steps",
-                        "Advanced GST & Compliance exports",
+                        "GST-compliant Delivery Challans",
+                        "Credit/Debit Notes & Bank Reconciliation",
+                        "Balance Sheet, Trial Balance & Aging reports",
+                        "Excel export & print on every module",
                       ].map((item, idx) => (
                         <li key={idx} className="flex gap-2.5 items-center text-xs font-medium">
                           <Check size={14} className="text-primary shrink-0" strokeWidth={3} />
