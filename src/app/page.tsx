@@ -20,7 +20,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { BentoGridShowcase } from "@/components/ui/bento-product-features";
-import { APP_DOWNLOAD_URL, AGENT_APP_DOWNLOAD_URL, DESKTOP_APP_DOWNLOAD_URL } from "@/lib/config";
+import { APP_DOWNLOAD_URL, AGENT_APP_DOWNLOAD_URL } from "@/lib/config";
 import {
   Settings2,
   Command,
@@ -658,7 +658,7 @@ export default function LandingPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl">
+          <div className="grid md:grid-cols-2 gap-6 max-w-3xl">
             <a
               href={APP_DOWNLOAD_URL}
               target="_blank"
@@ -697,27 +697,6 @@ export default function LandingPage() {
                 <span className="inline-flex items-center gap-1.5 text-xs font-bold text-primary">
                   <DownloadIcon size={14} />
                   Download APK
-                </span>
-              </div>
-            </a>
-
-            <a
-              href={DESKTOP_APP_DOWNLOAD_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-card border border-border p-6 rounded-radius hover:border-primary/50 hover:shadow-md transition-all duration-300 flex items-start gap-4"
-            >
-              <div className="w-12 h-12 rounded-radius bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
-                <Laptop size={22} className="text-primary" strokeWidth={2} />
-              </div>
-              <div>
-                <h3 className="text-sm font-extrabold text-foreground mb-1">Desktop Edition</h3>
-                <p className="text-xs text-text-secondary leading-relaxed font-medium mb-2">
-                  Fully offline Windows edition — runs locally with no internet connection required after setup.
-                </p>
-                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-primary">
-                  <DownloadIcon size={14} />
-                  Download for Windows
                 </span>
               </div>
             </a>
