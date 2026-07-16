@@ -3,9 +3,8 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { PreviewSwitchHero } from "@/components/ui/preview-switch-hero";
+import { HeroSection } from "@/components/blocks/hero-section-1";
 import { TiltCard } from "@/components/ui/tilt-card";
-import { AuroraBackground } from "@/components/ui/aurora-background";
 import { Reveal } from "@/components/ui/reveal";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -23,7 +22,6 @@ import { BentoGridShowcase } from "@/components/ui/bento-product-features";
 import { APP_DOWNLOAD_URL, AGENT_APP_DOWNLOAD_URL } from "@/lib/config";
 import {
   Settings2,
-  Command,
   Plus,
   Store,
   Receipt,
@@ -37,81 +35,10 @@ import {
   ShieldCheck,
   Smartphone,
   IndianRupee,
-  Building2,
-  Truck,
-  Pill,
-  Shirt,
-  Laptop,
   Check,
   Download as DownloadIcon,
-  Signal,
-  Wifi,
-  Battery,
 } from "lucide-react";
 
-/* ── Client phone panel previews ─────────────────────────────── */
-
-function PhonePanel({ title, subtitle, icon: Icon, children }: { title: string; subtitle: string; icon: any; children?: React.ReactNode }) {
-  return (
-    <div className="relative mx-auto w-full max-w-[400px] px-2 [mask-image:linear-gradient(to_bottom,black_80%,transparent)] group">
-      <TiltCard maxTilt={8} className="rounded-t-[2.5rem]">
-        {/* outer bezel */}
-        <div className="overflow-hidden rounded-t-[2.5rem] bg-card px-2 pt-2 shadow-xl shadow-black/[0.12] ring-1 ring-border">
-          {/* screen */}
-          <div className="h-[340px] overflow-hidden rounded-t-[2rem] bg-secondary/20 px-4 py-3 ring-1 ring-border flex flex-col justify-between">
-            <div>
-              {/* status bar */}
-              <div className="flex items-center justify-between text-[10px] text-foreground font-semibold px-2 mb-2">
-                <span>9:41</span>
-                <div className="flex items-end gap-1 opacity-70">
-                  <Signal className="size-3" />
-                  <Wifi className="size-3" />
-                  <Battery className="size-3.5" />
-                </div>
-              </div>
-
-              {/* Title banner */}
-              <div className="flex items-center gap-2 px-2 py-1.5 border-b border-border bg-card/60 rounded-md">
-                <Icon size={14} className="text-primary" />
-                <span className="text-[10px] font-bold text-foreground capitalize">{title}</span>
-              </div>
-
-              {/* Custom inner layout */}
-              <div className="mt-3 min-h-[160px] bg-card border border-border rounded-lg p-3 shadow-sm text-left">
-                {children}
-              </div>
-            </div>
-
-            <div className="text-center pb-4">
-              <p className="text-xs font-bold text-foreground leading-tight">{title}</p>
-              <p className="text-[9px] text-muted-foreground mt-0.5">{subtitle}</p>
-            </div>
-          </div>
-        </div>
-      </TiltCard>
-    </div>
-  );
-}
-
-/* Business categories the product is built for — not customer names/logos,
-   just the segments this ERP targets. Avoids fabricating fake "trusted by"
-   customer claims while still giving a Zoho-style trust strip. */
-const SEGMENTS = [
-  { name: "Kirana & General Stores", Icon: Store },
-  { name: "Wholesale & Distribution", Icon: Truck },
-  { name: "Pharmacies", Icon: Pill },
-  { name: "Apparel & Fashion", Icon: Shirt },
-  { name: "Electronics Retail", Icon: Laptop },
-  { name: "Multi-branch Chains", Icon: Building2 },
-].map(({ name, Icon }) => ({
-  name,
-  logo: (
-    <span className="inline-flex items-center gap-1.5 text-xs font-bold tracking-tight text-muted-foreground">
-      <Icon className="size-4 text-primary" />
-      {name}
-    </span>
-  ),
-}));
 
 const FEATURES = [
   {
@@ -419,196 +346,10 @@ export default function LandingPage() {
     },
   ];
 
-  const tabs = [
-    {
-      id: "pos",
-      label: "POS Billing",
-      media: (
-        <PhonePanel title="POS checkout" subtitle="Instantly calculate taxes and print receipt logs." icon={Receipt}>
-          <div className="space-y-2 text-[10px]">
-            <div className="flex justify-between font-bold border-b border-border pb-1">
-              <span>Item Description</span>
-              <span>Total</span>
-            </div>
-            <div className="flex justify-between text-muted-foreground">
-              <span>Apollo Atta 10kg x 2</span>
-              <span>₹1,240.00</span>
-            </div>
-            <div className="flex justify-between text-muted-foreground">
-              <span>Fortune Oil 5L x 1</span>
-              <span>₹850.00</span>
-            </div>
-            <div className="flex justify-between border-t border-border pt-1 font-extrabold text-foreground">
-              <span>Grand Total</span>
-              <span>₹2,090.00</span>
-            </div>
-          </div>
-        </PhonePanel>
-      )
-    },
-    {
-      id: "gst",
-      label: "Custom GST & Printing",
-      media: (
-        <PhonePanel title="GST Rate & Printer" subtitle="Per-item tax overrides, print to any thermal printer." icon={IndianRupee}>
-          <div className="space-y-2.5 text-[10px]">
-            <div>
-              <span className="font-semibold text-foreground block mb-1">GST Slab for this item</span>
-              <div className="flex gap-1.5">
-                {["0%", "5%", "12%", "18%", "28%"].map((slab, i) => (
-                  <span
-                    key={slab}
-                    className={`px-1.5 py-0.5 rounded border text-[9px] font-bold ${
-                      i === 3 ? "bg-primary text-white border-primary" : "border-border text-muted-foreground"
-                    }`}
-                  >
-                    {slab}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <div className="border-t border-border/60 pt-2">
-              <span className="font-semibold text-foreground block mb-1">Default Printer</span>
-              <div className="flex items-center justify-between border border-border rounded p-1.5 bg-secondary/30">
-                <span className="text-foreground font-bold">Counter Printer · 80mm</span>
-                <span className="text-emerald-600 font-bold text-[9px]">● Bluetooth</span>
-              </div>
-            </div>
-          </div>
-        </PhonePanel>
-      )
-    },
-    {
-      id: "stock",
-      label: "Stock Sync",
-      media: (
-        <PhonePanel title="Warehouse Stocks" subtitle="Real-time stock aggregates across active stores." icon={Package}>
-          <div className="space-y-3 text-[10px]">
-            <div>
-              <div className="flex justify-between mb-0.5">
-                <span className="font-semibold text-foreground">Basmati Rice 25kg</span>
-                <span className="font-bold text-emerald-600">45 Bags</span>
-              </div>
-              <div className="w-full bg-secondary h-1.5 rounded-full overflow-hidden">
-                <div className="bg-emerald-500 h-full w-[80%]" />
-              </div>
-            </div>
-            <div>
-              <div className="flex justify-between mb-0.5">
-                <span className="font-semibold text-foreground">Organic Sugar 5kg</span>
-                <span className="font-bold text-rose-500">2 Bags (Low Stock)</span>
-              </div>
-              <div className="w-full bg-secondary h-1.5 rounded-full overflow-hidden">
-                <div className="bg-rose-500 h-full w-[10%]" />
-              </div>
-            </div>
-          </div>
-        </PhonePanel>
-      )
-    },
-    {
-      id: "ledger",
-      label: "Credit Ledger",
-      media: (
-        <PhonePanel title="Customer Udhar Ledger" subtitle="Manage outstanding credit balances." icon={Users}>
-          <div className="space-y-2 text-[10px]">
-            <div className="flex justify-between items-center py-1 border-b border-border/40">
-              <div>
-                <span className="font-bold block text-foreground">Ramesh Kumar</span>
-                <span className="text-muted-foreground text-[8px]">Active since May</span>
-              </div>
-              <span className="font-extrabold text-rose-500">₹4,500.00 Due</span>
-            </div>
-            <div className="flex justify-between items-center py-1 border-b border-border/40">
-              <div>
-                <span className="font-bold block text-foreground">Vikas Traders</span>
-                <span className="text-muted-foreground text-[8px]">Supplier Account</span>
-              </div>
-              <span className="font-extrabold text-emerald-600">₹12,800.00 Cr</span>
-            </div>
-          </div>
-        </PhonePanel>
-      )
-    },
-    {
-      id: "field",
-      label: "Field Track",
-      media: (
-        <PhonePanel title="GPS Track logs" subtitle="Live agent coordinates and route manifests." icon={MapPin}>
-          <div className="space-y-2 text-[10px]">
-            <div className="border border-border rounded p-1.5 bg-secondary/30">
-              <span className="font-bold block text-foreground">Agent Rahul Sharma</span>
-              <span className="text-[8px] text-muted-foreground block mt-0.5">Check-in at: Main Chowk Warehouse</span>
-              <span className="text-[8px] font-mono text-primary font-bold block mt-0.5">Lat: 28.6139, Lon: 77.2090</span>
-            </div>
-            <div className="border border-border rounded p-1.5 bg-secondary/30">
-              <span className="font-bold block text-foreground">Agent Amit Patel</span>
-              <span className="text-[8px] text-muted-foreground block mt-0.5">Status: Out for Delivery (In Transit)</span>
-            </div>
-          </div>
-        </PhonePanel>
-      )
-    }
-  ];
-
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col font-sans transition-colors duration-200 antialiased selection:bg-primary/20">
 
-      {/* Navigation Header */}
-      <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border transition-colors duration-200">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex justify-between items-center">
-          <div className="flex items-center gap-3">
-            <span className="inline-flex items-center gap-2 text-lg font-black tracking-tight uppercase text-foreground">
-              <Store size={20} className="text-primary" strokeWidth={2.5} />
-              managemycounter
-            </span>
-          </div>
-
-          <nav className="hidden md:flex items-center gap-6 text-xs font-bold text-text-secondary uppercase tracking-wider">
-            <a href="#features" className="hover:text-foreground transition-colors">Features</a>
-            <a href="#download" className="hover:text-foreground transition-colors">Download App</a>
-            <a href="#pricing" className="hover:text-foreground transition-colors">Pricing</a>
-            <a href="#faq" className="hover:text-foreground transition-colors">FAQs</a>
-            <Link href="https://app.papayapalette.online/dashboard" className="hover:text-foreground transition-colors">Portal</Link>
-          </nav>
-
-          <div className="flex items-center gap-3">
-            <Link
-              href="https://app.papayapalette.online/dashboard"
-              className="text-xs font-bold text-text-secondary hover:text-foreground px-3 py-1.5 transition-colors uppercase tracking-wider"
-            >
-              Log In
-            </Link>
-            <Link
-              href="https://app.papayapalette.online/register"
-              className="bg-primary hover:opacity-95 text-white dark:text-background font-bold text-xs px-4 py-2 rounded-radius transition-all shadow-sm uppercase tracking-wider"
-            >
-              Get Invite Access
-            </Link>
-          </div>
-        </div>
-      </header>
-
-      {/* Hero Section */}
-      <div className="relative">
-        <AuroraBackground />
-        <PreviewSwitchHero
-        className="bg-transparent"
-        badge={{ tag: "BETA", label: "Free during beta — no credit card, ever" }}
-        title={
-          <>
-            GST billing in seconds. Everything else, <span className="font-serif italic font-normal text-primary">automatic</span>.
-          </>
-        }
-        description="Retail, GST, or estimate invoices with custom tax slabs — printed straight to any Bluetooth, USB, or Wi-Fi thermal printer. Stock synced across warehouses, udhar ledgers that update themselves, and live GPS tracking for your field team — one workspace, built for shopkeepers and their field forces."
-        showEmail={false}
-        primaryCta={{ label: "Get Invite Access", href: "https://app.papayapalette.online/register" }}
-        secondaryCta={{ label: "Explore Features ↓", href: "#features" }}
-        socialProof="Invite-only while we're in private beta — every invited shop gets full access, free."
-        tabs={tabs}
-        logos={SEGMENTS}
-        />
-      </div>
+      <HeroSection />
 
       {/* How It Works — reduces signup hesitation by showing exactly how
           little friction there is (real flow: invite code → instant
