@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { HeroSection } from "@/components/blocks/hero-section-1";
 import { TiltCard } from "@/components/ui/tilt-card";
 import { Reveal } from "@/components/ui/reveal";
 import { motion, AnimatePresence } from "framer-motion";
@@ -16,7 +15,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Button, ArrowRight } from "@/components/ui/saa-s-template";
 import { Switch } from "@/components/ui/switch";
 import { BentoGridShowcase } from "@/components/ui/bento-product-features";
 import { APP_DOWNLOAD_URL, AGENT_APP_DOWNLOAD_URL } from "@/lib/config";
@@ -171,7 +170,7 @@ const IntegrationCard = () => {
         </div>
       </CardContent>
       <CardFooter className="mt-auto pt-4 flex items-center justify-between border-t border-border/40">
-        <Button variant="outline" size="sm" onClick={() => setPrinterConnected(!printerConnected)} className="text-xs font-bold">
+        <Button variant="ghost" size="sm" onClick={() => setPrinterConnected(!printerConnected)} className="text-xs font-bold">
           <Settings2 className="mr-1.5 h-3.5 w-3.5" />
           Test Print
         </Button>
@@ -307,6 +306,48 @@ const ShortcutsCard = () => (
 );
 
 
+function InvoicePreview() {
+  return (
+    <div className="bg-zinc-900 rounded-xl border border-zinc-800 p-6 md:p-10 text-left">
+      <div className="flex items-start justify-between border-b-2 border-white/20 pb-4 mb-4">
+        <div>
+          <div className="flex items-center gap-2 font-black text-lg uppercase tracking-tight text-white">
+            <Store size={18} className="text-white/60" strokeWidth={2.5} />
+            managemycounter
+          </div>
+          <p className="text-xs text-zinc-500 mt-1">GSTIN: 09AAAAA0000A1Z5 · Uttar Pradesh</p>
+        </div>
+        <div className="text-right">
+          <h2 className="text-sm font-bold text-white/60">TAX INVOICE</h2>
+          <p className="text-xs text-zinc-500 mt-1">Invoice #INV-1042</p>
+        </div>
+      </div>
+      <div className="space-y-2 text-sm">
+        <div className="flex justify-between font-bold border-b border-zinc-800 pb-1.5 text-xs uppercase tracking-wider text-zinc-500">
+          <span>Item</span>
+          <span>Total</span>
+        </div>
+        <div className="flex justify-between text-zinc-300">
+          <span>Apollo Atta 10kg × 2</span>
+          <span>₹1,240.00</span>
+        </div>
+        <div className="flex justify-between text-zinc-300">
+          <span>Fortune Oil 5L × 1</span>
+          <span>₹850.00</span>
+        </div>
+        <div className="flex justify-between text-zinc-500 text-xs pt-1">
+          <span>CGST + SGST (5%)</span>
+          <span>₹104.50</span>
+        </div>
+        <div className="flex justify-between border-t-2 border-white/20 pt-2 mt-1 font-black text-base text-white">
+          <span>Grand Total</span>
+          <span>₹2,194.50</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function LandingPage() {
   const [billingPeriod, setBillingPeriod] = useState<"monthly" | "yearly">("monthly");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -349,7 +390,90 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col font-sans transition-colors duration-200 antialiased selection:bg-primary/20">
 
-      <HeroSection />
+      {/* Navigation */}
+      <nav className="fixed top-0 z-50 w-full bg-black/80 backdrop-blur-lg border-b border-zinc-800">
+        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
+          <Link href="/" className="flex items-center gap-2 text-white font-bold text-lg">
+            <Store size={20} className="text-white" strokeWidth={2.5} />
+            managemycounter
+          </Link>
+          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
+            <Link href="#features" className="hover:text-white transition-colors">Features</Link>
+            <Link href="#download" className="hover:text-white transition-colors">Download</Link>
+            <Link href="#pricing" className="hover:text-white transition-colors">Pricing</Link>
+            <Link href="#faq" className="hover:text-white transition-colors">FAQs</Link>
+            <Link href="https://app.papayapalette.online/dashboard" className="hover:text-white transition-colors">Portal</Link>
+          </div>
+          <div className="flex items-center gap-4">
+            <Link href="https://app.papayapalette.online/dashboard" className="text-sm text-zinc-400 hover:text-white transition-colors">Log In</Link>
+            <a href="https://app.papayapalette.online/register">
+              <Button variant="gradient" size="sm">Get Invite Access <ArrowRight size={14} /></Button>
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero */}
+      <section className="bg-black overflow-hidden">
+        <div className="relative pt-28 md:pt-40">
+          <div aria-hidden className="absolute inset-0 -z-10 size-full [background:radial-gradient(125%_125%_at_50%_100%,transparent_0%,#000_75%)]" />
+          <div className="mx-auto max-w-7xl px-6">
+            <div className="text-center">
+              <a href="#pricing" className="inline-flex items-center gap-3 text-sm text-zinc-400 border border-zinc-800 rounded-full pl-4 pr-1.5 py-1 hover:border-zinc-600 transition-colors group">
+                BETA · Free during beta — no credit card, ever
+                <span className="bg-zinc-900 border border-zinc-700 rounded-full p-1 group-hover:bg-zinc-800 transition-colors">
+                  <ArrowRight size={12} className="text-white" />
+                </span>
+              </a>
+
+              <h1 className="mt-8 max-w-4xl mx-auto text-balance text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-b from-white via-white/95 to-white/60 bg-clip-text text-transparent leading-tight">
+                GST billing in seconds.<br />Everything else, <span className="font-serif italic font-normal text-white/60">automatic</span>.
+              </h1>
+
+              <p className="mx-auto mt-8 max-w-2xl text-balance text-lg text-zinc-400">
+                Retail, GST, or estimate invoices with custom tax slabs — printed straight to any Bluetooth, USB, or Wi-Fi thermal printer. Stock synced across warehouses, udhar ledgers that update themselves, and live GPS tracking for your field team.
+              </p>
+
+              <div className="mt-12 flex flex-col items-center justify-center gap-4 md:flex-row">
+                <div className="bg-zinc-900 rounded-[14px] border border-zinc-800 p-0.5">
+                  <a href="https://app.papayapalette.online/register">
+                    <Button variant="gradient" size="lg" className="rounded-xl px-5 text-base">
+                      Get Invite Access <ArrowRight size={16} />
+                    </Button>
+                  </a>
+                </div>
+                <a href="#features" className="inline-flex items-center justify-center gap-2 h-12 px-5 text-sm font-medium text-zinc-400 hover:text-white border border-zinc-800 hover:border-zinc-600 rounded-xl transition-colors">
+                  Explore Features ↓
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Invoice Preview */}
+          <div className="relative -mr-56 mt-16 overflow-hidden px-2 sm:mr-0 sm:mt-16 md:mt-24">
+            <div aria-hidden className="bg-gradient-to-b to-black absolute inset-0 z-10 from-transparent from-35%" />
+            <div className="relative mx-auto max-w-4xl overflow-hidden rounded-2xl border border-zinc-800 p-4 shadow-lg shadow-black/20 bg-zinc-900/60 backdrop-blur-sm">
+              <InvoicePreview />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Segment strip */}
+      <section className="bg-black pb-16 pt-16 md:pb-32">
+        <div className="mx-auto max-w-5xl px-6">
+          <p className="text-center text-xs font-bold text-zinc-500 uppercase tracking-widest mb-8">
+            Built for every kind of Indian retail business
+          </p>
+          <div className="mx-auto grid max-w-3xl grid-cols-2 gap-x-8 gap-y-5 sm:grid-cols-3">
+            {["Kirana & General Stores", "Wholesale & Distribution", "Pharmacies", "Apparel & Fashion", "Electronics Retail", "Multi-branch Chains"].map((s) => (
+              <div key={s} className="text-center text-sm font-semibold text-zinc-500">
+                {s}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* How It Works — reduces signup hesitation by showing exactly how
           little friction there is (real flow: invite code → instant
@@ -808,16 +932,10 @@ export default function LandingPage() {
           <h2 className="text-3xl tracking-tight font-light">Ready to digitize your shop?</h2>
           <p className="text-sm text-text-secondary font-medium">We're inviting shops into our private beta — free for 30 days, no credit card required.</p>
           <div className="flex flex-wrap items-center justify-center gap-3">
-            <Link
-              href="https://app.papayapalette.online/register"
-              className="bg-primary hover:opacity-95 text-white dark:text-background font-bold text-xs px-6 py-3 rounded-radius transition-all shadow-sm uppercase tracking-wider"
-            >
-              Get Invite Access
-            </Link>
-            <a
-              href="#pricing"
-              className="bg-surface border border-border hover:border-primary text-foreground font-bold text-xs px-6 py-3 rounded-radius transition-all uppercase tracking-wider"
-            >
+            <a href="https://app.papayapalette.online/register">
+              <Button variant="gradient" size="lg">Get Invite Access <ArrowRight size={16} /></Button>
+            </a>
+            <a href="#pricing" className="inline-flex items-center justify-center gap-2 h-12 px-6 text-sm font-medium text-zinc-400 hover:text-white border border-zinc-800 hover:border-zinc-600 rounded-xl transition-colors">
               View Pricing
             </a>
           </div>
