@@ -312,7 +312,7 @@ function InvoicePreview() {
       <div className="flex items-start justify-between border-b-2 border-white/20 pb-4 mb-4">
         <div>
           <div className="flex items-center gap-2 font-black text-lg uppercase tracking-tight text-white">
-            <Image src="/logo-icon.png" alt="" width={20} height={20} className="shrink-0 brightness-0 invert opacity-60" />
+            <Image src="/MMC Square Logo-01.png" alt="" width={20} height={20} className="shrink-0 brightness-0 invert opacity-60" />
             managemycounter
           </div>
           <p className="text-xs text-zinc-500 mt-1">GSTIN: 09AAAAA0000A1Z5 · Uttar Pradesh</p>
@@ -422,8 +422,7 @@ export default function LandingPage() {
       <nav className="fixed top-0 z-50 w-full bg-black/80 backdrop-blur-lg border-b border-zinc-800">
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-2 text-white font-bold text-lg">
-            <Image src="/logo-icon.png" alt="managemycounter" width={22} height={22} className="shrink-0 brightness-0 invert" />
-            managemycounter
+            <Image src="/ManageMyCounter Rectangle-01.png" alt="managemycounter" width={120} height={32} className="shrink-0" />
           </Link>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
             <Link href="#features" className="hover:text-white transition-colors">Features</Link>
@@ -1043,7 +1042,7 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto px-6 py-14 grid sm:grid-cols-2 md:grid-cols-4 gap-10">
           <div className="col-span-2 md:col-span-1">
             <span className="inline-flex items-center gap-2 text-xs font-black tracking-tight uppercase text-foreground">
-              <Image src="/logo-icon.png" alt="" width={18} height={18} className="shrink-0" />
+              <Image src="/MMC Square Logo-01.png" alt="" width={18} height={18} className="shrink-0" />
               managemycounter
             </span>
             <p className="text-xs text-text-secondary font-medium mt-3 leading-relaxed max-w-[220px]">

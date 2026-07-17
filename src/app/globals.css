@@ -4,10 +4,24 @@
    MANAGEMYCOUNTER  ·  Brand: Blue on black
    Dark theme · Blue accent · Clear, decisive UI
    Brand palette: #004CFA deep / #0368FE bright (primary) /
-   #000D3A navy / #03A8FE cyan. Font: Poppins (Google Font, weights
-   300-900) — loaded via next/font/google in layout.tsx; replaced Gilroy,
-   whose free tier only had 2 weights.
+   #000D3A navy / #03A8FE cyan. Font: Gilroy (local OTF, ExtraBold + Light) — loaded from /public/fonts.
 ══════════════════════════════════════════════ */
+
+/* Gilroy Font — local OTF files from /public/fonts */
+@font-face {
+  font-family: "Gilroy";
+  src: url("/fonts/Gilroy-ExtraBold.otf") format("opentype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Gilroy";
+  src: url("/fonts/Gilroy-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
 
 :root {
   --card: #262626;
@@ -82,7 +96,8 @@
   --sb-text:         var(--sidebar-foreground);
   --sb-hover:        var(--secondary);
 
-  --font-sans: var(--font-poppins), Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-gilroy: "Gilroy", Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: var(--font-gilroy), Inter, -apple-system, BlinkMacSystemFont, sans-serif;
   --font: var(--font-sans), -apple-system, BlinkMacSystemFont, sans-serif;
   --r:    var(--radius);
   --r-lg: calc(var(--radius) * 1.33);
