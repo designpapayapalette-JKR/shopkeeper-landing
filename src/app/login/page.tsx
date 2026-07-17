@@ -2,7 +2,8 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Store, AlertCircle, HelpCircle } from "lucide-react";
+import { AlertCircle, HelpCircle } from "lucide-react";
+import Image from "next/image";
 import { merchantLogin } from "@/lib/merchantSession";
 
 // Merchant Portal login — the web version of the app. Uses the exact same
@@ -37,7 +38,7 @@ export default function MerchantLoginPage() {
     <div className="min-h-screen bg-background text-foreground flex items-center justify-center px-6 py-12">
       <div className="w-full max-w-md">
         <Link href="/" className="inline-flex items-center gap-2 text-lg font-black tracking-tight uppercase mb-8">
-          <Store size={20} className="text-primary" strokeWidth={2.5} />
+          <Image src="/logo-icon.png" alt="managemycounter" width={22} height={22} className="shrink-0" />
           managemycounter
         </Link>
 

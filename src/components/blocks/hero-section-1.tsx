@@ -2,7 +2,8 @@
 
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, Menu, Store, X } from "lucide-react";
+import { ArrowRight, Menu, X } from "lucide-react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { AnimatedGroup } from "@/components/ui/animated-group";
 import { cn } from "@/lib/utils";
@@ -166,7 +167,7 @@ function InvoicePreview() {
       <div className="flex items-start justify-between border-b-2 border-foreground pb-4 mb-4">
         <div>
           <div className="flex items-center gap-2 font-black text-lg uppercase tracking-tight text-foreground">
-            <Store size={18} className="text-primary" strokeWidth={2.5} />
+            <Image src="/logo-icon.png" alt="" width={20} height={20} className="shrink-0" />
             managemycounter
           </div>
           <p className="text-xs text-muted-foreground mt-1">GSTIN: 09AAAAA0000A1Z5 · Uttar Pradesh</p>
@@ -234,7 +235,7 @@ const HeroHeader = () => {
           <div className="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
             <div className="flex w-full justify-between lg:w-auto">
               <Link href="/" aria-label="home" className="flex items-center gap-2 text-lg font-black tracking-tight uppercase text-foreground">
-                <Store size={20} className="text-primary" strokeWidth={2.5} />
+                <Image src="/logo-icon.png" alt="managemycounter" width={22} height={22} className="shrink-0" />
                 managemycounter
               </Link>
 

@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { TiltCard } from "@/components/ui/tilt-card";
 import { Reveal } from "@/components/ui/reveal";
@@ -22,7 +23,6 @@ import { APP_DOWNLOAD_URL, AGENT_APP_DOWNLOAD_URL } from "@/lib/config";
 import {
   Settings2,
   Plus,
-  Store,
   Receipt,
   Package,
   Users,
@@ -312,7 +312,7 @@ function InvoicePreview() {
       <div className="flex items-start justify-between border-b-2 border-white/20 pb-4 mb-4">
         <div>
           <div className="flex items-center gap-2 font-black text-lg uppercase tracking-tight text-white">
-            <Store size={18} className="text-white/60" strokeWidth={2.5} />
+            <Image src="/logo-icon.png" alt="" width={20} height={20} className="shrink-0 brightness-0 invert opacity-60" />
             managemycounter
           </div>
           <p className="text-xs text-zinc-500 mt-1">GSTIN: 09AAAAA0000A1Z5 · Uttar Pradesh</p>
@@ -394,7 +394,7 @@ export default function LandingPage() {
       <nav className="fixed top-0 z-50 w-full bg-black/80 backdrop-blur-lg border-b border-zinc-800">
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-2 text-white font-bold text-lg">
-            <Store size={20} className="text-white" strokeWidth={2.5} />
+            <Image src="/logo-icon.png" alt="managemycounter" width={22} height={22} className="shrink-0 brightness-0 invert" />
             managemycounter
           </Link>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
@@ -946,7 +946,7 @@ export default function LandingPage() {
       <footer className="mt-auto py-10 border-t border-border bg-surface transition-colors duration-200">
         <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
           <span className="inline-flex items-center gap-2 text-xs font-black tracking-tight uppercase text-foreground">
-            <Store size={16} className="text-primary" strokeWidth={2.5} />
+            <Image src="/logo-icon.png" alt="" width={18} height={18} className="shrink-0" />
             managemycounter
           </span>
           <p className="text-[10px] text-text-secondary font-bold uppercase tracking-wider">

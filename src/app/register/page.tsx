@@ -3,7 +3,8 @@
 import React, { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { Store, Check, AlertCircle } from "lucide-react";
+import { Check, AlertCircle } from "lucide-react";
+import Image from "next/image";
 import { API_BASE } from "@/lib/config";
 import { setMerchantSession } from "@/lib/merchantSession";
 
@@ -74,7 +75,7 @@ function RegisterForm() {
     <div className="min-h-screen bg-background text-foreground flex items-center justify-center px-6 py-12">
       <div className="w-full max-w-md">
         <Link href="/" className="inline-flex items-center gap-2 text-lg font-black tracking-tight uppercase mb-8">
-          <Store size={20} className="text-primary" strokeWidth={2.5} />
+          <Image src="/logo-icon.png" alt="managemycounter" width={22} height={22} className="shrink-0" />
           managemycounter
         </Link>
 
