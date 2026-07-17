@@ -1,43 +1,83 @@
 @import "tailwindcss";
 
 /* ══════════════════════════════════════════════
-   SHOPKEEPER ERP  ·  Minimal black & white
-   Light theme · Monochrome accent · Clear, decisive UI
+   MANAGEMYCOUNTER  ·  Brand: Blue on black
+   Dark theme · Blue accent · Clear, decisive UI
+   Brand palette: #004CFA deep / #0368FE bright (primary) /
+   #000D3A navy / #03A8FE cyan. Font: Gilroy — see the
+   @font-face block below (falls back to Inter/system until
+   the actual font files are supplied).
 ══════════════════════════════════════════════ */
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("/fonts/Gilroy-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Gilroy";
+  src: url("/fonts/Gilroy-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Gilroy";
+  src: url("/fonts/Gilroy-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Gilroy";
+  src: url("/fonts/Gilroy-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Gilroy";
+  src: url("/fonts/Gilroy-Black.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
 
 :root {
   --card: #262626;
-  --ring: #3b82f6;
+  --ring: #0368FE;
   --input: #404040;
   --muted: #1f1f1f;
-  --accent: #1e3a8a;
+  --accent: #01246b;
   --border: #404040;
   --radius: 0.375rem;
-  --chart-1: #60a5fa;
-  --chart-2: #3b82f6;
-  --chart-3: #2563eb;
-  --chart-4: #1d4ed8;
-  --chart-5: #1e40af;
+  --chart-1: #03A8FE;
+  --chart-2: #0368FE;
+  --chart-3: #004CFA;
+  --chart-4: #000D3A;
+  --chart-5: #5CD0FF;
   --popover: #262626;
-  --primary: #3b82f6;
-  --sidebar: #171717;
+  --primary: #0368FE;
+  --sidebar: #000D3A;
   --secondary: #262626;
   --background: #000000;
   --foreground: #e5e5e5;
   --destructive: #ef4444;
-  --sidebar-ring: #3b82f6;
-  --sidebar-accent: #1e3a8a;
+  --sidebar-ring: #0368FE;
+  --sidebar-accent: #01246b;
   --sidebar-border: #404040;
   --card-foreground: #e5e5e5;
-  --sidebar-primary: #3b82f6;
+  --sidebar-primary: #0368FE;
   --muted-foreground: #a3a3a3;
-  --accent-foreground: #bfdbfe;
+  --accent-foreground: #8fd8ff;
   --popover-foreground: #e5e5e5;
   --primary-foreground: #ffffff;
   --sidebar-foreground: #e5e5e5;
   --secondary-foreground: #e5e5e5;
   --destructive-foreground: #ffffff;
-  --sidebar-accent-foreground: #bfdbfe;
+  --sidebar-accent-foreground: #8fd8ff;
   --sidebar-primary-foreground: #ffffff;
 
   /* App compatibility aliases */
@@ -50,9 +90,9 @@
   --text-3:    var(--muted-foreground);
 
   --green:     var(--primary);
-  --green-2:   #3b82f6;
+  --green-2:   #004CFA;
   --green-dim: var(--accent);
-  --green-mid: #1d4ed8;
+  --green-mid: #03A8FE;
 
   --success:     #10b981;
   --success-dim: #064e3b;
@@ -63,8 +103,8 @@
   --red-dim:   #7f1d1d;
   --amber:     #f59e0b;
   --amber-dim: #78350f;
-  --blue:      #3b82f6;
-  --blue-dim:  #1e3a8a;
+  --blue:      #0368FE;
+  --blue-dim:  #01246b;
   --status-ok: #10b981;
 
   --text-sub:   var(--text-2);
@@ -78,6 +118,7 @@
   --sb-text:         var(--sidebar-foreground);
   --sb-hover:        var(--secondary);
 
+  --font-sans: Gilroy, Inter, -apple-system, BlinkMacSystemFont, sans-serif;
   --font: var(--font-sans), -apple-system, BlinkMacSystemFont, sans-serif;
   --r:    var(--radius);
   --r-lg: calc(var(--radius) * 1.33);
@@ -85,45 +126,45 @@
 
 .dark {
   --card: #262626;
-  --ring: #3b82f6;
+  --ring: #03A8FE;
   --input: #404040;
   --muted: #1f1f1f;
-  --accent: #1e3a8a;
+  --accent: #01246b;
   --border: #404040;
   --radius: 0.375rem;
-  --chart-1: #60a5fa;
-  --chart-2: #3b82f6;
-  --chart-3: #2563eb;
-  --chart-4: #1d4ed8;
-  --chart-5: #1e40af;
+  --chart-1: #03A8FE;
+  --chart-2: #0368FE;
+  --chart-3: #004CFA;
+  --chart-4: #000D3A;
+  --chart-5: #5CD0FF;
   --popover: #262626;
-  --primary: #3b82f6;
-  --sidebar: #171717;
+  --primary: #03A8FE;
+  --sidebar: #000D3A;
   --secondary: #262626;
   --background: #171717;
   --foreground: #e5e5e5;
   --destructive: #ef4444;
-  --sidebar-ring: #3b82f6;
-  --sidebar-accent: #1e3a8a;
+  --sidebar-ring: #03A8FE;
+  --sidebar-accent: #01246b;
   --sidebar-border: #404040;
   --card-foreground: #e5e5e5;
-  --sidebar-primary: #3b82f6;
+  --sidebar-primary: #03A8FE;
   --muted-foreground: #a3a3a3;
-  --accent-foreground: #bfdbfe;
+  --accent-foreground: #8fd8ff;
   --popover-foreground: #e5e5e5;
-  --primary-foreground: #ffffff;
+  --primary-foreground: #000D3A;
   --sidebar-foreground: #e5e5e5;
   --secondary-foreground: #e5e5e5;
   --destructive-foreground: #ffffff;
-  --sidebar-accent-foreground: #bfdbfe;
-  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent-foreground: #8fd8ff;
+  --sidebar-primary-foreground: #000D3A;
 
   /* App dark-mode compatibility overrides */
-  --green-2:   #3b82f6;
-  --green-mid: #1d4ed8;
+  --green-2:   #03A8FE;
+  --green-mid: #0368FE;
   --red-dim:   #7f1d1d;
   --amber-dim: #78350f;
-  --blue-dim:  #1e3a8a;
+  --blue-dim:  #01246b;
   --success-dim: #064e3b;
   --warning-dim: #451a03;
 }
