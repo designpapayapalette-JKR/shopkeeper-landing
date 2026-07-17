@@ -320,6 +320,13 @@
 }
 .k-input::placeholder { color: var(--text-3); }
 
+/* A <select> with no explicit width can get squeezed down to nothing but
+   its native dropdown arrow in a tight flex row — see shopkeeper-web's
+   globals.css for the full explanation. Same floor, for consistency. */
+select.k-input, select.k-select {
+  min-width: 110px;
+}
+
 /* ── Table ─────────────────────────────────── */
 .k-table { width: 100%; border-collapse: collapse; }
 .k-table th {
