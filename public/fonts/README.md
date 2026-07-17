@@ -1,12 +1,16 @@
-# Gilroy font files go here
+# Gilroy font files
 
-Expected filenames (referenced by src/app/globals.css's @font-face rules):
-- Gilroy-Regular.woff2   (400)
-- Gilroy-Medium.woff2    (500)
-- Gilroy-SemiBold.woff2  (600)
-- Gilroy-Bold.woff2      (700)
-- Gilroy-Black.woff2     (800)
+Free-tier Gilroy (Radomir Tinkov) — see `Gilroy-EULA.pdf` for license terms.
+Personal and commercial use, web embedding via `@font-face`, and embedding
+in software/apps are all explicitly permitted (no redistribution of the
+raw font files as a standalone product).
 
-Gilroy is a commercial font — this repo does not include a redistribution
-license, so the actual font files must be supplied separately. Until then,
-`font-family: var(--font-sans)` falls back to Inter/system fonts.
+Only 2 weights are available in the free tier:
+- `Gilroy-Light.otf` (weight 300)
+- `Gilroy-ExtraBold.otf` (weight 800)
+
+`@font-face` in `src/app/globals.css` declares these at their real
+weights; the browser's standard CSS font-weight matching fills in
+everything else (≤400 → Light, ≥500 → ExtraBold — see the comment there).
+The full weight family (Regular/Medium/SemiBold/Bold) requires the paid
+Gilroy license if finer-grained weights are ever needed.

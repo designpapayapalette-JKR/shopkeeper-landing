@@ -4,42 +4,23 @@
    MANAGEMYCOUNTER  ·  Brand: Blue on black
    Dark theme · Blue accent · Clear, decisive UI
    Brand palette: #004CFA deep / #0368FE bright (primary) /
-   #000D3A navy / #03A8FE cyan. Font: Gilroy — see the
-   @font-face block below (falls back to Inter/system until
-   the actual font files are supplied).
+   #000D3A navy / #03A8FE cyan. Font: Gilroy — free tier, 2 weights
+   (Light 300, ExtraBold 800; see /public/fonts/Gilroy-EULA.pdf).
+   Declaring exactly these two real weights lets standard CSS font
+   matching fill in the rest (≤400 → Light, ≥500 → ExtraBold) with no
+   synthetic bold.
 ══════════════════════════════════════════════ */
 
 @font-face {
   font-family: "Gilroy";
-  src: url("/fonts/Gilroy-Regular.woff2") format("woff2");
-  font-weight: 400;
+  src: url("/fonts/Gilroy-Light.otf") format("opentype");
+  font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Gilroy";
-  src: url("/fonts/Gilroy-Medium.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Gilroy";
-  src: url("/fonts/Gilroy-SemiBold.woff2") format("woff2");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Gilroy";
-  src: url("/fonts/Gilroy-Bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Gilroy";
-  src: url("/fonts/Gilroy-Black.woff2") format("woff2");
+  src: url("/fonts/Gilroy-ExtraBold.otf") format("opentype");
   font-weight: 800;
   font-style: normal;
   font-display: swap;
