@@ -3,1088 +3,705 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
-import { TiltCard } from "@/components/ui/tilt-card";
+import { HeroSection } from "@/components/blocks/hero-section-1";
+import { FAQSection } from "@/components/blocks/faq-section";
 import { Reveal } from "@/components/ui/reveal";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button, ArrowRight } from "@/components/ui/saa-s-template";
-import { Switch } from "@/components/ui/switch";
-import { BentoGridShowcase } from "@/components/ui/bento-product-features";
-import { APP_DOWNLOAD_URL, AGENT_APP_DOWNLOAD_URL } from "@/lib/config";
-import {
-  Settings2,
-  Plus,
-  Receipt,
-  Package,
-  Users,
-  MapPin,
-  Warehouse,
-  MessageCircle,
-  UserCog,
-  BarChart3,
-  ShieldCheck,
-  Smartphone,
-  IndianRupee,
-  Check,
-  Download as DownloadIcon,
-} from "lucide-react";
+import { ArrowRight, Check, BarChart3, Smartphone, ShieldCheck, Mail, Phone, MapPin, Globe, ChevronRight, ChevronLeft, Star, Users, Zap, Lock, Send, TrendingUp, Target, Database, Cloud, Cpu, Layers, Tag } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
+const FOOTER_MENU = {
+  Product: [
+    { href: "#features", label: "Features" },
+    { href: "#integrations", label: "Integrations" },
+    { href: "#pricing", label: "Pricing" },
+    { href: "/contact", label: "Contact" },
+  ],
+  Company: [
+    { href: "/about", label: "About us" },
+    { href: "/blog", label: "Blog" },
+    { href: "/careers", label: "Careers" },
+    { href: "/contact", label: "Contact us" },
+  ],
+  Resources: [
+    { href: "/blog", label: "Blog" },
+    { href: "/integration", label: "Integrations" },
+    { href: "/docs", label: "Documentation" },
+    { href: "/changelog", label: "Changelog" },
+  ],
+  Legal: [
+    { href: "/privacy", label: "Privacy Policy" },
+    { href: "/terms", label: "Terms of Service" },
+    { href: "/security", label: "Security" },
+  ],
+};
+
+const STATS = [
+  { value: "10X", label: "Faster Billing" },
+  { value: "50K+", label: "Invoices Daily" },
+  { value: "99.9%", label: "Uptime" },
+  { value: "5000+", label: "Active Shops" },
+];
 
 const FEATURES = [
   {
-    title: "POS Billing & Estimations",
-    description: "Issue GST Invoices, Retail Bills, or Estimates in seconds. Fast counter checkout with quick-keys.",
-    icon: Receipt,
+    icon: BarChart3,
+    title: "Real-Time Reporting",
+    description: "Stay informed with up-to-the-minute reports that provide instant visibility into your sales, stock, and cash flow.",
+    badge: "Analytics",
   },
   {
-    title: "Auto-Calculated GST Splits",
-    description: "Automatically split tax into CGST/SGST/IGST based on client location. GST filings are audit-ready without manual split calculations.",
-    icon: IndianRupee,
-  },
-  {
-    title: "Inventory Management",
-    description: "Live inventory count with automated low-stock warnings. Alerts trigger when items fall below safety limits, preventing stock-outs.",
-    icon: Package,
-  },
-  {
-    title: "Multi-Warehouse Stock Sync",
-    description: "Manage and track inventory across multiple physical locations. Instantly check if an out-of-stock item is available in another branch.",
-    icon: Warehouse,
-  },
-  {
-    title: "Digital Credit Ledger (Udhar)",
-    description: "Log debit/credit balances for customers and suppliers. Tap to send outstanding payment reminders directly on WhatsApp.",
-    icon: Users,
-  },
-  {
-    title: "Field Employee Companion App",
-    description: "Staff download the Android app to register check-ins and log shift timings. Prevent timesheet fraud with location-verified clock-ins.",
     icon: Smartphone,
+    title: "Mobile App Analytics",
+    description: "Dive deep into the performance and usage patterns of your field team with live GPS tracking and attendance.",
+    badge: "Mobile",
   },
   {
-    title: "GPS Field Agent Tracking",
-    description: "Real-time location check-ins and travel paths for delivery staff. Verify agent delivery check-ins on live supervisor maps.",
-    icon: MapPin,
+    icon: Database,
+    title: "Multi-Warehouse Stock Sync",
+    description: "Manage and track inventory across multiple physical locations. Instantly check stock availability across branches.",
+    badge: "Inventory",
   },
   {
-    title: "Expense Uploads & Approvals",
-    description: "Staff capture receipt photos and file expense claims. Supervisors approve travel/food expenses directly from the web panel.",
-    icon: UserCog,
+    icon: Lock,
+    title: "Data Security",
+    description: "Rest assured knowing that your data is protected with enterprise-grade encryption and role-based access control.",
+    badge: "Security",
   },
   {
-    title: "Delivery Challans",
-    description: "GST Rule 55-compliant challans with reason for movement, place of supply, and per-item HSN/taxable value — not just a vehicle/driver note.",
-    icon: BarChart3,
-  },
-  {
-    title: "Credit & Debit Notes",
-    description: "Issue GST-compliant credit and debit notes against any invoice for returns, price corrections, and post-sale adjustments.",
-    icon: Receipt,
-  },
-  {
-    title: "Bank Reconciliation",
-    description: "Import bank statements and match them against recorded payments — spot missing or mismatched entries before they become a problem.",
-    icon: IndianRupee,
-  },
-  {
-    title: "Recurring Invoices",
-    description: "Set up subscription or contract billing once — invoices generate and send automatically on schedule.",
-    icon: Receipt,
-  },
-  {
-    title: "Financial Reports",
-    description: "Balance Sheet, Stock Valuation, Trial Balance, and Aging reports — the numbers your CA actually asks for, generated from your live data.",
-    icon: BarChart3,
-  },
-  {
-    title: "Export & Print, Everywhere",
-    description: "Every module with data — ledgers, reports, inventory, invoices — exports to Excel or prints cleanly, in one click.",
-    icon: DownloadIcon,
-  },
-  {
+    icon: Send,
     title: "Direct Invoice Sharing",
     description: "Share clean digital copies of invoices or reports. Send invoice PDFs directly via WhatsApp or email to clients.",
-    icon: MessageCircle,
+    badge: "Sharing",
+  },
+  {
+    icon: TrendingUp,
+    title: "GST Compliance Automation",
+    description: "Automatically split tax into CGST/SGST/IGST based on client location. GST filings are audit-ready without manual work.",
+    badge: "GST",
+  },
+  {
+    icon: Users,
+    title: "Digital Credit Ledger (Udhar)",
+    description: "Log debit/credit balances for customers and suppliers. Tap to send outstanding payment reminders directly on WhatsApp.",
+    badge: "Ledger",
+  },
+  {
+    icon: Target,
+    title: "Field Agent Tracking",
+    description: "Real-time location check-ins and travel paths for delivery staff. Verify agent delivery check-ins on live supervisor maps.",
+    badge: "Field Ops",
+  },
+  {
+    icon: Layers,
+    title: "Expense Uploads & Approvals",
+    description: "Staff capture receipt photos and file expense claims. Supervisors approve travel/food expenses directly from the web panel.",
+    badge: "Expenses",
   },
 ];
 
-const TRUST_POINTS = [
+const INTEGRATIONS = [
+  { name: "WhatsApp Business", logo: "💬", category: "Communication" },
+  { name: "Tally", logo: "📊", category: "Accounting" },
+  { name: "Razorpay", logo: "💳", category: "Payments" },
+  { name: "Shiprocket", logo: "📦", category: "Logistics" },
+  { name: "Google Sheets", logo: "📈", category: "Productivity" },
+  { name: "Zoho CRM", logo: "🎯", category: "CRM" },
+  { name: "India Post", logo: "📮", category: "Logistics" },
+  { name: "GST Portal", logo: "🏛️", category: "Compliance" },
+];
+
+const TESTIMONIALS = [
   {
-    icon: IndianRupee,
-    title: "Built for Indian retail",
-    description: "GST-ready invoicing, rupee-first workflows, and udhar ledgers designed around how Indian shopkeepers actually run their business.",
+    quote: "managemycounter transformed how we run our wholesale business. GST billing that used to take hours now happens in minutes. The field agent tracking alone saved us 20% on delivery disputes.",
+    author: "Rajesh Kumar",
+    role: "Owner, Kumar Trading Co.",
+    company: "🏪",
+    avatar: "RK",
   },
   {
-    icon: ShieldCheck,
-    title: "Your data, secured",
-    description: "Passwords are hashed, traffic is encrypted end-to-end, and every company's data is isolated at the database level — role-based access means staff and field agents only see what they need to.",
+    quote: "The multi-warehouse sync is a game-changer. We manage 3 godowns across Delhi NCR and stock levels update in real-time. No more manual stock transfers or phone calls to check availability.",
+    author: "Priya Sharma",
+    role: "Operations Head, PharmaPlus",
+    company: "💊",
+    avatar: "PS",
   },
   {
-    icon: Smartphone,
-    title: "Works where you work",
-    description: "A responsive web dashboard for the shop counter and back office, plus a companion mobile app for staff and field teams.",
+    quote: "Finally a POS that understands Indian retail. The udhar ledger with WhatsApp reminders cut our collection time in half. Our field agents love the attendance check-in — no more timesheet fraud.",
+    author: "Amit Patel",
+    role: "Director, Patel Electronics",
+    company: "📱",
+    avatar: "AP",
   },
 ];
 
-/* ── Bento Grid Showcase helper cards ────────────────────────── */
+const BLOG_POSTS = [
+  {
+    title: "GST Rule 55: Complete Guide to Delivery Challans",
+    excerpt: "Understand the mandatory fields, format requirements, and compliance checklist for GST-compliant delivery challans in 2024.",
+    category: "Compliance",
+    image: "/blog-challan.jpg",
+  },
+  {
+    title: "How to Automate GST Reconciliation and Save 10 Hours/Week",
+    excerpt: "Step-by-step guide to setting up automated GST return filing, invoice matching, and error detection using managemycounter.",
+    category: "Automation",
+    image: "/blog-gst.jpg",
+  },
+  {
+    title: "Multi-Warehouse Inventory: Best Practices for Growing Retailers",
+    excerpt: "Learn how successful retailers structure their warehouse operations, stock transfers, and reorder workflows across locations.",
+    category: "Inventory",
+    image: "/blog-warehouse.jpg",
+  },
+];
 
-const IntegrationCard = () => {
-  const [autoSend, setAutoSend] = React.useState(true);
-  const [printerConnected, setPrinterConnected] = React.useState(true);
+const PRICING_PLANS = [
+  {
+    name: "Starter Shop",
+    tagline: "Perfect for single retail counters",
+    monthly: 499,
+    yearly: 4990,
+    features: [
+      "Unlimited POS Transactions",
+      "GST Invoicing & Calculations",
+      "1 Warehouse Stock Tracking",
+      "Direct WhatsApp PDF Share",
+      "Bluetooth Receipt Printing",
+      "Overview Reports Portal",
+    ],
+    cta: "Start Free — No Card",
+    popular: false,
+  },
+  {
+    name: "Pro ERP",
+    tagline: "For shops with warehouses & field teams",
+    monthly: 1499,
+    yearly: 14999,
+    features: [
+      "Everything in Starter, plus:",
+      "Multi-Warehouse Inventory Sync",
+      "Digital Credit Ledger (Udhar)",
+      "Up to 5 Staff/Agent Accounts",
+      "Live GPS Field Tracking & Maps",
+      "Expense Upload & Supervisor Approval",
+      "GST-Compliant Delivery Challans",
+      "Credit/Debit Notes & Bank Reconciliation",
+      "Balance Sheet, Trial Balance & Aging Reports",
+      "Excel Export on Every Module",
+    ],
+    cta: "Start Free — No Card",
+    popular: true,
+  },
+  {
+    name: "Enterprise Group",
+    tagline: "For wholesale chains & large businesses",
+    monthly: 4999,
+    yearly: 49990,
+    features: [
+      "Everything in Pro, plus:",
+      "Unlimited Warehouses & Stores",
+      "Unlimited Staff & Agents",
+      "Custom Role & Access Policies",
+      "Dedicated High-Perf Cloud Hosting",
+      "Priority WhatsApp & Phone SLA",
+      "Direct API Integrations & Logs",
+      "Custom Invoice Templates",
+      "On-premise Deployment Option",
+    ],
+    cta: "Contact Sales",
+    popular: false,
+  },
+];
 
+function Logo({ width = 140, height = 36, className = "" }) {
   return (
-    <Card className="flex h-full flex-col border-border/60 shadow-sm bg-card hover:shadow-md transition-all duration-300">
-      <CardHeader className="pb-2">
-        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-100 dark:border-emerald-900/50">
-          <MessageCircle className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
-        </div>
-        <CardTitle className="text-xl font-bold tracking-tight">WhatsApp & Printing</CardTitle>
-        <CardDescription className="text-xs text-muted-foreground mt-1.5 leading-relaxed">
-          Unlock instant checkout automation. Connect your thermal receipt printer and automatically dispatch GST invoice PDFs directly to customer WhatsApp threads.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-4 mt-2">
-        <div className="flex items-center justify-between border-t border-border/40 pt-4">
-          <span className="text-xs font-semibold text-foreground">Auto-Send WhatsApp Invoice</span>
-          <Switch
-            checked={autoSend}
-            onCheckedChange={setAutoSend}
-            className="data-[state=checked]:bg-primary"
-            aria-label="Toggle auto-send WhatsApp"
-          />
-        </div>
-        <div className="flex items-center justify-between">
-          <span className="text-xs font-semibold text-foreground">Printer Status</span>
-          <span className={cn("text-xs font-bold", printerConnected ? "text-emerald-600" : "text-amber-500")}>
-            {printerConnected ? "● Connected (80mm)" : "○ Offline"}
-          </span>
-        </div>
-      </CardContent>
-      <CardFooter className="mt-auto pt-4 flex items-center justify-between border-t border-border/40">
-        <Button variant="ghost" size="sm" onClick={() => setPrinterConnected(!printerConnected)} className="text-xs font-bold">
-          <Settings2 className="mr-1.5 h-3.5 w-3.5" />
-          Test Print
-        </Button>
-        <Badge variant={printerConnected ? "secondary" : "outline"} className="text-[10px] font-bold">
-          {printerConnected ? "Active" : "Configure"}
-        </Badge>
-      </CardFooter>
-    </Card>
-  );
-};
-
-const TrackersCard = () => (
-  <Card className="h-full border-border/60 shadow-sm bg-card hover:shadow-md transition-all duration-300 flex flex-col justify-between p-6">
-    <div>
-      <CardTitle className="text-sm font-bold tracking-tight text-foreground">
-        Active Field Forces
-      </CardTitle>
-      <CardDescription className="text-xs text-muted-foreground mt-1">
-        03 Agents Live Tracking
-      </CardDescription>
-    </div>
-    <div className="space-y-2.5 my-3">
-      <div className="flex items-center justify-between text-xs">
-        <div className="flex items-center gap-2">
-          <div className="relative">
-            <img
-              className="h-7 w-7 rounded-full object-cover"
-              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&q=80"
-              alt="Rahul"
-            />
-            <span className="absolute bottom-0 right-0 block h-2 w-2 rounded-full bg-emerald-500 ring-2 ring-background" />
-          </div>
-          <div>
-            <span className="font-semibold block text-foreground leading-none">Rahul Sharma</span>
-            <span className="text-[10px] text-muted-foreground leading-none">Delhi Central Route</span>
-          </div>
-        </div>
-        <Badge variant="secondary" className="text-[9px] px-1.5 py-0 bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-400">On Route</Badge>
-      </div>
-      <div className="flex items-center justify-between text-xs">
-        <div className="flex items-center gap-2">
-          <div className="relative">
-            <img
-              className="h-7 w-7 rounded-full object-cover"
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80"
-              alt="Amit"
-            />
-            <span className="absolute bottom-0 right-0 block h-2 w-2 rounded-full bg-emerald-500 ring-2 ring-background" />
-          </div>
-          <div>
-            <span className="font-semibold block text-foreground leading-none">Amit Patel</span>
-            <span className="text-[10px] text-muted-foreground leading-none">Godown Transfer</span>
-          </div>
-        </div>
-        <Badge variant="secondary" className="text-[9px] px-1.5 py-0 bg-blue-100 dark:bg-blue-950/60 text-blue-800 dark:text-blue-400">Intake</Badge>
-      </div>
-    </div>
-  </Card>
-);
-
-const FocusCard = () => (
-  <Card className="h-full border-border/60 shadow-sm bg-card hover:shadow-md transition-all duration-300 flex flex-col justify-between p-6">
-    <div className="flex items-start justify-between">
-      <div>
-        <CardTitle className="text-sm font-bold tracking-tight text-foreground">GST Sync</CardTitle>
-        <CardDescription className="text-xs text-muted-foreground mt-0.5">Automated Splits</CardDescription>
-      </div>
-      <Badge variant="outline" className="border-emerald-300 text-emerald-600 bg-emerald-50/20 text-[10px] font-bold">
-        Day Book Sync
-      </Badge>
-    </div>
-    <div className="my-2">
-      <span className="text-5xl font-black tracking-tight text-primary">100%</span>
-    </div>
-    <div className="flex justify-between text-[10px] text-muted-foreground border-t border-border/30 pt-2">
-      <span>Auto GST split audit logs</span>
-      <span className="font-bold text-foreground">Compliant</span>
-    </div>
-  </Card>
-);
-
-const StatisticCard = () => (
-  <Card className="relative h-full w-full overflow-hidden border-border/60 shadow-sm bg-card hover:shadow-md transition-all duration-300 flex items-center justify-center p-6">
-    {/* Dotted background */}
-    <div
-      className="absolute inset-0 opacity-15"
-      style={{
-        backgroundImage: "radial-gradient(hsl(var(--foreground)) 1px, transparent 1px)",
-        backgroundSize: "12px 12px",
-      }}
+    <Image
+      src="/ManageMyCounter Rectangle-01.png"
+      alt="managemycounter"
+      width={width}
+      height={height}
+      className={`shrink-0 ${className}`}
     />
-    <div className="relative z-10 text-center">
-      <div className="text-6xl font-black text-primary leading-none">10X</div>
-      <div className="text-xs font-semibold text-muted-foreground mt-2 tracking-wide uppercase">Billing Speedup</div>
-    </div>
-  </Card>
-);
+  );
+}
 
-const ProductivityCard = () => (
-  <Card className="h-full border-border/60 shadow-sm bg-card hover:shadow-md transition-all duration-300 flex flex-col justify-end p-6">
-    <CardTitle className="text-sm font-bold tracking-tight text-foreground">
-      Multi-Store Stock
-    </CardTitle>
-    <CardDescription className="text-xs text-muted-foreground mt-1.5 leading-relaxed">
-      Aggregated and warehouse-level inventory syncs automatically on checkout. Know what stock is where in real time.
-    </CardDescription>
-  </Card>
-);
-
-const ShortcutsCard = () => (
-  <Card className="h-full border-border/60 shadow-sm bg-card hover:shadow-md transition-all duration-300 flex flex-wrap items-center justify-between gap-4 p-6">
-    <div>
-      <CardTitle className="text-sm font-bold tracking-tight text-foreground">Cash Counter Shortcuts</CardTitle>
-      <CardDescription className="text-xs text-muted-foreground mt-0.5">
-        Keyboard controls for rapid billing.
-      </CardDescription>
-    </div>
-    <div className="flex items-center gap-2.5">
-      <div className="flex h-7 px-2 items-center justify-center rounded-md border bg-muted/30 font-mono text-xs font-bold text-muted-foreground shadow-sm">
-        F2
-      </div>
-      <span className="text-xs text-muted-foreground font-bold">New Bill</span>
-      <div className="flex h-7 px-2 items-center justify-center rounded-md border bg-muted/30 font-mono text-xs font-bold text-muted-foreground shadow-sm">
-        Ctrl
-      </div>
-      <Plus className="h-3 w-3 text-muted-foreground" />
-      <div className="flex h-7 px-2 items-center justify-center rounded-md border bg-muted/30 font-mono text-xs font-bold text-muted-foreground shadow-sm">
-        P
-      </div>
-      <span className="text-xs text-muted-foreground font-bold">Print</span>
-    </div>
-  </Card>
-);
-
-
-function InvoicePreview() {
+function NavLink({ href, children, className = "" }: { href: string; children: React.ReactNode; className?: string }) {
   return (
-    <div className="bg-zinc-900 rounded-xl border border-zinc-800 p-6 md:p-10 text-left">
-      <div className="flex items-start justify-between border-b-2 border-white/20 pb-4 mb-4">
-        <div>
-          <div className="flex items-center gap-2 font-black text-lg uppercase tracking-tight text-white">
-            <Image src="/MMC Square Logo-01.png" alt="" width={20} height={20} className="shrink-0 brightness-0 invert opacity-60" />
-            managemycounter
-          </div>
-          <p className="text-xs text-zinc-500 mt-1">GSTIN: 09AAAAA0000A1Z5 · Uttar Pradesh</p>
-        </div>
-        <div className="text-right">
-          <h2 className="text-sm font-bold text-white/60">TAX INVOICE</h2>
-          <p className="text-xs text-zinc-500 mt-1">Invoice #INV-1042</p>
-        </div>
+    <Link
+      href={href}
+      className={`text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-primary transition-colors ${className}`}
+    >
+      {children}
+    </Link>
+  );
+}
+
+function FeatureCard({ feature, index }: { feature: typeof FEATURES[0]; index: number }) {
+  return (
+    <div className="group relative bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 p-8 hover:border-primary/50 hover:shadow-xl transition-all duration-500">
+      <div className="absolute top-4 right-4 bg-primary/10 text-primary text-xs font-bold px-2.5 py-1 rounded-full">
+        {feature.badge}
       </div>
-      <div className="space-y-2 text-sm">
-        <div className="flex justify-between font-bold border-b border-zinc-800 pb-1.5 text-xs uppercase tracking-wider text-zinc-500">
-          <span>Item</span>
-          <span>Total</span>
+      <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+        <feature.icon size={28} className="text-primary group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
+      </div>
+      <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-3">{feature.title}</h3>
+      <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">{feature.description}</p>
+    </div>
+  );
+}
+
+function TestimonialCard({ testimonial, index, isActive }: { testimonial: typeof TESTIMONIALS[0]; index: number; isActive: boolean }) {
+  return (
+    <div className={`flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-4 ${isActive ? "opacity-100" : "opacity-60"}`}>
+      <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 p-8 h-full">
+        <div className="flex items-center gap-2 mb-4">
+          <Star size={18} className="text-amber-400 fill-amber-400" />
+          <Star size={18} className="text-amber-400 fill-amber-400" />
+          <Star size={18} className="text-amber-400 fill-amber-400" />
+          <Star size={18} className="text-amber-400 fill-amber-400" />
+          <Star size={18} className="text-amber-400 fill-amber-400" />
         </div>
-        <div className="flex justify-between text-zinc-300">
-          <span>Apollo Atta 10kg × 2</span>
-          <span>₹1,240.00</span>
-        </div>
-        <div className="flex justify-between text-zinc-300">
-          <span>Fortune Oil 5L × 1</span>
-          <span>₹850.00</span>
-        </div>
-        <div className="flex justify-between text-zinc-500 text-xs pt-1">
-          <span>CGST + SGST (5%)</span>
-          <span>₹104.50</span>
-        </div>
-        <div className="flex justify-between border-t-2 border-white/20 pt-2 mt-1 font-black text-base text-white">
-          <span>Grand Total</span>
-          <span>₹2,194.50</span>
+        <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed mb-6 text-base">"{testimonial.quote}"</p>
+        <div className="flex items-center gap-3">
+          <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-lg">
+            {testimonial.avatar}
+          </div>
+          <div>
+            <p className="font-bold text-zinc-900 dark:text-white">{testimonial.author}</p>
+            <p className="text-sm text-zinc-500 dark:text-zinc-400">{testimonial.role}</p>
+            <p className="text-xs text-zinc-400 dark:text-zinc-500 flex items-center gap-1">
+              <span className="text-lg">{testimonial.company}</span>
+            </p>
+          </div>
         </div>
       </div>
     </div>
   );
 }
 
-export default function LandingPage() {
-  const [billingPeriod, setBillingPeriod] = useState<"monthly" | "yearly">("monthly");
-  const [openFaq, setOpenFaq] = useState<string | null>(null);
-
-  const starterMonthly = 499;
-  const starterYearly = 4990;
-  const starterSavings = (starterMonthly * 12) - starterYearly;
-
-  const proMonthly = 1499;
-  const proYearly = 14999;
-  const proSavings = (proMonthly * 12) - proYearly;
-
-  const enterpriseMonthly = 4999;
-  const enterpriseYearly = 49990;
-  const enterpriseSavings = (enterpriseMonthly * 12) - enterpriseYearly;
-
-  const faqCategories = ["General", "Setup & Billing", "Support"] as const;
-  const [faqCategory, setFaqCategory] = useState<typeof faqCategories[number]>("General");
-
-  const faqs: { question: string; answer: string; category: typeof faqCategories[number] }[] = [
-    {
-      category: "General",
-      question: "Do I need a credit card to sign up for the beta?",
-      answer: "No — sign up and use every feature of the platform free during the beta, card-free. We only ask for billing details once you choose to subscribe after beta ends."
-    },
-    {
-      category: "General",
-      question: "Can I manage multiple shops or brands?",
-      answer: "Yes. The core dashboard includes an active brand and company switcher, allowing you to run operations for different lines of business from a single owner account."
-    },
-    {
-      category: "General",
-      question: "Does it work for wholesale/B2B, not just retail counters?",
-      answer: "Yes — the dashboard has a dedicated B2B billing flow alongside retail POS, with customer-category pricing, credit terms, and bulk invoicing separate from counter sales."
-    },
-    {
-      category: "Setup & Billing",
-      question: "How do field agents log their location and expenses?",
-      answer: "Agents use the companion managemycounter Agent app. It registers check-ins, streams location coordinates securely during active duty, and supports camera uploads for expense receipts that supervisors approve from the web dashboard."
-    },
-    {
-      category: "Setup & Billing",
-      question: "What hardware is compatible with receipt printing?",
-      answer: "The web dashboard connects to standard Bluetooth, network, and USB thermal receipt printers (both 58mm and 80mm layouts) — no proprietary hardware required."
-    },
-    {
-      category: "Setup & Billing",
-      question: "Can I upgrade or downgrade my plan later?",
-      answer: "Yes, you can switch between monthly and yearly billing at any time from your dashboard, or reach out and we'll adjust it for you directly."
-    },
-    {
-      category: "Setup & Billing",
-      question: "Can I bring in my existing customer/supplier balances?",
-      answer: "Yes — every party (customer or supplier) has an opening balance field captured at onboarding, so your pre-existing dues carry over instead of starting from zero."
-    },
-    {
-      category: "Support",
-      question: "How do I get help if something breaks?",
-      answer: "Every account has access to the managemycounter support portal for raising and tracking tickets directly with our team."
-    },
-    {
-      category: "Support",
-      question: "Can I export my data if I ever need to leave?",
-      answer: "Yes — every module with data (ledgers, reports, inventory, invoices) exports to Excel, so your records are never locked into the platform."
-    },
-  ];
+function PricingCard({ plan, billingPeriod, index }: { plan: typeof PRICING_PLANS[0]; billingPeriod: "monthly" | "yearly"; index: number }) {
+  const price = billingPeriod === "monthly" ? plan.monthly : plan.yearly;
+  const period = billingPeriod === "monthly" ? "month" : "year";
+  const savings = billingPeriod === "yearly" ? Math.round((plan.monthly * 12 - plan.yearly) / (plan.monthly * 12) * 100) : 0;
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col font-sans transition-colors duration-200 antialiased selection:bg-primary/20">
-
-      {/* Navigation */}
-      <nav className="fixed top-0 z-50 w-full bg-black/80 backdrop-blur-lg border-b border-zinc-800">
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
-          <Link href="/" className="flex items-center gap-2 text-white font-bold text-lg">
-            <Image src="/ManageMyCounter Rectangle-01.png" alt="managemycounter" width={120} height={32} className="shrink-0" />
-          </Link>
-          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
-            <Link href="#features" className="hover:text-white transition-colors">Features</Link>
-            <Link href="#download" className="hover:text-white transition-colors">Download</Link>
-            <Link href="#pricing" className="hover:text-white transition-colors">Pricing</Link>
-            <Link href="#faq" className="hover:text-white transition-colors">FAQs</Link>
-            <Link href="https://app.papayapalette.online/dashboard" className="hover:text-white transition-colors">Portal</Link>
-          </div>
-          <div className="flex items-center gap-4">
-            <Link href="https://app.papayapalette.online/dashboard" className="text-sm text-zinc-400 hover:text-white transition-colors">Log In</Link>
-            <a href="https://app.papayapalette.online/register">
-              <Button variant="gradient" size="sm">Get Invite Access <ArrowRight size={14} /></Button>
-            </a>
-          </div>
+    <div className={`relative flex flex-col h-full rounded-2xl border-2 p-8 transition-all duration-300 ${
+      plan.popular
+        ? "border-primary bg-primary/5 shadow-xl shadow-primary/10"
+        : "border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 hover:border-primary/50"
+    }`}>
+      {plan.popular && (
+        <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full">
+          Most Popular
         </div>
-      </nav>
-
-      {/* Hero */}
-      <section className="bg-black overflow-hidden">
-        <div className="relative pt-28 md:pt-40">
-          <div aria-hidden className="absolute inset-0 -z-10 size-full [background:radial-gradient(125%_125%_at_50%_100%,transparent_0%,#000_75%)]" />
-          <div className="mx-auto max-w-7xl px-6">
-            <div className="text-center">
-              <a href="#pricing" className="inline-flex items-center gap-3 text-sm text-zinc-400 border border-zinc-800 rounded-full pl-4 pr-1.5 py-1 hover:border-zinc-600 transition-colors group">
-                BETA · Free during beta — no credit card, ever
-                <span className="bg-zinc-900 border border-zinc-700 rounded-full p-1 group-hover:bg-zinc-800 transition-colors">
-                  <ArrowRight size={12} className="text-white" />
-                </span>
-              </a>
-
-              <h1 className="mt-8 max-w-4xl mx-auto text-balance text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-b from-white via-white/95 to-white/60 bg-clip-text text-transparent leading-tight">
-                GST billing in seconds.<br />Everything else, <span className="font-serif italic font-normal text-white/60">automatic</span>.
-              </h1>
-
-              <p className="mx-auto mt-8 max-w-2xl text-balance text-lg text-zinc-400">
-                Retail, GST, or estimate invoices with custom tax slabs — printed straight to any Bluetooth, USB, or Wi-Fi thermal printer. Stock synced across warehouses, udhar ledgers that update themselves, and live GPS tracking for your field team.
-              </p>
-
-              <div className="mt-12 flex flex-col items-center justify-center gap-4 md:flex-row">
-                <div className="bg-zinc-900 rounded-[14px] border border-zinc-800 p-0.5">
-                  <a href="https://app.papayapalette.online/register">
-                    <Button variant="gradient" size="lg" className="rounded-xl px-5 text-base">
-                      Get Invite Access <ArrowRight size={16} />
-                    </Button>
-                  </a>
-                </div>
-                <a href="#features" className="inline-flex items-center justify-center gap-2 h-12 px-5 text-sm font-medium text-zinc-400 hover:text-white border border-zinc-800 hover:border-zinc-600 rounded-xl transition-colors">
-                  Explore Features ↓
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Invoice Preview */}
-          <div className="relative -mr-56 mt-16 overflow-hidden px-2 sm:mr-0 sm:mt-16 md:mt-24">
-            <div aria-hidden className="bg-gradient-to-b to-black absolute inset-0 z-10 from-transparent from-35%" />
-            <div className="relative mx-auto max-w-4xl overflow-hidden rounded-2xl border border-zinc-800 p-4 shadow-lg shadow-black/20 bg-zinc-900/60 backdrop-blur-sm">
-              <InvoicePreview />
-            </div>
-          </div>
+      )}
+      <div className="mb-6">
+        <h3 className="text-2xl font-bold text-zinc-900 dark:text-white mb-1">{plan.name}</h3>
+        <p className="text-zinc-500 dark:text-zinc-400">{plan.tagline}</p>
+      </div>
+      <div className="mb-6">
+        <div className="flex items-baseline gap-1">
+          <span className="text-5xl font-black text-zinc-900 dark:text-white">₹{price.toLocaleString()}</span>
+          <span className="text-zinc-500 dark:text-zinc-400 mb-2">/{period}</span>
         </div>
-      </section>
-
-      {/* Segment strip */}
-      <section className="bg-black pb-16 pt-16 md:pb-32">
-        <div className="mx-auto max-w-5xl px-6">
-          <p className="text-center text-xs font-bold text-zinc-500 uppercase tracking-widest mb-8">
-            Built for every kind of Indian retail business
+        {billingPeriod === "yearly" && savings > 0 && (
+          <p className="text-emerald-600 dark:text-emerald-400 text-sm font-semibold mt-2">
+            Save {savings}% annually
           </p>
-          <div className="mx-auto grid max-w-3xl grid-cols-2 gap-x-8 gap-y-5 sm:grid-cols-3">
-            {["Kirana & General Stores", "Wholesale & Distribution", "Pharmacies", "Apparel & Fashion", "Electronics Retail", "Multi-branch Chains"].map((s) => (
-              <div key={s} className="text-center text-sm font-semibold text-zinc-500">
-                {s}
+        )}
+        <p className="text-xs font-bold text-emerald-600 dark:text-emerald-400 mt-2">₹0 during beta — free, full access</p>
+      </div>
+      <Link
+        href="https://app.papayapalette.online/register"
+        className={`w-full py-3 rounded-xl text-sm font-bold uppercase tracking-wider transition-all flex items-center justify-center mb-8 ${
+          plan.popular
+            ? "bg-primary text-white hover:opacity-90 shadow-lg"
+            : "bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-white hover:bg-zinc-200 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700"
+        }`}
+      >
+        {plan.cta}
+      </Link>
+
+      <ul className="space-y-4 mt-auto flex-1">
+        {plan.features.map((feature, i) => (
+          <li key={i} className="flex items-start gap-2.5 text-sm text-zinc-600 dark:text-zinc-400">
+            <Check size={14} className={plan.popular ? "text-primary shrink-0" : "text-emerald-500 shrink-0"} strokeWidth={3} />
+            <span>{feature}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function BlogCard({ post }: { post: typeof BLOG_POSTS[0] }) {
+  return (
+    <Link
+      href="/blog"
+      className="group block bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden hover:border-primary/50 hover:shadow-xl transition-all duration-500"
+    >
+      <div className="aspect-video bg-gradient-to-br from-primary/10 to-primary/5 relative overflow-hidden">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <BarChart3 size={48} className="text-primary/30 group-hover:text-primary/50 transition-colors" />
+        </div>
+      </div>
+      <div className="p-6">
+        <span className="text-xs font-bold text-primary uppercase tracking-wider">{post.category}</span>
+        <h3 className="text-lg font-bold text-zinc-900 dark:text-white mt-2 mb-3 group-hover:text-primary transition-colors">{post.title}</h3>
+        <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">{post.excerpt}</p>
+      </div>
+    </Link>
+  );
+}
+
+export default function LandingPage() {
+  const [billingPeriod, setBillingPeriod] = useState<"monthly" | "yearly">("yearly");
+  const [testimonialIndex, setTestimonialIndex] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const nextTestimonial = () => setTestimonialIndex((i) => (i + 1) % TESTIMONIALS.length);
+  const prevTestimonial = () => setTestimonialIndex((i) => (i - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
+
+  return (
+    <div className="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white font-sans antialiased">
+      {/* Hero */}
+      <HeroSection />
+
+      {/* Stats Section */}
+      <section className="py-20 bg-zinc-50 dark:bg-zinc-900">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {STATS.map((stat, i) => (
+              <div key={i} className="text-center">
+                <div className="text-4xl md:text-5xl font-black text-primary mb-2">{stat.value}</div>
+                <div className="text-zinc-600 dark:text-zinc-400 font-medium">{stat.label}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* How It Works — reduces signup hesitation by showing exactly how
-          little friction there is (real flow: invite code → instant
-          account, no approval wait, no card). */}
-      <section className="py-20 border-b border-border">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="text-center max-w-xl mx-auto mb-14 space-y-2">
-            <span className="text-xs font-bold text-primary uppercase tracking-widest">Getting Started</span>
-            <h2 className="text-3xl tracking-tight text-foreground font-light">Up and billing in under 5 minutes</h2>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              {
-                step: "01",
-                title: "Get your invite code",
-                description: "Ask whoever invited you, or request access — we're onboarding shops directly during the beta.",
-              },
-              {
-                step: "02",
-                title: "Set up your shop",
-                description: "Enter your code and business details. Your account is live instantly — no approval wait, no card required.",
-              },
-              {
-                step: "03",
-                title: "Start billing",
-                description: "Your dashboard is ready the moment you sign in. Issue your first GST invoice in under a minute.",
-              },
-            ].map((s, idx) => (
-              <Reveal key={idx} delay={idx * 0.08}>
-                <div className="bg-card border border-border rounded-radius p-6 h-full">
-                  <span className="text-3xl font-black text-primary/25 tracking-tight">{s.step}</span>
-                  <h3 className="text-sm font-extrabold text-foreground mt-3 mb-2">{s.title}</h3>
-                  <p className="text-xs text-text-secondary leading-relaxed font-medium">{s.description}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Bento Grid Featured Showcase */}
-      <section id="features" className="py-24 bg-secondary/40 border-b border-border transition-colors duration-200">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
-            <span className="text-xs font-bold text-primary uppercase tracking-widest">Interactive Experience</span>
-            <h2 className="text-4xl tracking-tight text-foreground font-light">Experience the future of store management</h2>
-            <p className="text-sm text-muted-foreground">
-              A premium, animated bento dashboard showcasing active widgets, automated triggers, and rapid POS flows.
-            </p>
-          </div>
-
-          <BentoGridShowcase
-            integration={<IntegrationCard />}
-            trackers={<TrackersCard />}
-            statistic={<StatisticCard />}
-            focus={<FocusCard />}
-            productivity={<ProductivityCard />}
-            shortcuts={<ShortcutsCard />}
-          />
-        </div>
-      </section>
-
-      {/* Download App Section */}
-      <section id="download" className="py-24 bg-background border-b border-border transition-colors duration-200">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="max-w-xl mb-16">
-            <span className="text-xs font-bold text-primary uppercase tracking-widest font-mono">Mobile App</span>
-            <h2 className="text-3xl tracking-tight text-foreground font-light mt-2">Download the managemycounter App</h2>
-            <p className="mt-2 text-sm text-text-secondary font-medium">
-              Download the companion Android app for your staff and field agents. Links always point to the latest build.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6 max-w-3xl">
-            <a
-              href={APP_DOWNLOAD_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-card border border-border p-6 rounded-radius hover:border-primary/50 hover:shadow-md transition-all duration-300 flex items-start gap-4"
-            >
-              <div className="w-12 h-12 rounded-radius bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
-                <Smartphone size={22} className="text-primary" strokeWidth={2} />
-              </div>
-              <div>
-                <h3 className="text-sm font-extrabold text-foreground mb-1">managemycounter App</h3>
-                <p className="text-xs text-text-secondary leading-relaxed font-medium mb-2">
-                  For owners, managers, and staff — POS billing, inventory, ledger, expenses, attendance, and more.
-                </p>
-                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-primary">
-                  <DownloadIcon size={14} />
-                  Download APK
-                </span>
-              </div>
-            </a>
-
-            <a
-              href={AGENT_APP_DOWNLOAD_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-card border border-border p-6 rounded-radius hover:border-primary/50 hover:shadow-md transition-all duration-300 flex items-start gap-4"
-            >
-              <div className="w-12 h-12 rounded-radius bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
-                <UserCog size={22} className="text-primary" strokeWidth={2} />
-              </div>
-              <div>
-                <h3 className="text-sm font-extrabold text-foreground mb-1">Agent App</h3>
-                <p className="text-xs text-text-secondary leading-relaxed font-medium mb-2">
-                  For field agents — attendance check-in, expense logging, task management, and live GPS tracking.
-                </p>
-                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-primary">
-                  <DownloadIcon size={14} />
-                  Download APK
-                </span>
-              </div>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Core Capabilities Grid */}
-      <section className="py-24 bg-background border-b border-border transition-colors duration-200">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="max-w-xl mb-16">
-            <span className="text-xs font-bold text-primary uppercase tracking-widest font-mono">Core Capabilities</span>
-            <h2 className="text-3xl tracking-tight text-foreground font-light mt-2">Built for growth & precision</h2>
-            <p className="mt-2 text-sm text-text-secondary font-medium">
+      {/* Features Section */}
+      <section id="features" className="py-24 md:py-32 bg-white dark:bg-zinc-950">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider mb-6">
+              <Zap size={14} />
+              Core Capabilities
+            </span>
+            <h2 className="text-4xl md:text-5xl font-black tracking-tight text-zinc-900 dark:text-white mb-6">
+              Built for growth & precision
+            </h2>
+            <p className="text-lg text-zinc-600 dark:text-zinc-400">
               Everything you need to orchestrate physical stock, back-office bookkeeping, and physical field forces.
             </p>
           </div>
-
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {FEATURES.map((feat, idx) => {
-              const Icon = feat.icon;
-              return (
-                <Reveal key={idx} delay={(idx % 3) * 0.05}>
-                  <TiltCard maxTilt={3} className="h-full rounded-radius">
-                    <div className="bg-card border border-border p-6 rounded-radius flex flex-col h-full hover:border-primary/45 hover:shadow-sm transition-all duration-300">
-                      <div className="w-10 h-10 rounded-radius bg-primary/10 border border-primary/20 flex items-center justify-center mb-4">
-                        <Icon size={18} className="text-primary" strokeWidth={2} />
-                      </div>
-                      <h3 className="text-sm font-extrabold text-foreground mb-2">{feat.title}</h3>
-                      <p className="text-xs text-text-secondary leading-relaxed font-medium">{feat.description}</p>
-                    </div>
-                  </TiltCard>
-                </Reveal>
-              );
-            })}
+            {FEATURES.map((feature, i) => (
+              <FeatureCard key={i} feature={feature} index={i} />
+            ))}
           </div>
         </div>
       </section>
 
+      {/* Platform Showcase */}
+      <section className="py-24 md:py-32 bg-zinc-50 dark:bg-zinc-900">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <span className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider mb-6">
+                <Smartphone size={14} />
+                Mobile Apps
+              </span>
+              <h2 className="text-4xl md:text-5xl font-black tracking-tight text-zinc-900 dark:text-white mb-6">
+                Companion apps for your team
+              </h2>
+              <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-8">
+                Download the Android apps for your staff and field agents. Native performance, offline-first, built for Indian networks.
+              </p>
+              <div className="grid sm:grid-cols-2 gap-4">
+                <Link href={"/download"} className="group flex items-center gap-4 p-5 bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:border-primary/50 hover:shadow-lg transition-all duration-300">
+                  <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                    <Smartphone size={28} className="text-primary group-hover:text-white transition-colors" strokeWidth={1.5} />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-zinc-900 dark:text-white group-hover:text-primary transition-colors">managemycounter App</h3>
+                    <p className="text-sm text-zinc-500 dark:text-zinc-400">For owners, managers & staff — POS, inventory, ledger, expenses</p>
+                  </div>
+                </Link>
+                <Link href={"/download"} className="group flex items-center gap-4 p-5 bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:border-primary/50 hover:shadow-lg transition-all duration-300">
+                  <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                    <Users size={28} className="text-primary group-hover:text-white transition-colors" strokeWidth={1.5} />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-zinc-900 dark:text-white group-hover:text-primary transition-colors">Agent App</h3>
+                    <p className="text-sm text-zinc-500 dark:text-zinc-400">For field agents — attendance, expenses, tasks, GPS tracking</p>
+                  </div>
+                </Link>
+              </div>
+            </div>
+            <div className="relative">
+              <div className="aspect-square max-w-md mx-auto">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-blue-500/20 rounded-3xl blur-3xl" />
+                <Image
+                  src="/phone-mockup.jpg"
+                  alt="Mobile app screenshots"
+                  width={600}
+                  height={600}
+                  className="relative w-full h-full object-cover rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-2xl"
+                  priority
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      {/* Comparison table — managemycounter vs. the two things shops actually
-          replace it with: a paper/Excel notebook, or a bare-bones billing
-          app that stops at "print a bill" and doesn't touch stock, staff,
-          or field ops. */}
-      <section className="py-24 bg-secondary/40 border-b border-border transition-colors duration-200">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="text-center max-w-xl mx-auto mb-14 space-y-2">
-            <span className="text-xs font-bold text-primary uppercase tracking-widest">Comparison</span>
-            <h2 className="text-3xl tracking-tight text-foreground font-light">Not just another billing app</h2>
-            <p className="text-sm text-text-secondary font-medium">
-              Most shops outgrow a notebook, then outgrow a bare-bones billing app too — once stock, staff, and field agents enter the picture.
+      {/* Integrations */}
+      <section id="integrations" className="py-24 md:py-32 bg-white dark:bg-zinc-950">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider mb-6">
+              <Layers size={14} />
+              Integrations
+            </span>
+            <h2 className="text-4xl md:text-5xl font-black tracking-tight text-zinc-900 dark:text-white mb-6">
+              Seamlessly connect your tools
+            </h2>
+            <p className="text-lg text-zinc-600 dark:text-zinc-400">
+              Unlock the full potential by integrating with the apps you already use.
             </p>
           </div>
-
-          <Reveal>
-            <div className="bg-card border border-border rounded-radius overflow-hidden shadow-sm">
-              <div className="grid grid-cols-4 text-xs font-bold uppercase tracking-wider border-b border-border bg-secondary/60">
-                <div className="p-4 text-text-secondary">Capability</div>
-                <div className="p-4 text-center text-text-secondary border-l border-border">Notebook / Excel</div>
-                <div className="p-4 text-center text-text-secondary border-l border-border">Basic Billing App</div>
-                <div className="p-4 text-center text-primary border-l border-border bg-primary/5">managemycounter</div>
-              </div>
-              {[
-                { label: "GST invoice with auto CGST/SGST/IGST split", notebook: false, basic: "partial", us: true },
-                { label: "Real-time stock sync across warehouses", notebook: false, basic: false, us: true },
-                { label: "Digital credit ledger (udhar) with reminders", notebook: "partial", basic: false, us: true },
-                { label: "GPS field agent & delivery tracking", notebook: false, basic: false, us: true },
-                { label: "GST Rule 55-compliant delivery challans", notebook: false, basic: false, us: true },
-                { label: "Balance Sheet, Trial Balance, Aging reports", notebook: false, basic: false, us: true },
-                { label: "Works offline at the counter", notebook: true, basic: "partial", us: true },
-                { label: "Staff attendance & expense approvals", notebook: false, basic: false, us: true },
-              ].map((row, idx) => (
-                <div key={idx} className={`grid grid-cols-4 text-sm ${idx % 2 === 1 ? "bg-secondary/20" : ""}`}>
-                  <div className="p-4 font-semibold text-foreground text-xs">{row.label}</div>
-                  {[row.notebook, row.basic, row.us].map((cell, cidx) => (
-                    <div key={cidx} className={`p-4 flex items-center justify-center border-l border-border ${cidx === 2 ? "bg-primary/5" : ""}`}>
-                      {cell === true ? (
-                        <Check size={16} className="text-emerald-500" strokeWidth={3} />
-                      ) : cell === "partial" ? (
-                        <span className="text-amber-500 text-xs font-bold">Partial</span>
-                      ) : (
-                        <span className="text-text-secondary/40 text-xs">—</span>
-                      )}
-                    </div>
-                  ))}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {INTEGRATIONS.map((integration, i) => (
+              <div key={i} className="group flex items-center gap-4 p-5 bg-zinc-50 dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:border-primary/50 hover:shadow-lg transition-all duration-300">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-2xl group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
+                  {integration.logo}
                 </div>
+                <div>
+                  <p className="font-semibold text-zinc-900 dark:text-white">{integration.name}</p>
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">{integration.category}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-12">
+            <Link href="/integrations">
+              <Button variant="outline" size="lg">View All Integrations <ChevronRight size={18} /></Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-24 md:py-32 bg-zinc-50 dark:bg-zinc-900">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider mb-6">
+              <Users size={14} />
+              Customers
+            </span>
+            <h2 className="text-4xl md:text-5xl font-black tracking-tight text-zinc-900 dark:text-white mb-6">
+              Hear from shopkeepers like you
+            </h2>
+            <p className="text-lg text-zinc-600 dark:text-zinc-400">
+              Thousands of Indian retailers trust managemycounter to run their business.
+            </p>
+          </div>
+          <div className="relative">
+            <div className="flex overflow-x-auto snap-x snap-mandatory pb-8 -mx-4 px-4" style={{ scrollbarWidth: "none" }}>
+              {TESTIMONIALS.map((testimonial, i) => (
+                <TestimonialCard key={i} testimonial={testimonial} index={i} isActive={i === testimonialIndex} />
               ))}
             </div>
-          </Reveal>
+            <div className="flex items-center justify-center gap-3 mt-8">
+              <button
+                onClick={prevTestimonial}
+                className="w-12 h-12 rounded-full border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 flex items-center justify-center hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+                aria-label="Previous testimonial"
+              >
+                <ChevronLeft size={20} className="text-zinc-600 dark:text-zinc-400" />
+              </button>
+              <div className="flex gap-2">
+                {TESTIMONIALS.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setTestimonialIndex(i)}
+                    className={`w-2.5 h-2.5 rounded-full transition-all ${
+                      i === testimonialIndex
+                        ? "bg-primary w-8"
+                        : "bg-zinc-300 dark:bg-zinc-600 hover:bg-primary/50"
+                    }`}
+                    aria-label={`Go to testimonial ${i + 1}`}
+                  />
+                ))}
+              </div>
+              <button
+                onClick={nextTestimonial}
+                className="w-12 h-12 rounded-full border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 flex items-center justify-center hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+                aria-label="Next testimonial"
+              >
+                <ChevronRight size={20} className="text-zinc-600 dark:text-zinc-400" />
+              </button>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Trust / value section — generic value props, not fabricated testimonials */}
-      <section className="py-24">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="text-center max-w-xl mx-auto mb-14 space-y-2">
-            <span className="text-xs font-bold text-primary uppercase tracking-widest">Why managemycounter</span>
-            <h2 className="text-3xl tracking-tight font-light">Built for Bharat&apos;s shopkeepers</h2>
-            <p className="text-sm text-text-secondary font-medium">Designed from the ground up for how retail actually works in Indian towns and cities.</p>
+      {/* Blog */}
+      <section id="blog" className="py-24 md:py-32 bg-white dark:bg-zinc-950">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex items-center justify-between mb-12">
+            <div>
+              <span className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
+                <Globe size={14} />
+                Recent News
+              </span>
+              <h2 className="text-4xl md:text-5xl font-black tracking-tight text-zinc-900 dark:text-white">
+                Latest from our blog
+              </h2>
+            </div>
+<Link href="/blog">
+  <Button variant="outline" size="default">View All Posts <ChevronRight size={18} /></Button>
+</Link>
           </div>
-
           <div className="grid md:grid-cols-3 gap-6">
-            {TRUST_POINTS.map((t, idx) => {
-              const Icon = t.icon;
-              return (
-                <Reveal key={idx} delay={idx * 0.08}>
-                  <div className="bg-surface border border-border rounded-radius p-6 text-center flex flex-col items-center h-full hover:border-primary/40 transition-colors duration-300">
-                    <div className="w-11 h-11 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center mb-4">
-                      <Icon size={20} className="text-primary" strokeWidth={2} />
-                    </div>
-                    <h3 className="text-sm font-extrabold text-foreground mb-2">{t.title}</h3>
-                    <p className="text-xs text-text-secondary leading-relaxed font-medium">{t.description}</p>
-                  </div>
-                </Reveal>
-              );
-            })}
+            {BLOG_POSTS.map((post, i) => (
+              <BlogCard key={i} post={post} />
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Pricing Section */}
-      {/* Pricing Section */}
-      <section id="pricing" className="py-24 bg-secondary/40 border-y border-border transition-colors duration-200">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
-            <span className="text-xs font-bold text-primary uppercase tracking-widest font-mono">Pricing Plans</span>
-            <h2 className="text-4xl tracking-tight font-light text-foreground">Simple, transparent pricing</h2>
-            <p className="text-sm text-muted-foreground">
-              We are in private beta — every invited shop gets full access at no cost today. This is what plans will look like once beta ends.
+      {/* Pricing */}
+      <section id="pricing" className="py-24 md:py-32 bg-zinc-50 dark:bg-zinc-900">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <span className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider mb-6">
+              <Tag size={14} />
+              Pricing
+            </span>
+            <h2 className="text-4xl md:text-5xl font-black tracking-tight text-zinc-900 dark:text-white mb-6">
+              Simple, transparent pricing
+            </h2>
+            <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-8">
+              We are in private beta — every invited shop gets full access at no cost today.
             </p>
-
-            {/* Toggle */}
-            <div className="inline-flex items-center gap-1 bg-surface border border-border p-1 rounded-radius shadow-sm mt-4">
+            <div className="inline-flex items-center gap-1 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 p-1 rounded-xl shadow-sm">
               <button
                 onClick={() => setBillingPeriod("monthly")}
-                className={`px-4 py-2 rounded-radius text-xs font-bold transition-all uppercase tracking-wider ${
+                className={`px-6 py-2.5 rounded-lg text-sm font-bold transition-all ${
                   billingPeriod === "monthly"
-                    ? "bg-primary text-white dark:text-background"
-                    : "text-text-secondary hover:text-foreground"
+                    ? "bg-primary text-white shadow"
+                    : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"
                 }`}
               >
                 Monthly
               </button>
               <button
                 onClick={() => setBillingPeriod("yearly")}
-                className={`px-4 py-2 rounded-radius text-xs font-bold transition-all flex items-center gap-1.5 uppercase tracking-wider ${
+                className={`px-6 py-2.5 rounded-lg text-sm font-bold transition-all flex items-center gap-1.5 ${
                   billingPeriod === "yearly"
-                    ? "bg-primary text-white dark:text-background"
-                    : "text-text-secondary hover:text-foreground"
+                    ? "bg-primary text-white shadow"
+                    : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"
                 }`}
               >
                 Yearly
-                <span className="bg-primary/20 text-primary dark:text-foreground text-[8px] px-1.5 py-0.5 rounded font-black tracking-widest">SAVE 16%</span>
+                <span className="bg-primary/20 text-primary dark:text-white text-xs px-2 py-0.5 rounded font-bold">SAVE 16%</span>
               </button>
             </div>
           </div>
-
-          <div className="grid md:grid-cols-3 gap-6 items-stretch">
-            {/* Starter Plan */}
-            <Reveal delay={0}>
-              <TiltCard maxTilt={3} className="h-full rounded-radius">
-                <div className="bg-card border border-border rounded-radius p-8 shadow-sm flex flex-col h-full hover:shadow-md transition-all duration-300">
-                  <div className="mb-6">
-                    <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest bg-muted border border-border px-2 py-0.5 rounded">Counter Only</span>
-                    <h3 className="text-xl font-bold mt-2 text-foreground">Starter Shop</h3>
-                    <p className="text-xs text-muted-foreground mt-1">Perfect for single retail counters and local shopkeepers.</p>
-                  </div>
-
-                  <div className="flex items-baseline gap-1 mb-2">
-                    <span className="text-4xl font-black tracking-tight text-foreground line-through decoration-2 decoration-muted-foreground/40">
-                      ₹{billingPeriod === "monthly" ? starterMonthly.toLocaleString() : starterYearly.toLocaleString()}
-                    </span>
-                    <span className="text-muted-foreground text-xs font-bold">
-                      /{billingPeriod === "monthly" ? "month" : "year"}
-                    </span>
-                  </div>
-                  <p className="text-xs font-bold text-emerald-600 dark:text-emerald-400 mb-6">₹0 during beta — free, full access</p>
-
-                  {billingPeriod === "yearly" && (
-                    <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-radius p-2.5 mb-6">
-                      <p className="text-emerald-600 dark:text-emerald-400 text-xs font-semibold text-center">
-                        Save ₹{starterSavings.toLocaleString()} annually once billing starts
-                      </p>
-                    </div>
-                  )}
-
-                  <Link
-                    href="https://app.papayapalette.online/register"
-                    className="w-full bg-secondary hover:bg-muted text-foreground py-3 rounded-radius text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center mb-8 border border-border"
-                  >
-                    Start Free — No Card
-                  </Link>
-
-                  <div className="border-t border-border/40 pt-6 mt-auto">
-                    <h4 className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-4">Included Features:</h4>
-                    <ul className="space-y-3">
-                      {[
-                        "Unlimited POS Transactions",
-                        "GST Invoicing & Calculations",
-                        "1 Warehouse Stock Tracking",
-                        "Direct WhatsApp PDF share",
-                        "Bluetooth Receipt Printing",
-                        "Overview Reports Portal",
-                      ].map((item, idx) => (
-                        <li key={idx} className="flex gap-2.5 items-center text-xs font-medium">
-                          <Check size={14} className="text-emerald-500 shrink-0" strokeWidth={3} />
-                          <span className="text-muted-foreground">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </TiltCard>
-            </Reveal>
-
-            {/* Pro Plan (Recommended) */}
-            <Reveal delay={0.05}>
-              <TiltCard maxTilt={3} className="h-full rounded-radius">
-                <div className="bg-card border-2 border-primary rounded-radius p-8 shadow-md flex flex-col h-full relative hover:shadow-lg transition-all duration-300">
-                  <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-primary text-white dark:text-background text-[9px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
-                    Recommended Plan
-                  </span>
-                  
-                  <div className="mb-6">
-                    <div className="flex items-center gap-2">
-                      <span className="text-[10px] font-bold text-primary uppercase tracking-widest bg-primary/10 border border-primary/20 px-2 py-0.5 rounded">Counter + Field</span>
-                    </div>
-                    <h3 className="text-xl font-bold mt-2 text-foreground font-serif italic">Pro ERP</h3>
-                    <p className="text-xs text-muted-foreground mt-1">For shops with warehouse networks, employees, and delivery agents.</p>
-                  </div>
-
-                  <div className="flex items-baseline gap-1 mb-2">
-                    <span className="text-4xl font-black tracking-tight text-foreground line-through decoration-2 decoration-muted-foreground/40">
-                      ₹{billingPeriod === "monthly" ? proMonthly.toLocaleString() : proYearly.toLocaleString()}
-                    </span>
-                    <span className="text-muted-foreground text-xs font-bold">
-                      /{billingPeriod === "monthly" ? "month" : "year"}
-                    </span>
-                  </div>
-                  <p className="text-xs font-bold text-primary mb-6">₹0 during beta — free, full access</p>
-
-                  {billingPeriod === "yearly" && (
-                    <div className="bg-primary/10 border border-primary/20 rounded-radius p-2.5 mb-6">
-                      <p className="text-primary dark:text-primary-foreground text-xs font-semibold text-center">
-                        Save ₹{proSavings.toLocaleString()} annually once billing starts
-                      </p>
-                    </div>
-                  )}
-
-                  <Link
-                    href="https://app.papayapalette.online/register"
-                    className="w-full bg-primary hover:opacity-90 text-white dark:text-background py-3 rounded-radius text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center mb-8 shadow-sm"
-                  >
-                    Start Free — No Card
-                  </Link>
-
-                  <div className="border-t border-border/40 pt-6 mt-auto">
-                    <h4 className="text-[10px] font-bold text-primary uppercase tracking-widest mb-4">Everything in Starter, plus:</h4>
-                    <ul className="space-y-3">
-                      {[
-                        "Multi-Warehouse Inventory Sync",
-                        "Digital Credit Ledger (Udhar)",
-                        "Up to 5 Staff/Agent accounts",
-                        "Live GPS Field Tracking & Maps",
-                        "Expense upload & supervisor approval",
-                        "GST-compliant Delivery Challans",
-                        "Credit/Debit Notes & Bank Reconciliation",
-                        "Balance Sheet, Trial Balance & Aging reports",
-                        "Excel export & print on every module",
-                      ].map((item, idx) => (
-                        <li key={idx} className="flex gap-2.5 items-center text-xs font-medium">
-                          <Check size={14} className="text-primary shrink-0" strokeWidth={3} />
-                          <span className="text-muted-foreground">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </TiltCard>
-            </Reveal>
-
-            {/* Enterprise Plan */}
-            <Reveal delay={0.1}>
-              <TiltCard maxTilt={3} className="h-full rounded-radius">
-                <div className="bg-card border border-border rounded-radius p-8 shadow-sm flex flex-col h-full hover:shadow-md transition-all duration-300">
-                  <div className="mb-6">
-                    <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest bg-muted border border-border px-2 py-0.5 rounded">Custom ERP</span>
-                    <h3 className="text-xl font-bold mt-2 text-foreground">Enterprise Group</h3>
-                    <p className="text-xs text-muted-foreground mt-1">For wholesale distribution chains and large business houses.</p>
-                  </div>
-
-                  <div className="flex items-baseline gap-1 mb-2">
-                    <span className="text-4xl font-black tracking-tight text-foreground line-through decoration-2 decoration-muted-foreground/40">
-                      ₹{billingPeriod === "monthly" ? enterpriseMonthly.toLocaleString() : enterpriseYearly.toLocaleString()}
-                    </span>
-                    <span className="text-muted-foreground text-xs font-bold">
-                      /{billingPeriod === "monthly" ? "month" : "year"}
-                    </span>
-                  </div>
-                  <p className="text-xs font-bold text-emerald-600 dark:text-emerald-400 mb-6">₹0 during beta — free, full access</p>
-
-                  {billingPeriod === "yearly" && (
-                    <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-radius p-2.5 mb-6">
-                      <p className="text-emerald-600 dark:text-emerald-400 text-xs font-semibold text-center">
-                        Save ₹{enterpriseSavings.toLocaleString()} annually once billing starts
-                      </p>
-                    </div>
-                  )}
-
-                  <Link
-                    href="https://app.papayapalette.online/register"
-                    className="w-full bg-secondary hover:bg-muted text-foreground py-3 rounded-radius text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center mb-8 border border-border"
-                  >
-                    Start Free — No Card
-                  </Link>
-
-                  <div className="border-t border-border/40 pt-6 mt-auto">
-                    <h4 className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-4">Everything in Pro, plus:</h4>
-                    <ul className="space-y-3">
-                      {[
-                        "Unlimited Warehouses & Stores",
-                        "Unlimited Staff & Agents",
-                        "Custom Role & Access Policies",
-                        "Dedicated high-perf cloud hosting",
-                        "Priority WhatsApp & phone SLA",
-                        "Direct API integrations & logs",
-                      ].map((item, idx) => (
-                        <li key={idx} className="flex gap-2.5 items-center text-xs font-medium">
-                          <Check size={14} className="text-emerald-500 shrink-0" strokeWidth={3} />
-                          <span className="text-muted-foreground">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </TiltCard>
-            </Reveal>
+          <div className="grid md:grid-cols-3 gap-8">
+            {PRICING_PLANS.map((plan, i) => (
+              <PricingCard key={i} plan={plan} billingPeriod={billingPeriod} index={i} />
+            ))}
           </div>
+          <p className="text-center text-sm text-zinc-500 dark:text-zinc-500 mt-12">
+            All plans include 14-day free trial. No credit card required. Cancel anytime.
+          </p>
         </div>
       </section>
 
-
-      {/* FAQ Section */}
-      <section id="faq" className="py-24">
-        <div className="max-w-3xl mx-auto px-6">
-          <div className="text-center mb-10 space-y-2">
-            <span className="text-xs font-bold text-primary uppercase tracking-widest">Support</span>
-            <h2 className="text-3xl tracking-tight font-light">Frequently asked questions</h2>
-          </div>
-
-          <div className="flex items-center justify-center gap-1 bg-surface border border-border p-1 rounded-radius shadow-sm w-fit mx-auto mb-10">
-            {faqCategories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setFaqCategory(cat)}
-                className={`px-4 py-2 rounded-radius text-xs font-bold transition-all uppercase tracking-wider ${
-                  faqCategory === cat
-                    ? "bg-primary text-white dark:text-background"
-                    : "text-text-secondary hover:text-foreground"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-
-          <div className="space-y-3">
-            {faqs.filter((f) => f.category === faqCategory).map((faq, idx) => (
-              <Reveal key={faq.question} delay={idx * 0.04}>
-                <div className="bg-surface border border-border rounded-radius overflow-hidden">
-                  <button
-                    onClick={() => setOpenFaq(openFaq === faq.question ? null : faq.question)}
-                    className="w-full px-5 py-4 flex justify-between items-center text-left hover:bg-secondary/40 transition-colors"
-                  >
-                    <span className="font-extrabold text-sm text-foreground pr-4">{faq.question}</span>
-                    <motion.span
-                      animate={{ rotate: openFaq === faq.question ? 45 : 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="text-primary font-black text-base leading-none"
-                    >
-                      +
-                    </motion.span>
-                  </button>
-                  <AnimatePresence initial={false}>
-                    {openFaq === faq.question && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.25, ease: "easeInOut" }}
-                        className="overflow-hidden"
-                      >
-                        <div className="px-5 pb-4 border-t border-border pt-3 bg-secondary/10">
-                          <p className="text-xs text-text-secondary leading-relaxed font-medium">
-                            {faq.answer}
-                          </p>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* FAQ */}
+      <FAQSection />
 
       {/* Final CTA */}
-      <section className="py-20 border-t border-border bg-secondary/40">
-        <div className="max-w-3xl mx-auto px-6 text-center space-y-6">
-          <h2 className="text-3xl tracking-tight font-light">Ready to digitize your shop?</h2>
-          <p className="text-sm text-text-secondary font-medium">We're inviting shops into our private beta — free for 30 days, no credit card required.</p>
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            <a href="https://app.papayapalette.online/register">
-              <Button variant="gradient" size="lg">Get Invite Access <ArrowRight size={16} /></Button>
-            </a>
-            <a href="#pricing" className="inline-flex items-center justify-center gap-2 h-12 px-6 text-sm font-medium text-zinc-400 hover:text-white border border-zinc-800 hover:border-zinc-600 rounded-xl transition-colors">
-              View Pricing
-            </a>
+      <section className="py-24 md:py-32 bg-zinc-900 dark:bg-zinc-950 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-blue-500/10" />
+        <div className="relative max-w-4xl mx-auto px-6 text-center">
+          <h2 className="text-4xl md:text-6xl font-black tracking-tight text-white mb-8">
+            Supercharge your business today
+          </h2>
+          <p className="text-lg md:text-xl text-zinc-300 mb-12 max-w-2xl mx-auto">
+            Elevate your online presence, streamline operations, and exceed customer expectations with managemycounter.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+<Link href="https://app.papayapalette.online/register">
+  <Button variant="default" size="lg" className="w-full sm:w-auto">
+                Try for Free <ArrowRight size={20} />
+              </Button>
+            </Link>
+            <Link href="/contact">
+              <Button variant="secondary" size="lg" className="w-full sm:w-auto border-zinc-700 text-zinc-200 hover:bg-zinc-800">
+                Let's talk
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="mt-auto border-t border-border bg-surface transition-colors duration-200">
-        <div className="max-w-6xl mx-auto px-6 py-14 grid sm:grid-cols-2 md:grid-cols-4 gap-10">
-          <div className="col-span-2 md:col-span-1">
-            <span className="inline-flex items-center gap-2 text-xs font-black tracking-tight uppercase text-foreground">
-              <Image src="/MMC Square Logo-01.png" alt="" width={18} height={18} className="shrink-0" />
-              managemycounter
-            </span>
-            <p className="text-xs text-text-secondary font-medium mt-3 leading-relaxed max-w-[220px]">
-              GST billing, inventory, and field-team ERP built for Indian retail and wholesale shops.
-            </p>
+      <footer className="bg-zinc-950 dark:bg-black border-t border-zinc-800 pt-16 pb-8">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-6 gap-8 mb-12">
+            <div className="col-span-2 md:col-span-1">
+              <Logo width={140} height={36} className="mb-4" />
+              <p className="text-zinc-400 text-sm leading-relaxed mb-6">
+                GST billing, inventory, and field-team ERP built for Indian retail and wholesale shops.
+              </p>
+              <div className="flex gap-4">
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center text-zinc-400 hover:bg-zinc-700 hover:text-white transition-colors">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                </a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center text-zinc-400 hover:bg-zinc-700 hover:text-white transition-colors">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+                </a>
+                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center text-zinc-400 hover:bg-zinc-700 hover:text-white transition-colors">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+                </a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center text-zinc-400 hover:bg-zinc-700 hover:text-white transition-colors">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                </a>
+              </div>
+            </div>
+            {Object.entries(FOOTER_MENU).map(([category, links]) => (
+              <div key={category}>
+                <h4 className="font-bold text-white mb-4">{category}</h4>
+                <ul className="space-y-3">
+                  {links.map((link) => (
+                    <li key={link.href}>
+                      <NavLink href={link.href}>{link.label}</NavLink>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
-
-          <div>
-            <h4 className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-3">Product</h4>
-            <ul className="space-y-2.5 text-xs font-semibold text-text-secondary">
-              <li><Link href="#features" className="hover:text-foreground transition-colors">Features</Link></li>
-              <li><Link href="#download" className="hover:text-foreground transition-colors">Mobile Apps</Link></li>
-              <li><Link href="#pricing" className="hover:text-foreground transition-colors">Pricing</Link></li>
-              <li><Link href="#faq" className="hover:text-foreground transition-colors">FAQ</Link></li>
-            </ul>
+          <div className="pt-8 border-t border-zinc-800">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+              <p className="text-zinc-500 text-sm">
+                © {new Date().getFullYear()} managemycounter. All rights reserved.
+              </p>
+              <div className="flex items-center gap-6 text-sm text-zinc-500">
+                <NavLink href="/privacy">Privacy Policy</NavLink>
+                <NavLink href="/terms">Terms of Service</NavLink>
+                <NavLink href="/security">Security</NavLink>
+              </div>
+            </div>
           </div>
-
-          <div>
-            <h4 className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-3">Get Started</h4>
-            <ul className="space-y-2.5 text-xs font-semibold text-text-secondary">
-              <li><Link href="https://app.papayapalette.online/register" className="hover:text-foreground transition-colors">Get Invite Access</Link></li>
-              <li><Link href="https://app.papayapalette.online/dashboard" className="hover:text-foreground transition-colors">Log In</Link></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-3">Support</h4>
-            <ul className="space-y-2.5 text-xs font-semibold text-text-secondary">
-              <li><Link href="https://support.papayapalette.online" className="hover:text-foreground transition-colors">Help & Support</Link></li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="border-t border-border">
-          <div className="max-w-6xl mx-auto px-6 py-6">
-            <p className="text-[10px] text-text-secondary font-bold uppercase tracking-wider">
-              © {new Date().getFullYear()} managemycounter. All rights reserved. Built for retail growth.
-            </p>
-          </div>
-        </div>
+</div>
       </footer>
-
     </div>
   );
 }

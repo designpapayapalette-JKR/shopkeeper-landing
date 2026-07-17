@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 /* ══════════════════════════════════════════════
-   MANAGEMYCOUNTER  ·  Brand: Blue on black
-   Dark theme · Blue accent · Clear, decisive UI
-   Brand palette: #004CFA deep / #0368FE bright (primary) /
-   #000D3A navy / #03A8FE cyan. Font: Gilroy (local OTF, ExtraBold + Light) — loaded from /public/fonts.
+   MANAGEMYCOUNTER  ·  Brand: Blue on white
+   Light theme only · Blue accent · Clean, professional UI
+   Brand palette: #0368FE (primary) / #004CFA (deep) /
+   #03A8FE (cyan). Font: Gilroy (local OTF, ExtraBold + Light) — loaded from /public/fonts.
 ══════════════════════════════════════════════ */
 
 /* Gilroy Font — local OTF files from /public/fonts */
@@ -24,128 +24,96 @@
 }
 
 :root {
-  --card: #262626;
-  --ring: #0368FE;
-  --input: #404040;
-  --muted: #1f1f1f;
-  --accent: #01246b;
-  --border: #404040;
-  --radius: 0.375rem;
-  --chart-1: #03A8FE;
-  --chart-2: #0368FE;
-  --chart-3: #004CFA;
-  --chart-4: #000D3A;
-  --chart-5: #5CD0FF;
-  --popover: #262626;
+  /* Light theme (only theme) */
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --popover: #ffffff;
+  --popover-foreground: #0f172a;
   --primary: #0368FE;
-  --sidebar: #000D3A;
-  --secondary: #262626;
-  --background: #000000;
-  --foreground: #e5e5e5;
-  --destructive: #ef4444;
-  --sidebar-ring: #0368FE;
-  --sidebar-accent: #01246b;
-  --sidebar-border: #404040;
-  --card-foreground: #e5e5e5;
-  --sidebar-primary: #0368FE;
-  --muted-foreground: #a3a3a3;
-  --accent-foreground: #8fd8ff;
-  --popover-foreground: #e5e5e5;
   --primary-foreground: #ffffff;
-  --sidebar-foreground: #e5e5e5;
-  --secondary-foreground: #e5e5e5;
+  --secondary: #f1f5f9;
+  --secondary-foreground: #0f172a;
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+  --accent: #e0f2fe;
+  --accent-foreground: #0368FE;
+  --destructive: #ef4444;
   --destructive-foreground: #ffffff;
-  --sidebar-accent-foreground: #8fd8ff;
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #0368FE;
+  --radius: 0.5rem;
+
+  /* Chart colors */
+  --chart-1: #0368FE;
+  --chart-2: #03A8FE;
+  --chart-3: #004CFA;
+  --chart-4: #10b981;
+  --chart-5: #f59e0b;
+
+  /* Sidebar */
+  --sidebar: #f8fafc;
+  --sidebar-foreground: #0f172a;
+  --sidebar-primary: #0368FE;
   --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e0f2fe;
+  --sidebar-accent-foreground: #0368FE;
+  --sidebar-border: #e2e8f0;
+  --sidebar-ring: #0368FE;
 
-  /* App compatibility aliases */
-  --bg:        var(--background);
-  --surface:   var(--card);
+  /* Aliases for compatibility */
+  --bg: var(--background);
+  --surface: var(--card);
   --surface-2: var(--secondary);
-  --border-2:  var(--input);
-  --text:      var(--foreground);
-  --text-2:    var(--muted-foreground);
-  --text-3:    var(--muted-foreground);
+  --border-2: var(--input);
+  --text: var(--foreground);
+  --text-2: var(--muted-foreground);
+  --text-3: var(--muted-foreground);
+  --text-sub: var(--text-2);
+  --text-ghost: var(--text-3);
+  --bg-subtle: var(--surface-2);
 
-  --green:     var(--primary);
-  --green-2:   #004CFA;
-  --green-dim: var(--accent);
+  /* Semantic colors */
+  --success: #10b981;
+  --success-dim: #d1fae5;
+  --warning: #f59e0b;
+  --warning-dim: #fef3c7;
+  --error: #ef4444;
+  --error-dim: #fee2e2;
+
+  /* Primary variations */
+  --green: var(--primary);
+  --green-2: #004CFA;
+  --green-dim: #e0f2fe;
   --green-mid: #03A8FE;
 
-  --success:     #10b981;
-  --success-dim: #064e3b;
-  --warning:     #f59e0b;
-  --warning-dim: #451a03;
+  --blue: #0368FE;
+  --blue-dim: #e0f2fe;
 
-  --red:       var(--destructive);
-  --red-dim:   #7f1d1d;
-  --amber:     #f59e0b;
-  --amber-dim: #78350f;
-  --blue:      #0368FE;
-  --blue-dim:  #01246b;
+  --amber: #f59e0b;
+  --amber-dim: #fef3c7;
+
+  --red: #ef4444;
+  --red-dim: #fee2e2;
+
   --status-ok: #10b981;
 
-  --text-sub:   var(--text-2);
-  --text-ghost: var(--text-3);
-  --bg-subtle:  var(--surface-2);
+  /* Sidebar aliases */
+  --sb: var(--sidebar);
+  --sb-border: var(--sidebar-border);
+  --sb-active-bg: var(--sidebar-accent);
+  --sb-active-text: var(--sidebar-accent-foreground);
+  --sb-text: var(--sidebar-foreground);
+  --sb-hover: var(--secondary);
 
-  --sb:              var(--sidebar);
-  --sb-border:       var(--sidebar-border);
-  --sb-active-bg:    var(--sidebar-accent);
-  --sb-active-text:  var(--sidebar-accent-foreground);
-  --sb-text:         var(--sidebar-foreground);
-  --sb-hover:        var(--secondary);
-
+  /* Font */
   --font-gilroy: "Gilroy", Inter, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-sans: var(--font-gilroy), Inter, -apple-system, BlinkMacSystemFont, sans-serif;
   --font: var(--font-sans), -apple-system, BlinkMacSystemFont, sans-serif;
-  --r:    var(--radius);
-  --r-lg: calc(var(--radius) * 1.33);
-}
-
-.dark {
-  --card: #262626;
-  --ring: #03A8FE;
-  --input: #404040;
-  --muted: #1f1f1f;
-  --accent: #01246b;
-  --border: #404040;
-  --radius: 0.375rem;
-  --chart-1: #03A8FE;
-  --chart-2: #0368FE;
-  --chart-3: #004CFA;
-  --chart-4: #000D3A;
-  --chart-5: #5CD0FF;
-  --popover: #262626;
-  --primary: #03A8FE;
-  --sidebar: #000D3A;
-  --secondary: #262626;
-  --background: #171717;
-  --foreground: #e5e5e5;
-  --destructive: #ef4444;
-  --sidebar-ring: #03A8FE;
-  --sidebar-accent: #01246b;
-  --sidebar-border: #404040;
-  --card-foreground: #e5e5e5;
-  --sidebar-primary: #03A8FE;
-  --muted-foreground: #a3a3a3;
-  --accent-foreground: #8fd8ff;
-  --popover-foreground: #e5e5e5;
-  --primary-foreground: #000D3A;
-  --sidebar-foreground: #e5e5e5;
-  --secondary-foreground: #e5e5e5;
-  --destructive-foreground: #ffffff;
-  --sidebar-accent-foreground: #8fd8ff;
-  --sidebar-primary-foreground: #000D3A;
-
-  /* App dark-mode compatibility overrides */
-  --green-2:   #03A8FE;
-  --green-mid: #0368FE;
-  --red-dim:   #7f1d1d;
-  --amber-dim: #78350f;
-  --blue-dim:  #01246b;
-  --success-dim: #064e3b;
-  --warning-dim: #451a03;
+  --r: var(--radius);
+  --r-lg: calc(var(--radius) * 1.5);
 }
 
 @theme inline {
@@ -197,339 +165,3 @@
   --color-warning: var(--warning);
   --color-warning-dim: var(--warning-dim);
 }
-
-/* ── Cards ─────────────────────────────────── */
-.k-card {
-  background:    var(--surface);
-  border:        1px solid var(--border);
-  border-radius: var(--r-lg);
-  padding:       1.125rem 1.25rem;
-  box-shadow:    0 1px 3px rgba(0,0,0,0.04);
-}
-
-/* ── Metric ─────────────────────────────────── */
-.k-metric {
-  font-size:      1.875rem;
-  font-weight:    700;
-  letter-spacing: -0.04em;
-  line-height:    1;
-  color:          var(--text);
-}
-.k-label {
-  font-size:      0.67rem;
-  font-weight:    600;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  color:          var(--text-3);
-}
-.k-page-title {
-  font-size:      1rem;
-  font-weight:    600;
-  letter-spacing: -0.01em;
-  color:          var(--text);
-}
-.k-page-desc {
-  font-size: 0.78rem;
-  color:     var(--text-3);
-  margin-top: 2px;
-}
-
-/* ── Badges ─────────────────────────────────── */
-.k-badge {
-  display:       inline-flex;
-  align-items:   center;
-  gap:           3px;
-  padding:       2px 8px;
-  border-radius: 4px;
-  font-size:     0.68rem;
-  font-weight:   600;
-  white-space:   nowrap;
-}
-.k-badge-green  { background: var(--success-dim);  color: var(--success);  }
-.k-badge-red    { background: var(--red-dim);    color: var(--red);    }
-.k-badge-amber  { background: var(--amber-dim);  color: var(--amber);  }
-.k-badge-blue   { background: var(--blue-dim);   color: var(--blue);   }
-.k-badge-gray   { background: var(--surface-2);  color: var(--text-2); border: 1px solid var(--border); }
-.k-badge-critical { background: var(--red-dim); color: var(--red); font-weight: 700; }
-
-/* ── Buttons ─────────────────────────────────── */
-.k-btn {
-  display:         inline-flex;
-  align-items:     center;
-  justify-content: center;
-  gap:             5px;
-  padding:         7px 14px;
-  border-radius:   var(--r);
-  font-size:       0.8rem;
-  font-weight:     500;
-  cursor:          pointer;
-  transition:      all 0.12s;
-  border:          1px solid transparent;
-  text-decoration: none;
-  white-space:     nowrap;
-}
-.k-btn-primary  { background: var(--green);   color: #fff; border-color: var(--green); }
-.k-btn-primary:hover  { background: var(--green-2); border-color: var(--green-2); }
-.k-btn-ghost    { background: var(--surface); color: var(--text-2); border-color: var(--border); }
-.k-btn-ghost:hover    { background: var(--surface-2); color: var(--text); border-color: var(--border-2); }
-.k-btn-danger   { background: var(--red-dim); color: var(--red); }
-.k-btn-danger:hover   { background: var(--red); color: #fff; }
-.k-btn:disabled { opacity: 0.45; cursor: not-allowed; pointer-events: none; }
-
-/* ── CTA (new sale) ──────────────────────────── */
-.k-cta {
-  display:         flex;
-  align-items:     center;
-  justify-content: center;
-  gap:             6px;
-  width:           100%;
-  padding:         9px;
-  border-radius:   var(--r);
-  font-size:       0.82rem;
-  font-weight:     600;
-  cursor:          pointer;
-  transition:      all 0.12s;
-  border:          none;
-  background:      var(--green);
-  color:           #fff;
-  box-shadow:      0 2px 6px rgba(0,0,0,0.2);
-}
-.k-cta:hover { background: var(--green-2); box-shadow: 0 4px 12px rgba(0,0,0,0.25); }
-
-/* ── Quick action card ───────────────────────── */
-.k-quick-action {
-  display:        flex;
-  flex-direction: column;
-  align-items:    flex-start;
-  gap:            4px;
-  padding:        10px 12px;
-  background:     var(--surface);
-  border:         1px solid var(--border);
-  border-radius:  var(--r-lg);
-  cursor:         pointer;
-  transition:     all 0.12s;
-  box-shadow:     0 1px 3px rgba(0,0,0,0.04);
-}
-.k-quick-action:hover {
-  border-color: var(--border-2);
-  box-shadow:   0 2px 8px rgba(0,0,0,0.08);
-  transform:    translateY(-1px);
-}
-
-/* ── Inputs ─────────────────────────────────── */
-.k-input, .k-select {
-  width: 100%;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r);
-  padding: 7px 11px;
-  font-size: 0.8rem;
-  font-family: var(--font);
-  color: var(--text);
-  outline: none;
-  transition: border-color 0.12s, box-shadow 0.12s;
-}
-.k-input:focus, .k-select:focus {
-  border-color: var(--text);
-  box-shadow: 0 0 0 3px rgba(0,0,0,0.08);
-}
-.k-input::placeholder { color: var(--text-3); }
-
-/* A <select> with no explicit width can get squeezed down to nothing but
-   its native dropdown arrow in a tight flex row — see shopkeeper-web's
-   globals.css for the full explanation. Same floor, for consistency. */
-select.k-input, select.k-select {
-  min-width: 110px;
-}
-
-/* ── Table ─────────────────────────────────── */
-.k-table { width: 100%; border-collapse: collapse; }
-.k-table th {
-  padding: 8px 12px;
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--text-3);
-  border-bottom: 1px solid var(--border);
-  text-align: left;
-  white-space: nowrap;
-}
-.k-table td {
-  padding: 10px 12px;
-  font-size: 0.82rem;
-  border-bottom: 1px solid var(--border);
-  color: var(--text);
-  vertical-align: middle;
-}
-.k-table tbody tr:last-child td { border-bottom: none; }
-.k-table tbody tr:hover td { background: var(--surface-2); }
-
-/* ── Sidebar nav ─────────────────────────────── */
-.k-nav-item {
-  display:     flex;
-  align-items: center;
-  gap:         9px;
-  padding:     7px 10px;
-  border-radius: 6px;
-  font-size:   0.82rem;
-  font-weight: 450;
-  color:       var(--sb-text);
-  text-decoration: none;
-  cursor:      pointer;
-  transition:  all 0.1s;
-}
-.k-nav-item:hover  { background: var(--sb-hover); color: var(--green); }
-.k-nav-item.active {
-  background:  var(--sb-active-bg);
-  color:       var(--sb-active-text);
-  font-weight: 600;
-}
-.k-nav-icon {
-  width:    18px;
-  height:   18px;
-  display:  flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  flex-shrink: 0;
-}
-
-/* ── Progress bar ────────────────────────────── */
-.k-progress {
-  height:        6px;
-  border-radius: 99px;
-  overflow:      hidden;
-  background:    var(--border);
-}
-.k-progress-fill {
-  height:        100%;
-  border-radius: 99px;
-  transition:    width 0.4s ease;
-}
-
-/* ── Dot status ──────────────────────────────── */
-.k-dot {
-  display:       inline-block;
-  width:         7px;
-  height:        7px;
-  border-radius: 50%;
-  flex-shrink:   0;
-}
-
-/* ── Page enter ──────────────────────────────── */
-@keyframes pageIn { from { opacity:0; transform: translateY(5px); } to { opacity:1; transform: translateY(0); } }
-.k-page { animation: pageIn 0.2s ease-out; }
-
-/* ── Skeleton ────────────────────────────────── */
-@keyframes shimmer { 0% { background-position: -400px 0; } 100% { background-position: 400px 0; } }
-.k-skeleton {
-  background: linear-gradient(90deg, var(--surface-2) 25%, #e5e7eb 50%, var(--surface-2) 75%);
-  background-size: 400px 100%;
-  animation: shimmer 1.3s infinite;
-  border-radius: var(--r);
-}
-
-/* ── Divider ────────────────────────────────── */
-.k-divider { border: none; border-top: 1px solid var(--border); }
-
-/* ══════════════════════════════════════════════
-   Legacy class aliases
-   A handful of pages were written against a `.card` / `.btn` / `.badge` /
-   `.erp-table` naming scheme that was never defined anywhere, so those
-   pages rendered as unstyled HTML. Aliased onto the real `.k-*` system here
-   instead of hand-editing every page.
-══════════════════════════════════════════════ */
-.page-header { margin-bottom: 0; }
-.page-title  { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.01em; color: var(--text); }
-.page-desc   { font-size: 0.8rem; color: var(--text-3); margin-top: 2px; }
-.text-muted  { color: var(--muted-foreground); }
-.skeleton {
-  background: linear-gradient(90deg, var(--surface-2) 25%, #e5e7eb 50%, var(--surface-2) 75%);
-  background-size: 400px 100%;
-  animation: shimmer 1.3s infinite;
-  border-radius: var(--r);
-}
-
-.card       { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 1.125rem 1.25rem; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
-.card-hover { transition: all 0.12s; }
-.card-hover:hover { border-color: var(--border-2); box-shadow: 0 2px 8px rgba(0,0,0,0.08); transform: translateY(-1px); }
-
-.label        { font-size: 0.67rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-3); }
-.metric-value { font-size: 1.875rem; font-weight: 700; letter-spacing: -0.04em; line-height: 1; color: var(--text); }
-
-.badge          { display: inline-flex; align-items: center; gap: 3px; padding: 2px 8px; border-radius: 4px; font-size: 0.68rem; font-weight: 600; white-space: nowrap; }
-.badge-green    { background: var(--success-dim); color: var(--success); }
-.badge-red      { background: var(--red-dim);   color: var(--red);   }
-.badge-amber    { background: var(--amber-dim); color: var(--amber); }
-.badge-blue     { background: var(--blue-dim);  color: var(--blue);  }
-.badge-accent   { background: var(--surface-2); color: var(--text);  border: 1px solid var(--border-2); }
-.badge-neutral  { background: var(--surface-2); color: var(--text-2); border: 1px solid var(--border); }
-
-.btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 5px;
-  padding: 7px 14px; border-radius: var(--r); font-size: 0.8rem; font-weight: 500;
-  cursor: pointer; transition: all 0.12s; border: 1px solid transparent; text-decoration: none; white-space: nowrap;
-}
-.btn-primary { background: var(--green); color: #fff; border-color: var(--green); }
-.btn-primary:hover { background: var(--green-2); border-color: var(--green-2); }
-.btn-ghost   { background: var(--surface); color: var(--text-2); border-color: var(--border); }
-.btn-ghost:hover { background: var(--surface-2); color: var(--text); border-color: var(--border-2); }
-.btn-danger  { background: var(--red-dim); color: var(--red); }
-.btn-danger:hover { background: var(--red); color: #fff; }
-.btn:disabled { opacity: 0.45; cursor: not-allowed; pointer-events: none; }
-
-.erp-input {
-  width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r);
-  padding: 7px 11px; font-size: 0.8rem; font-family: var(--font); color: var(--text); outline: none;
-  transition: border-color 0.12s, box-shadow 0.12s;
-}
-.erp-input:focus { border-color: var(--text); box-shadow: 0 0 0 3px rgba(0,0,0,0.08); }
-.erp-input::placeholder { color: var(--text-3); }
-
-.erp-table { width: 100%; border-collapse: collapse; }
-.erp-table th {
-  padding: 8px 12px; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
-  color: var(--text-3); border-bottom: 1px solid var(--border); text-align: left; white-space: nowrap;
-}
-.erp-table td { padding: 10px 12px; font-size: 0.82rem; border-bottom: 1px solid var(--border); color: var(--text); vertical-align: middle; }
-.erp-table tbody tr:last-child td { border-bottom: none; }
-.erp-table tbody tr:hover td { background: var(--surface-2); }
-
-/* ── Touch / POS screen optimisations ──────────────────────────────────── */
-
-/* Large touch targets for all interactive elements on touch devices */
-@media (pointer: coarse) {
-  .k-touch-btn { min-height: 44px; font-size: 0.85rem !important; padding: 10px 16px !important; }
-  .k-touch-qty-btn { min-width: 44px; min-height: 44px; font-size: 1.1rem !important; }
-
-  /* POS product cards — larger touch area on touch screens */
-  .k-touch-card { min-height: 100px; padding: 1rem !important; }
-  .k-touch-card:active { transform: scale(0.97); border-color: var(--blue); }
-
-  /* Remove hover states on touch — replace with active */
-  .k-btn:hover, .btn:hover, .k-card:hover, .card-hover:hover { transform: none !important; }
-  .k-btn:active, .btn:active { transform: scale(0.97); }
-  .k-card:active { border-color: var(--border-2); }
-
-  /* Larger inputs on touch */
-  .k-input, .erp-input { min-height: 44px; font-size: 16px !important; }
-  select.k-select, .k-select { min-height: 44px; font-size: 14px !important; }
-}
-
-/* POS numpad grid */
-.k-numpad-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
-.k-numpad-key {
-  min-height: 48px; border-radius: var(--r); display: flex; align-items: center; justify-content: center;
-  font-size: 1.25rem; font-weight: 700; cursor: pointer; border: 1px solid var(--border);
-  background: var(--surface); color: var(--text); transition: all 0.1s; user-select: none; -webkit-user-select: none;
-}
-.k-numpad-key:active { transform: scale(0.93); background: var(--surface-2); }
-
-/* POS overlay / full-screen receipt */
-@media print {
-  .no-print { display: none !important; }
-}
-
-/* Kiosk / POS fullscreen hint — kept minimal; actual fullscreen requires
-   a user gesture (click/tap), so we provide a button in the UI instead. */
