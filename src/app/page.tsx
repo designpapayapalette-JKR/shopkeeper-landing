@@ -350,7 +350,7 @@ function InvoicePreview() {
 
 export default function LandingPage() {
   const [billingPeriod, setBillingPeriod] = useState<"monthly" | "yearly">("monthly");
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [openFaq, setOpenFaq] = useState<string | null>(null);
 
   const starterMonthly = 499;
   const starterYearly = 4990;
@@ -364,26 +364,54 @@ export default function LandingPage() {
   const enterpriseYearly = 49990;
   const enterpriseSavings = (enterpriseMonthly * 12) - enterpriseYearly;
 
-  const faqs = [
+  const faqCategories = ["General", "Setup & Billing", "Support"] as const;
+  const [faqCategory, setFaqCategory] = useState<typeof faqCategories[number]>("General");
+
+  const faqs: { question: string; answer: string; category: typeof faqCategories[number] }[] = [
     {
-      question: "Do I need a credit card to sign up for the trial?",
-      answer: "No, you can sign up and use all features of the platform for 14 days completely card-free. We only ask for billing details once you choose to subscribe."
+      category: "General",
+      question: "Do I need a credit card to sign up for the beta?",
+      answer: "No — sign up and use every feature of the platform free during the beta, card-free. We only ask for billing details once you choose to subscribe after beta ends."
     },
     {
+      category: "General",
       question: "Can I manage multiple shops or brands?",
-      answer: "Yes! The core dashboard includes an active brand and company switcher, allowing you to run operations for different lines of business from a single owner account."
+      answer: "Yes. The core dashboard includes an active brand and company switcher, allowing you to run operations for different lines of business from a single owner account."
     },
     {
+      category: "General",
+      question: "Does it work for wholesale/B2B, not just retail counters?",
+      answer: "Yes — the dashboard has a dedicated B2B billing flow alongside retail POS, with customer-category pricing, credit terms, and bulk invoicing separate from counter sales."
+    },
+    {
+      category: "Setup & Billing",
       question: "How do field agents log their location and expenses?",
-      answer: "Agents use the companion managemycounter staff app. It registers remote check-ins, streams location coordinates securely during active duty, and supports camera uploads for expense receipts."
+      answer: "Agents use the companion managemycounter Agent app. It registers check-ins, streams location coordinates securely during active duty, and supports camera uploads for expense receipts that supervisors approve from the web dashboard."
     },
     {
+      category: "Setup & Billing",
       question: "What hardware is compatible with receipt printing?",
-      answer: "Our web dashboard supports connection to standard Bluetooth, network, and USB thermal receipt printers (both 58mm and 80mm layouts)."
+      answer: "The web dashboard connects to standard Bluetooth, network, and USB thermal receipt printers (both 58mm and 80mm layouts) — no proprietary hardware required."
     },
     {
+      category: "Setup & Billing",
       question: "Can I upgrade or downgrade my plan later?",
       answer: "Yes, you can switch between monthly and yearly billing at any time from your dashboard, or reach out and we'll adjust it for you directly."
+    },
+    {
+      category: "Setup & Billing",
+      question: "Can I bring in my existing customer/supplier balances?",
+      answer: "Yes — every party (customer or supplier) has an opening balance field captured at onboarding, so your pre-existing dues carry over instead of starting from zero."
+    },
+    {
+      category: "Support",
+      question: "How do I get help if something breaks?",
+      answer: "Every account has access to the managemycounter support portal for raising and tracking tickets directly with our team."
+    },
+    {
+      category: "Support",
+      question: "Can I export my data if I ever need to leave?",
+      answer: "Yes — every module with data (ledgers, reports, inventory, invoices) exports to Excel, so your records are never locked into the platform."
     },
   ];
 
@@ -626,6 +654,58 @@ export default function LandingPage() {
         </div>
       </section>
 
+
+      {/* Comparison table — managemycounter vs. the two things shops actually
+          replace it with: a paper/Excel notebook, or a bare-bones billing
+          app that stops at "print a bill" and doesn't touch stock, staff,
+          or field ops. */}
+      <section className="py-24 bg-secondary/40 border-b border-border transition-colors duration-200">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center max-w-xl mx-auto mb-14 space-y-2">
+            <span className="text-xs font-bold text-primary uppercase tracking-widest">Comparison</span>
+            <h2 className="text-3xl tracking-tight text-foreground font-light">Not just another billing app</h2>
+            <p className="text-sm text-text-secondary font-medium">
+              Most shops outgrow a notebook, then outgrow a bare-bones billing app too — once stock, staff, and field agents enter the picture.
+            </p>
+          </div>
+
+          <Reveal>
+            <div className="bg-card border border-border rounded-radius overflow-hidden shadow-sm">
+              <div className="grid grid-cols-4 text-xs font-bold uppercase tracking-wider border-b border-border bg-secondary/60">
+                <div className="p-4 text-text-secondary">Capability</div>
+                <div className="p-4 text-center text-text-secondary border-l border-border">Notebook / Excel</div>
+                <div className="p-4 text-center text-text-secondary border-l border-border">Basic Billing App</div>
+                <div className="p-4 text-center text-primary border-l border-border bg-primary/5">managemycounter</div>
+              </div>
+              {[
+                { label: "GST invoice with auto CGST/SGST/IGST split", notebook: false, basic: "partial", us: true },
+                { label: "Real-time stock sync across warehouses", notebook: false, basic: false, us: true },
+                { label: "Digital credit ledger (udhar) with reminders", notebook: "partial", basic: false, us: true },
+                { label: "GPS field agent & delivery tracking", notebook: false, basic: false, us: true },
+                { label: "GST Rule 55-compliant delivery challans", notebook: false, basic: false, us: true },
+                { label: "Balance Sheet, Trial Balance, Aging reports", notebook: false, basic: false, us: true },
+                { label: "Works offline at the counter", notebook: true, basic: "partial", us: true },
+                { label: "Staff attendance & expense approvals", notebook: false, basic: false, us: true },
+              ].map((row, idx) => (
+                <div key={idx} className={`grid grid-cols-4 text-sm ${idx % 2 === 1 ? "bg-secondary/20" : ""}`}>
+                  <div className="p-4 font-semibold text-foreground text-xs">{row.label}</div>
+                  {[row.notebook, row.basic, row.us].map((cell, cidx) => (
+                    <div key={cidx} className={`p-4 flex items-center justify-center border-l border-border ${cidx === 2 ? "bg-primary/5" : ""}`}>
+                      {cell === true ? (
+                        <Check size={16} className="text-emerald-500" strokeWidth={3} />
+                      ) : cell === "partial" ? (
+                        <span className="text-amber-500 text-xs font-bold">Partial</span>
+                      ) : (
+                        <span className="text-text-secondary/40 text-xs">—</span>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
 
       {/* Trust / value section — generic value props, not fabricated testimonials */}
       <section className="py-24">
@@ -880,22 +960,38 @@ export default function LandingPage() {
       {/* FAQ Section */}
       <section id="faq" className="py-24">
         <div className="max-w-3xl mx-auto px-6">
-          <div className="text-center mb-16 space-y-2">
+          <div className="text-center mb-10 space-y-2">
             <span className="text-xs font-bold text-primary uppercase tracking-widest">Support</span>
             <h2 className="text-3xl tracking-tight font-light">Frequently asked questions</h2>
           </div>
 
+          <div className="flex items-center justify-center gap-1 bg-surface border border-border p-1 rounded-radius shadow-sm w-fit mx-auto mb-10">
+            {faqCategories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setFaqCategory(cat)}
+                className={`px-4 py-2 rounded-radius text-xs font-bold transition-all uppercase tracking-wider ${
+                  faqCategory === cat
+                    ? "bg-primary text-white dark:text-background"
+                    : "text-text-secondary hover:text-foreground"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+
           <div className="space-y-3">
-            {faqs.map((faq, idx) => (
-              <Reveal key={idx} delay={idx * 0.04}>
+            {faqs.filter((f) => f.category === faqCategory).map((faq, idx) => (
+              <Reveal key={faq.question} delay={idx * 0.04}>
                 <div className="bg-surface border border-border rounded-radius overflow-hidden">
                   <button
-                    onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
+                    onClick={() => setOpenFaq(openFaq === faq.question ? null : faq.question)}
                     className="w-full px-5 py-4 flex justify-between items-center text-left hover:bg-secondary/40 transition-colors"
                   >
                     <span className="font-extrabold text-sm text-foreground pr-4">{faq.question}</span>
                     <motion.span
-                      animate={{ rotate: openFaq === idx ? 45 : 0 }}
+                      animate={{ rotate: openFaq === faq.question ? 45 : 0 }}
                       transition={{ duration: 0.2 }}
                       className="text-primary font-black text-base leading-none"
                     >
@@ -903,7 +999,7 @@ export default function LandingPage() {
                     </motion.span>
                   </button>
                   <AnimatePresence initial={false}>
-                    {openFaq === idx && (
+                    {openFaq === faq.question && (
                       <motion.div
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
@@ -943,15 +1039,50 @@ export default function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="mt-auto py-10 border-t border-border bg-surface transition-colors duration-200">
-        <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-          <span className="inline-flex items-center gap-2 text-xs font-black tracking-tight uppercase text-foreground">
-            <Image src="/logo-icon.png" alt="" width={18} height={18} className="shrink-0" />
-            managemycounter
-          </span>
-          <p className="text-[10px] text-text-secondary font-bold uppercase tracking-wider">
-            © {new Date().getFullYear()} managemycounter. All rights reserved. Built for retail growth.
-          </p>
+      <footer className="mt-auto border-t border-border bg-surface transition-colors duration-200">
+        <div className="max-w-6xl mx-auto px-6 py-14 grid sm:grid-cols-2 md:grid-cols-4 gap-10">
+          <div className="col-span-2 md:col-span-1">
+            <span className="inline-flex items-center gap-2 text-xs font-black tracking-tight uppercase text-foreground">
+              <Image src="/logo-icon.png" alt="" width={18} height={18} className="shrink-0" />
+              managemycounter
+            </span>
+            <p className="text-xs text-text-secondary font-medium mt-3 leading-relaxed max-w-[220px]">
+              GST billing, inventory, and field-team ERP built for Indian retail and wholesale shops.
+            </p>
+          </div>
+
+          <div>
+            <h4 className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-3">Product</h4>
+            <ul className="space-y-2.5 text-xs font-semibold text-text-secondary">
+              <li><Link href="#features" className="hover:text-foreground transition-colors">Features</Link></li>
+              <li><Link href="#download" className="hover:text-foreground transition-colors">Mobile Apps</Link></li>
+              <li><Link href="#pricing" className="hover:text-foreground transition-colors">Pricing</Link></li>
+              <li><Link href="#faq" className="hover:text-foreground transition-colors">FAQ</Link></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-3">Get Started</h4>
+            <ul className="space-y-2.5 text-xs font-semibold text-text-secondary">
+              <li><Link href="https://app.papayapalette.online/register" className="hover:text-foreground transition-colors">Get Invite Access</Link></li>
+              <li><Link href="https://app.papayapalette.online/dashboard" className="hover:text-foreground transition-colors">Log In</Link></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-3">Support</h4>
+            <ul className="space-y-2.5 text-xs font-semibold text-text-secondary">
+              <li><Link href="https://support.papayapalette.online" className="hover:text-foreground transition-colors">Help & Support</Link></li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="border-t border-border">
+          <div className="max-w-6xl mx-auto px-6 py-6">
+            <p className="text-[10px] text-text-secondary font-bold uppercase tracking-wider">
+              © {new Date().getFullYear()} managemycounter. All rights reserved. Built for retail growth.
+            </p>
+          </div>
         </div>
       </footer>
 
