@@ -8,6 +8,7 @@ import { FAQSection } from "@/components/blocks/faq-section";
 import { Reveal } from "@/components/ui/reveal";
 import { ArrowRight, Check, BarChart3, Smartphone, ShieldCheck, Mail, Phone, MapPin, Globe, ChevronRight, ChevronLeft, Star, Users, Zap, Lock, Send, TrendingUp, Target, Database, Cloud, Cpu, Layers, Tag } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { APP_DOWNLOAD_URL, AGENT_APP_DOWNLOAD_URL } from "@/lib/config";
 
 const FOOTER_MENU = {
   Product: [
@@ -406,7 +407,7 @@ export default function LandingPage() {
       </section>
 
       {/* Platform Showcase */}
-      <section className="py-24 md:py-32 bg-zinc-50 dark:bg-zinc-900">
+      <section id="download" className="py-24 md:py-32 bg-zinc-50 dark:bg-zinc-900">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -421,7 +422,7 @@ export default function LandingPage() {
                 Download the Android apps for your staff and field agents. Native performance, offline-first, built for Indian networks.
               </p>
               <div className="grid sm:grid-cols-2 gap-4">
-                <Link href={"/download"} className="group flex items-center gap-4 p-5 bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:border-primary/50 hover:shadow-lg transition-all duration-300">
+                <a href={APP_DOWNLOAD_URL} className="group flex items-center gap-4 p-5 bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:border-primary/50 hover:shadow-lg transition-all duration-300">
                   <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
                     <Smartphone size={28} className="text-primary group-hover:text-white transition-colors" strokeWidth={1.5} />
                   </div>
@@ -429,8 +430,8 @@ export default function LandingPage() {
                     <h3 className="font-bold text-zinc-900 dark:text-white group-hover:text-primary transition-colors">managemycounter App</h3>
                     <p className="text-sm text-zinc-500 dark:text-zinc-400">For owners, managers & staff — POS, inventory, ledger, expenses</p>
                   </div>
-                </Link>
-                <Link href={"/download"} className="group flex items-center gap-4 p-5 bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:border-primary/50 hover:shadow-lg transition-all duration-300">
+                </a>
+                <a href={AGENT_APP_DOWNLOAD_URL} className="group flex items-center gap-4 p-5 bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:border-primary/50 hover:shadow-lg transition-all duration-300">
                   <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
                     <Users size={28} className="text-primary group-hover:text-white transition-colors" strokeWidth={1.5} />
                   </div>
@@ -438,7 +439,7 @@ export default function LandingPage() {
                     <h3 className="font-bold text-zinc-900 dark:text-white group-hover:text-primary transition-colors">Agent App</h3>
                     <p className="text-sm text-zinc-500 dark:text-zinc-400">For field agents — attendance, expenses, tasks, GPS tracking</p>
                   </div>
-                </Link>
+                </a>
               </div>
             </div>
             <div className="relative">
@@ -486,11 +487,9 @@ export default function LandingPage() {
               </div>
             ))}
           </div>
-          <div className="text-center mt-12">
-            <Link href="/integrations">
-              <Button variant="outline" size="lg">View All Integrations <ChevronRight size={18} /></Button>
-            </Link>
-          </div>
+          {/* No "View All Integrations" CTA here — the grid above already shows
+              every integration that exists; a "view more" link with nothing
+              further behind it would just be a dead end. */}
         </div>
       </section>
 
@@ -646,11 +645,11 @@ export default function LandingPage() {
                 Try for Free <ArrowRight size={20} />
               </Button>
             </Link>
-            <Link href="/contact">
+            <a href="mailto:hello@shopkeeper.app">
               <Button variant="secondary" size="lg" className="w-full sm:w-auto border-zinc-700 text-zinc-200 hover:bg-zinc-800">
                 Let's talk
               </Button>
-            </Link>
+            </a>
           </div>
         </div>
       </section>
