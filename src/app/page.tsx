@@ -5,29 +5,22 @@ import Link from "next/link";
 import Image from "next/image";
 import { HeroSection } from "@/components/blocks/hero-section-1";
 import { FAQSection } from "@/components/blocks/faq-section";
-import { Reveal } from "@/components/ui/reveal";
-import { ArrowRight, Check, BarChart3, Smartphone, ShieldCheck, Mail, Phone, MapPin, Globe, ChevronRight, ChevronLeft, Star, Users, Zap, Lock, Send, TrendingUp, Target, Database, Cloud, Cpu, Layers, Tag } from "lucide-react";
+import {
+  ArrowRight, Check, Smartphone, Send, Users, Tag, Receipt, Package, Landmark,
+  Contact, Truck, Scale, KeyboardIcon, MessageCircle, Printer, FileSpreadsheet,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { APP_DOWNLOAD_URL, AGENT_APP_DOWNLOAD_URL } from "@/lib/config";
 
 const FOOTER_MENU = {
   Product: [
     { href: "#features", label: "Features" },
-    { href: "#integrations", label: "Integrations" },
+    { href: "#works-with", label: "Works With" },
     { href: "#pricing", label: "Pricing" },
-    { href: "/contact", label: "Contact" },
   ],
   Company: [
-    { href: "/about", label: "About us" },
+    { href: "mailto:hello@shopkeeper.app", label: "Contact us" },
     { href: "/blog", label: "Blog" },
-    { href: "/careers", label: "Careers" },
-    { href: "/contact", label: "Contact us" },
-  ],
-  Resources: [
-    { href: "/blog", label: "Blog" },
-    { href: "/integration", label: "Integrations" },
-    { href: "/docs", label: "Documentation" },
-    { href: "/changelog", label: "Changelog" },
   ],
   Legal: [
     { href: "/privacy", label: "Privacy Policy" },
@@ -36,124 +29,100 @@ const FOOTER_MENU = {
   ],
 };
 
-const STATS = [
-  { value: "10X", label: "Faster Billing" },
-  { value: "50K+", label: "Invoices Daily" },
-  { value: "99.9%", label: "Uptime" },
-  { value: "5000+", label: "Active Shops" },
+// Every feature listed here is something actually built and shipped in the
+// product today — grouped the same way the app's own dashboard groups
+// them (Billing & Sales / Inventory & Products / Accounting & Finance /
+// Staff & HR / Operations & Logistics), not generic SaaS marketing copy.
+const FEATURE_CATEGORIES = [
+  {
+    id: "billing",
+    label: "Billing & Sales",
+    icon: Receipt,
+    intro: "A counter workflow built for speed — keyboard-driven search, one-tap quick-add, and billing for both packaged and loose/weighed goods.",
+    items: [
+      { title: "POS & B2B billing", desc: "Retail, GST, or estimate invoices — with Bill of Supply for composition-scheme sellers — from the same counter screen." },
+      { title: "Weighing-scale & loose-item billing", desc: "Sell by weight (kg/g/ml/l) alongside fixed-unit packets, with a dual-pricing toggle for products sold both ways." },
+      { title: "Keyboard-driven checkout", desc: "Arrow keys to pick a search match, Enter to add it, Ctrl+A to charge — a cashier never has to reach for the mouse." },
+      { title: "Split payments & cash change", desc: "Cash, UPI, card, or credit in any combination on one bill, with a live Cash Received / Change Due calculator." },
+      { title: "Sales Orders & Price Lists", desc: "Track customer commitments before delivery, and set tiered/wholesale pricing by customer group." },
+      { title: "One-tap WhatsApp receipts", desc: "Share a PDF invoice straight to the customer's phone the moment a sale closes." },
+    ],
+  },
+  {
+    id: "inventory",
+    label: "Inventory & Products",
+    icon: Package,
+    intro: "Stock that stays accurate across every warehouse, with the specific fields Indian retail actually needs — not a generic SKU list.",
+    items: [
+      { title: "Multi-warehouse stock sync", desc: "Real-time quantity across every location, with transfer requests and approvals between them." },
+      { title: "Custom product fields", desc: "Company-defined attributes — colour, flavour, dimensions — that show up on the product form and, if you choose, the printed invoice." },
+      { title: "Rack/shelf & quick-add", desc: "Tag a product's physical location for faster picking, and pin your actual best-sellers to a one-tap grid at the counter." },
+      { title: "Container/crate deposit tracking", desc: "Returnable-container deposits (crates, jars) tracked per party, with recovery and aging reports." },
+      { title: "Batch, expiry & serial tracking", desc: "FEFO-aware batch/expiry for perishables, and unit-level serial/IMEI tracking for electronics — printed on the invoice for warranty proof." },
+      { title: "Barcode generation & GST rate tools", desc: "Print barcode labels in bulk, and catch HSN/GST-rate mismatches across your whole catalogue in one pass." },
+    ],
+  },
+  {
+    id: "accounting",
+    label: "Accounting & Finance",
+    icon: Landmark,
+    intro: "The reports and ledger behaviour a shop's accountant actually asks for, not just a sales total.",
+    items: [
+      { title: "Party ledger with udhar reminders", desc: "Running balance per customer/supplier, with one-tap WhatsApp reminders for anything overdue." },
+      { title: "Credit/debit notes & bank reconciliation", desc: "Proper adjustment documents, and confidence-scored matching against your bank statement." },
+      { title: "P&L, Balance Sheet, Trial Balance", desc: "Plus Aging, Stock Valuation, and HSN-wise summary — the standard set your CA expects to see." },
+      { title: "GSTR-ready exports", desc: "B2B/B2C sales and purchase registers formatted for GSTR-1/3B filing, plus TDS/TCS and RCM handling on purchases." },
+      { title: "Expense tracking with approvals", desc: "Staff capture a receipt photo and file a claim; a supervisor approves it from the web panel." },
+    ],
+  },
+  {
+    id: "staff",
+    label: "Staff & HR",
+    icon: Contact,
+    intro: "Role-based access for everyone who touches the counter or the stockroom, plus the day-to-day HR a small team needs.",
+    items: [
+      { title: "Five distinct roles", desc: "Owner, Manager, Staff, Warehouse Manager, and Field Agent — each sees only what their role needs." },
+      { title: "Attendance & payroll", desc: "Daily check-in/out, with wage calculation that reads directly from attendance records." },
+      { title: "Leave & holiday calendar", desc: "Leave requests and balances, plus a company holiday calendar that's automatically excluded from attendance tracking." },
+    ],
+  },
+  {
+    id: "operations",
+    label: "Operations & Logistics",
+    icon: Truck,
+    intro: "For the part of the business that happens outside the shop — deliveries, field visits, and supplier orders.",
+    items: [
+      { title: "Live field-agent GPS tracking", desc: "See where your delivery/sales agents are and what they've completed, from the owner's dashboard." },
+      { title: "Delivery challans", desc: "GST Rule 55-compliant challans linked to the originating invoice, with driver and vehicle details." },
+      { title: "Purchase Orders & reorder suggestions", desc: "Raise a PO against a supplier, receive it partially or in full, and get low-stock reorder suggestions automatically." },
+    ],
+  },
+] as const;
+
+// Only real, verified capabilities — no fabricated third-party API
+// integrations. WhatsApp sharing, thermal printing, and Excel export are
+// all genuinely built; there is no live Tally/Razorpay/CRM sync today.
+const WORKS_WITH = [
+  { icon: MessageCircle, name: "WhatsApp", desc: "Share PDF invoices and send udhar payment reminders directly." },
+  { icon: Printer, name: "Thermal & A4 printers", desc: "Bluetooth, USB, or Wi-Fi thermal receipt printers, plus full A4 tax invoices." },
+  { icon: FileSpreadsheet, name: "Excel / CSV export", desc: "Every report and register exports cleanly for your accountant or a spreadsheet." },
+  { icon: Scale, name: "Weighing scales", desc: "Loose-goods billing by weight, ready for scale-hardware integration as it rolls out." },
 ];
 
-const FEATURES = [
-  {
-    icon: BarChart3,
-    title: "Real-Time Reporting",
-    description: "Stay informed with up-to-the-minute reports that provide instant visibility into your sales, stock, and cash flow.",
-    badge: "Analytics",
-  },
-  {
-    icon: Smartphone,
-    title: "Mobile App Analytics",
-    description: "Dive deep into the performance and usage patterns of your field team with live GPS tracking and attendance.",
-    badge: "Mobile",
-  },
-  {
-    icon: Database,
-    title: "Multi-Warehouse Stock Sync",
-    description: "Manage and track inventory across multiple physical locations. Instantly check stock availability across branches.",
-    badge: "Inventory",
-  },
-  {
-    icon: Lock,
-    title: "Data Security",
-    description: "Rest assured knowing that your data is protected with enterprise-grade encryption and role-based access control.",
-    badge: "Security",
-  },
-  {
-    icon: Send,
-    title: "Direct Invoice Sharing",
-    description: "Share clean digital copies of invoices or reports. Send invoice PDFs directly via WhatsApp or email to clients.",
-    badge: "Sharing",
-  },
-  {
-    icon: TrendingUp,
-    title: "GST Compliance Automation",
-    description: "Automatically split tax into CGST/SGST/IGST based on client location. GST filings are audit-ready without manual work.",
-    badge: "GST",
-  },
-  {
-    icon: Users,
-    title: "Digital Credit Ledger (Udhar)",
-    description: "Log debit/credit balances for customers and suppliers. Tap to send outstanding payment reminders directly on WhatsApp.",
-    badge: "Ledger",
-  },
-  {
-    icon: Target,
-    title: "Field Agent Tracking",
-    description: "Real-time location check-ins and travel paths for delivery staff. Verify agent delivery check-ins on live supervisor maps.",
-    badge: "Field Ops",
-  },
-  {
-    icon: Layers,
-    title: "Expense Uploads & Approvals",
-    description: "Staff capture receipt photos and file expense claims. Supervisors approve travel/food expenses directly from the web panel.",
-    badge: "Expenses",
-  },
+// Named plainly, in the cashier/owner's own language — the specific daily
+// friction this replaces, not abstract "inefficiency."
+const PAIN_POINTS = [
+  { before: "Weighing rice or dal, then typing the price into a calculator by hand", after: "Scale-ready weight billing — the price computes itself" },
+  { before: "A notebook full of udhaar you have to chase down by phone", after: "A live ledger with one-tap WhatsApp payment reminders" },
+  { before: "Checking three different registers to see what's actually in stock", after: "One number, synced live across every warehouse" },
+  { before: "Retyping the same bill into Tally at the end of the day", after: "GST-ready reports and exports, generated as you sell" },
 ];
 
-const INTEGRATIONS = [
-  { name: "WhatsApp Business", logo: "💬", category: "Communication" },
-  { name: "Tally", logo: "📊", category: "Accounting" },
-  { name: "Razorpay", logo: "💳", category: "Payments" },
-  { name: "Shiprocket", logo: "📦", category: "Logistics" },
-  { name: "Google Sheets", logo: "📈", category: "Productivity" },
-  { name: "Zoho CRM", logo: "🎯", category: "CRM" },
-  { name: "India Post", logo: "📮", category: "Logistics" },
-  { name: "GST Portal", logo: "🏛️", category: "Compliance" },
-];
-
-const TESTIMONIALS = [
-  {
-    quote: "managemycounter transformed how we run our wholesale business. GST billing that used to take hours now happens in minutes. The field agent tracking alone saved us 20% on delivery disputes.",
-    author: "Rajesh Kumar",
-    role: "Owner, Kumar Trading Co.",
-    company: "🏪",
-    avatar: "RK",
-  },
-  {
-    quote: "The multi-warehouse sync is a game-changer. We manage 3 godowns across Delhi NCR and stock levels update in real-time. No more manual stock transfers or phone calls to check availability.",
-    author: "Priya Sharma",
-    role: "Operations Head, PharmaPlus",
-    company: "💊",
-    avatar: "PS",
-  },
-  {
-    quote: "Finally a POS that understands Indian retail. The udhar ledger with WhatsApp reminders cut our collection time in half. Our field agents love the attendance check-in — no more timesheet fraud.",
-    author: "Amit Patel",
-    role: "Director, Patel Electronics",
-    company: "📱",
-    avatar: "AP",
-  },
-];
-
-const BLOG_POSTS = [
-  {
-    title: "GST Rule 55: Complete Guide to Delivery Challans",
-    excerpt: "Understand the mandatory fields, format requirements, and compliance checklist for GST-compliant delivery challans in 2024.",
-    category: "Compliance",
-    image: "/blog-challan.jpg",
-  },
-  {
-    title: "How to Automate GST Reconciliation and Save 10 Hours/Week",
-    excerpt: "Step-by-step guide to setting up automated GST return filing, invoice matching, and error detection using managemycounter.",
-    category: "Automation",
-    image: "/blog-gst.jpg",
-  },
-  {
-    title: "Multi-Warehouse Inventory: Best Practices for Growing Retailers",
-    excerpt: "Learn how successful retailers structure their warehouse operations, stock transfers, and reorder workflows across locations.",
-    category: "Inventory",
-    image: "/blog-warehouse.jpg",
-  },
+const DIFFERENTIATORS = [
+  { icon: Scale, title: "Actually built for kirana counters", desc: "Weighing-scale billing, loose-goods pricing, and container deposits — not a generic retail POS with GST bolted on." },
+  { icon: KeyboardIcon, title: "Keyboard-first, like the desktop software you already know", desc: "Search, arrow keys, Enter to add, Ctrl+A to charge. Built for a cashier who never wants to touch the mouse." },
+  { icon: Smartphone, title: "Offline-first mobile apps", desc: "Built for Indian network conditions — billing and attendance keep working without a live connection, and sync once you're back online." },
+  { icon: Send, title: "Free during beta, no catch", desc: "Every invited shop gets full access to every module today. No credit card, no feature gate." },
 ];
 
 const PRICING_PLANS = [
@@ -205,9 +174,7 @@ const PRICING_PLANS = [
       "Custom Role & Access Policies",
       "Dedicated High-Perf Cloud Hosting",
       "Priority WhatsApp & Phone SLA",
-      "Direct API Integrations & Logs",
       "Custom Invoice Templates",
-      "On-premise Deployment Option",
     ],
     cta: "Contact Sales",
     popular: false,
@@ -237,51 +204,7 @@ function NavLink({ href, children, className = "" }: { href: string; children: R
   );
 }
 
-function FeatureCard({ feature, index }: { feature: typeof FEATURES[0]; index: number }) {
-  return (
-    <div className="group relative bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 p-8 hover:border-primary/50 hover:shadow-xl transition-all duration-500">
-      <div className="absolute top-4 right-4 bg-primary/10 text-primary text-xs font-bold px-2.5 py-1 rounded-full">
-        {feature.badge}
-      </div>
-      <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
-        <feature.icon size={28} className="text-primary group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
-      </div>
-      <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-3">{feature.title}</h3>
-      <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">{feature.description}</p>
-    </div>
-  );
-}
-
-function TestimonialCard({ testimonial, index, isActive }: { testimonial: typeof TESTIMONIALS[0]; index: number; isActive: boolean }) {
-  return (
-    <div className={`flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-4 ${isActive ? "opacity-100" : "opacity-60"}`}>
-      <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 p-8 h-full">
-        <div className="flex items-center gap-2 mb-4">
-          <Star size={18} className="text-amber-400 fill-amber-400" />
-          <Star size={18} className="text-amber-400 fill-amber-400" />
-          <Star size={18} className="text-amber-400 fill-amber-400" />
-          <Star size={18} className="text-amber-400 fill-amber-400" />
-          <Star size={18} className="text-amber-400 fill-amber-400" />
-        </div>
-        <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed mb-6 text-base">"{testimonial.quote}"</p>
-        <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-lg">
-            {testimonial.avatar}
-          </div>
-          <div>
-            <p className="font-bold text-zinc-900 dark:text-white">{testimonial.author}</p>
-            <p className="text-sm text-zinc-500 dark:text-zinc-400">{testimonial.role}</p>
-            <p className="text-xs text-zinc-400 dark:text-zinc-500 flex items-center gap-1">
-              <span className="text-lg">{testimonial.company}</span>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function PricingCard({ plan, billingPeriod, index }: { plan: typeof PRICING_PLANS[0]; billingPeriod: "monthly" | "yearly"; index: number }) {
+function PricingCard({ plan, billingPeriod }: { plan: typeof PRICING_PLANS[0]; billingPeriod: "monthly" | "yearly" }) {
   const price = billingPeriod === "monthly" ? plan.monthly : plan.yearly;
   const period = billingPeriod === "monthly" ? "month" : "year";
   const savings = billingPeriod === "yearly" ? Math.round((plan.monthly * 12 - plan.yearly) / (plan.monthly * 12) * 100) : 0;
@@ -336,71 +259,130 @@ function PricingCard({ plan, billingPeriod, index }: { plan: typeof PRICING_PLAN
   );
 }
 
-function BlogCard({ post }: { post: typeof BLOG_POSTS[0] }) {
+function FeatureExplorer() {
+  const [activeId, setActiveId] = useState<typeof FEATURE_CATEGORIES[number]["id"]>("billing");
+  const active = FEATURE_CATEGORIES.find((c) => c.id === activeId)!;
+
   return (
-    <Link
-      href="/blog"
-      className="group block bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden hover:border-primary/50 hover:shadow-xl transition-all duration-500"
-    >
-      <div className="aspect-video bg-gradient-to-br from-primary/10 to-primary/5 relative overflow-hidden">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <BarChart3 size={48} className="text-primary/30 group-hover:text-primary/50 transition-colors" />
-        </div>
+    <div>
+      {/* Category tabs — deliberately mirrors the same 5-category grouping
+          the actual app's own sidebar uses, so this section teaches the
+          real product's information architecture, not a marketing fiction. */}
+      <div className="flex flex-wrap justify-center gap-2 mb-10">
+        {FEATURE_CATEGORIES.map((cat) => {
+          const Icon = cat.icon;
+          const isActive = cat.id === activeId;
+          return (
+            <button
+              key={cat.id}
+              onClick={() => setActiveId(cat.id)}
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all ${
+                isActive
+                  ? "bg-primary text-white shadow-lg shadow-primary/20"
+                  : "bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700"
+              }`}
+            >
+              <Icon size={16} />
+              {cat.label}
+            </button>
+          );
+        })}
       </div>
-      <div className="p-6">
-        <span className="text-xs font-bold text-primary uppercase tracking-wider">{post.category}</span>
-        <h3 className="text-lg font-bold text-zinc-900 dark:text-white mt-2 mb-3 group-hover:text-primary transition-colors">{post.title}</h3>
-        <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">{post.excerpt}</p>
+
+      <p className="text-center text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto mb-10">{active.intro}</p>
+
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {active.items.map((item, i) => (
+          <div key={i} className="bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 p-6 hover:border-primary/50 hover:shadow-lg transition-all duration-300">
+            <h3 className="font-bold text-zinc-900 dark:text-white mb-2">{item.title}</h3>
+            <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
       </div>
-    </Link>
+    </div>
   );
 }
 
 export default function LandingPage() {
   const [billingPeriod, setBillingPeriod] = useState<"monthly" | "yearly">("yearly");
-  const [testimonialIndex, setTestimonialIndex] = useState(0);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const nextTestimonial = () => setTestimonialIndex((i) => (i + 1) % TESTIMONIALS.length);
-  const prevTestimonial = () => setTestimonialIndex((i) => (i - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
 
   return (
     <div className="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white font-sans antialiased">
       {/* Hero */}
       <HeroSection />
 
-      {/* Stats Section */}
-      <section className="py-20 bg-zinc-50 dark:bg-zinc-900">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {STATS.map((stat, i) => (
-              <div key={i} className="text-center">
-                <div className="text-4xl md:text-5xl font-black text-primary mb-2">{stat.value}</div>
-                <div className="text-zinc-600 dark:text-zinc-400 font-medium">{stat.label}</div>
+      {/* Pain points — names the specific daily friction before the feature
+          list, so a visitor recognizes their own counter before being sold
+          to. */}
+      <section className="py-20 md:py-28 bg-white dark:bg-zinc-950">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <h2 className="text-3xl md:text-4xl font-black tracking-tight text-zinc-900 dark:text-white">
+              If this sounds like your counter, it's built for you
+            </h2>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-5">
+            {PAIN_POINTS.map((p, i) => (
+              <div key={i} className="rounded-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden">
+                <div className="p-5 bg-zinc-50 dark:bg-zinc-900">
+                  <p className="text-xs font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-1.5">Today</p>
+                  <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed">{p.before}</p>
+                </div>
+                <div className="p-5 bg-primary/5">
+                  <p className="text-xs font-bold uppercase tracking-wider text-primary mb-1.5">With managemycounter</p>
+                  <p className="text-zinc-900 dark:text-white font-semibold leading-relaxed">{p.after}</p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section id="features" className="py-24 md:py-32 bg-white dark:bg-zinc-950">
+      {/* Features Section — interactive explorer across the 5 real module
+          categories, replacing a flat generic 9-card grid. */}
+      <section id="features" className="py-24 md:py-32 bg-zinc-50 dark:bg-zinc-900">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider mb-6">
-              <Zap size={14} />
-              Core Capabilities
+              <Tag size={14} />
+              Every Module
             </span>
             <h2 className="text-4xl md:text-5xl font-black tracking-tight text-zinc-900 dark:text-white mb-6">
-              Built for growth & precision
+              One dashboard, five job-to-be-done categories
             </h2>
             <p className="text-lg text-zinc-600 dark:text-zinc-400">
-              Everything you need to orchestrate physical stock, back-office bookkeeping, and physical field forces.
+              The same grouping you'll see the moment you log in — pick a category to see what's actually built.
             </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {FEATURES.map((feature, i) => (
-              <FeatureCard key={i} feature={feature} index={i} />
+          <FeatureExplorer />
+        </div>
+      </section>
+
+      {/* Why managemycounter — honest differentiators, no fabricated
+          customer testimonials (there's no installed base to quote yet
+          during beta). */}
+      <section className="py-24 md:py-32 bg-white dark:bg-zinc-950">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider mb-6">
+              <Users size={14} />
+              Why managemycounter
+            </span>
+            <h2 className="text-4xl md:text-5xl font-black tracking-tight text-zinc-900 dark:text-white mb-6">
+              Built for how a kirana counter actually runs
+            </h2>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-6">
+            {DIFFERENTIATORS.map((d, i) => (
+              <div key={i} className="flex gap-5 p-6 rounded-2xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                  <d.icon size={22} className="text-primary" strokeWidth={1.75} />
+                </div>
+                <div>
+                  <h3 className="font-bold text-zinc-900 dark:text-white mb-1.5">{d.title}</h3>
+                  <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">{d.desc}</p>
+                </div>
+              </div>
             ))}
           </div>
         </div>
@@ -459,119 +441,32 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Integrations */}
-      <section id="integrations" className="py-24 md:py-32 bg-white dark:bg-zinc-950">
+      {/* Works With — only real, verified capabilities. No fabricated
+          third-party API integrations (there is no live Tally/Razorpay/CRM
+          sync today, however aspirational). */}
+      <section id="works-with" className="py-24 md:py-32 bg-white dark:bg-zinc-950">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider mb-6">
-              <Layers size={14} />
-              Integrations
+              <Tag size={14} />
+              Works With
             </span>
             <h2 className="text-4xl md:text-5xl font-black tracking-tight text-zinc-900 dark:text-white mb-6">
-              Seamlessly connect your tools
+              Fits into what you already use
             </h2>
             <p className="text-lg text-zinc-600 dark:text-zinc-400">
-              Unlock the full potential by integrating with the apps you already use.
+              No lock-in, no separate export tool — every report leaves in a format your accountant already works with.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {INTEGRATIONS.map((integration, i) => (
-              <div key={i} className="group flex items-center gap-4 p-5 bg-zinc-50 dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:border-primary/50 hover:shadow-lg transition-all duration-300">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-2xl group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
-                  {integration.logo}
+            {WORKS_WITH.map((w, i) => (
+              <div key={i} className="p-5 bg-zinc-50 dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                  <w.icon size={22} className="text-primary" strokeWidth={1.75} />
                 </div>
-                <div>
-                  <p className="font-semibold text-zinc-900 dark:text-white">{integration.name}</p>
-                  <p className="text-xs text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">{integration.category}</p>
-                </div>
+                <p className="font-semibold text-zinc-900 dark:text-white mb-1">{w.name}</p>
+                <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">{w.desc}</p>
               </div>
-            ))}
-          </div>
-          {/* No "View All Integrations" CTA here — the grid above already shows
-              every integration that exists; a "view more" link with nothing
-              further behind it would just be a dead end. */}
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="py-24 md:py-32 bg-zinc-50 dark:bg-zinc-900">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider mb-6">
-              <Users size={14} />
-              Customers
-            </span>
-            <h2 className="text-4xl md:text-5xl font-black tracking-tight text-zinc-900 dark:text-white mb-6">
-              Hear from shopkeepers like you
-            </h2>
-            <p className="text-lg text-zinc-600 dark:text-zinc-400">
-              Thousands of Indian retailers trust managemycounter to run their business.
-            </p>
-          </div>
-          <div className="relative">
-            <div className="flex overflow-x-auto snap-x snap-mandatory pb-8 -mx-4 px-4" style={{ scrollbarWidth: "none" }}>
-              {TESTIMONIALS.map((testimonial, i) => (
-                <TestimonialCard key={i} testimonial={testimonial} index={i} isActive={i === testimonialIndex} />
-              ))}
-            </div>
-            <div className="flex items-center justify-center gap-3 mt-8">
-              <button
-                onClick={prevTestimonial}
-                className="w-12 h-12 rounded-full border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 flex items-center justify-center hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
-                aria-label="Previous testimonial"
-              >
-                <ChevronLeft size={20} className="text-zinc-600 dark:text-zinc-400" />
-              </button>
-              <div className="flex gap-2">
-                {TESTIMONIALS.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setTestimonialIndex(i)}
-                    className={`w-2.5 h-2.5 rounded-full transition-all ${
-                      i === testimonialIndex
-                        ? "bg-primary w-8"
-                        : "bg-zinc-300 dark:bg-zinc-600 hover:bg-primary/50"
-                    }`}
-                    aria-label={`Go to testimonial ${i + 1}`}
-                  />
-                ))}
-              </div>
-              <button
-                onClick={nextTestimonial}
-                className="w-12 h-12 rounded-full border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 flex items-center justify-center hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
-                aria-label="Next testimonial"
-              >
-                <ChevronRight size={20} className="text-zinc-600 dark:text-zinc-400" />
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Blog */}
-      <section id="blog" className="py-24 md:py-32 bg-white dark:bg-zinc-950">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-center justify-between mb-12">
-            <div>
-              <span className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
-                <Globe size={14} />
-                Recent News
-              </span>
-              <h2 className="text-4xl md:text-5xl font-black tracking-tight text-zinc-900 dark:text-white">
-                Latest from our blog
-              </h2>
-            </div>
-
-            <Link href="/blog" className="self-center">
-              <Button variant="outline" size="default">
-                View All Posts <ChevronRight size={18} />
-              </Button>
-            </Link>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {BLOG_POSTS.map((post, i) => (
-              <BlogCard key={i} post={post} />
             ))}
           </div>
         </div>
@@ -617,11 +512,11 @@ export default function LandingPage() {
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             {PRICING_PLANS.map((plan, i) => (
-              <PricingCard key={i} plan={plan} billingPeriod={billingPeriod} index={i} />
+              <PricingCard key={i} plan={plan} billingPeriod={billingPeriod} />
             ))}
           </div>
           <p className="text-center text-sm text-zinc-500 dark:text-zinc-500 mt-12">
-            All plans include 14-day free trial. No credit card required. Cancel anytime.
+            Free during private beta. No credit card required. Cancel anytime.
           </p>
         </div>
       </section>
@@ -634,14 +529,14 @@ export default function LandingPage() {
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-blue-500/10" />
         <div className="relative max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-4xl md:text-6xl font-black tracking-tight text-white mb-8">
-            Supercharge your business today
+            Run your counter without the notebook
           </h2>
           <p className="text-lg md:text-xl text-zinc-300 mb-12 max-w-2xl mx-auto">
-            Elevate your online presence, streamline operations, and exceed customer expectations with managemycounter.
+            GST billing, stock, udhar ledger, and field-team tracking — one app, free during beta.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-<Link href="https://app.managemycounter.com/register">
-  <Button variant="default" size="lg" className="w-full sm:w-auto">
+            <Link href="https://app.managemycounter.com/register">
+              <Button variant="default" size="lg" className="w-full sm:w-auto">
                 Try for Free <ArrowRight size={20} />
               </Button>
             </Link>
@@ -657,7 +552,7 @@ export default function LandingPage() {
       {/* Footer */}
       <footer className="bg-zinc-950 dark:bg-black border-t border-zinc-800 pt-16 pb-8">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-6 gap-8 mb-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
             <div className="col-span-2 md:col-span-1">
               <Logo width={140} height={36} className="mb-4" />
               <p className="text-zinc-400 text-sm leading-relaxed mb-6">
@@ -744,4 +639,3 @@ export default function LandingPage() {
     </div>
   );
 }
-
