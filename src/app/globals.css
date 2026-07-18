@@ -41,6 +41,8 @@
   --accent-foreground: #0368FE;
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
+  --destructive-light: #fef2f2;
+  --primary-dark: #004CFA;
   --border: #e2e8f0;
   --input: #e2e8f0;
   --ring: #0368FE;
@@ -164,4 +166,94 @@
   --color-success-dim: var(--success-dim);
   --color-warning: var(--warning);
   --color-warning-dim: var(--warning-dim);
+}
+
+/* ══════════════════════════════════════════════
+   SHARED BUTTON / INPUT COMPONENT CLASSES
+   Mirrors shopkeeper-web's globals.css — used by the auth pages (login/
+   register) and the contact form. These classes were referenced across
+   this app already (.btn, .btn-primary, .erp-input) but never actually
+   defined here, so every input/button using them was rendering completely
+   unstyled until now.
+══════════════════════════════════════════════ */
+
+.k-btn, .btn {
+  display:         inline-flex;
+  align-items:     center;
+  justify-content: center;
+  gap:             6px;
+  padding:         10px 16px;
+  border-radius:   var(--r-lg);
+  font-size:       0.75rem;
+  font-weight:     700;
+  text-transform:  uppercase;
+  letter-spacing:  0.04em;
+  cursor:          pointer;
+  transition:      all 0.15s ease;
+  border:          1px solid transparent;
+  text-decoration: none;
+  white-space:     nowrap;
+  line-height:     1.4;
+}
+.k-btn:focus-visible, .btn:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(3,104,254,0.15);
+}
+.k-btn:active, .btn:active {
+  transform: scale(0.97);
+}
+.k-btn-primary, .btn-primary {
+  background: var(--primary);
+  color: var(--primary-foreground);
+  border-color: var(--primary);
+  box-shadow: 0 1px 3px rgba(3,104,254,0.2);
+}
+.k-btn-primary:hover, .btn-primary:hover {
+  background: var(--primary-dark);
+  border-color: var(--primary-dark);
+  box-shadow: 0 2px 6px rgba(3,104,254,0.3);
+}
+.k-btn-ghost, .btn-ghost {
+  background: transparent;
+  color: var(--muted-foreground);
+  border-color: var(--border);
+}
+.k-btn-ghost:hover, .btn-ghost:hover {
+  background: var(--secondary);
+  color: var(--foreground);
+  border-color: var(--input);
+}
+.k-btn:disabled, .btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.k-input, .k-select, .erp-input, .input {
+  width: 100%;
+  background: var(--card);
+  border: 1.5px solid var(--input);
+  border-radius: var(--r);
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  font-family: var(--font-sans);
+  color: var(--foreground);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.k-input:focus, .k-select:focus, .erp-input:focus, .input:focus {
+  border-color: var(--ring);
+  box-shadow: 0 0 0 3px rgba(3,104,254,0.1);
+}
+select.k-input, select.k-select, select.erp-input, select.input {
+  min-width: 110px;
+}
+.k-input::placeholder, .erp-input::placeholder, .input::placeholder {
+  color: var(--muted-foreground);
+  opacity: 0.6;
+}
+textarea.k-input, textarea.erp-input, textarea.input {
+  min-height: 80px;
+  resize: vertical;
 }

@@ -4,9 +4,9 @@ import React, { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Check, AlertCircle } from "lucide-react";
-import Image from "next/image";
 import { API_BASE } from "@/lib/config";
 import { setMerchantSession } from "@/lib/merchantSession";
+import { AuthLayout, AuthField, authInputClassName, authInputStyle } from "@/components/auth/AuthLayout";
 
 // Beta-phase signup: the product isn't charging yet, so a new company can
 // only be created with a valid invite code (issued from Super Admin →
@@ -29,8 +29,6 @@ function RegisterForm() {
   const [password, setPassword] = useState("");
   const [inviteCode, setInviteCode] = useState("");
 
-  // A shared invite link can carry the code (?invite=XXXX-XXXX) so the
-  // recipient doesn't have to type it in manually.
   useEffect(() => {
     const fromLink = searchParams.get("invite");
     if (fromLink) setInviteCode(fromLink.toUpperCase());
@@ -72,87 +70,75 @@ function RegisterForm() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex items-center justify-center px-6 py-12">
-      <div className="w-full max-w-md">
-        <Link href="/" className="inline-flex items-center gap-2 text-lg font-black tracking-tight uppercase mb-8">
-          <Image src="/logo-icon.png" alt="managemycounter" width={22} height={22} className="shrink-0" />
-          managemycounter
-        </Link>
-
-        <h1 className="text-2xl font-semibold tracking-tight mb-2">Start your free trial</h1>
-        <p className="text-sm text-text-secondary font-medium mb-8">
-          managemycounter is in private beta — you need an invite code to sign up. Ask whoever invited you, or{" "}
+    <AuthLayout
+      wide
+      brandTag="Merchant Portal"
+      panelHeading="Start your free trial"
+      panelDescription="managemycounter is in private beta — every new business gets full access to every feature, no credit card required."
+      features={[
+        { label: "No credit card required", desc: "Full access to every feature" },
+        { label: "Cancel or extend anytime", desc: "No long-term contracts" },
+        { label: "Onboarding in minutes", desc: "Add products, staff, and start billing today" },
+      ]}
+      title="Start your free trial"
+      subtitle={
+        <>
+          Private beta — you need an invite code to sign up. Ask whoever invited you, or{" "}
           <a href="mailto:hello@shopkeeper.app" className="text-primary font-bold">request access</a>.
-        </p>
-
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Invite Code *</label>
-            <input
-              required
-              value={inviteCode}
-              onChange={(e) => setInviteCode(e.target.value.toUpperCase())}
-              placeholder="XXXX-XXXX"
-              className="k-input mt-1.5 font-mono tracking-widest"
-            />
-          </div>
-          <div>
-            <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Business Name *</label>
-            <input required value={companyName} onChange={(e) => setCompanyName(e.target.value)} className="k-input mt-1.5" />
-          </div>
-          <div className="grid grid-cols-2 gap-3">
-            <div>
-              <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">First Name *</label>
-              <input required value={firstName} onChange={(e) => setFirstName(e.target.value)} className="k-input mt-1.5" />
-            </div>
-            <div>
-              <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Last Name</label>
-              <input value={lastName} onChange={(e) => setLastName(e.target.value)} className="k-input mt-1.5" />
-            </div>
-          </div>
-          <div>
-            <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">State</label>
-            <input value={state} onChange={(e) => setState(e.target.value)} placeholder="e.g. Maharashtra" className="k-input mt-1.5" />
-          </div>
-          <div>
-            <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Email *</label>
-            <input required type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="k-input mt-1.5" />
-          </div>
-          <div>
-            <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Password *</label>
-            <input required minLength={6} type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="k-input mt-1.5" />
-          </div>
-
-          {error && (
-            <div className="flex items-start gap-2 bg-red-500/10 border border-red-500/20 rounded-radius p-3">
-              <AlertCircle size={15} className="text-red-500 shrink-0 mt-0.5" />
-              <p className="text-xs font-semibold text-red-600 dark:text-red-400">{error}</p>
-            </div>
-          )}
-
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-primary hover:opacity-95 text-white dark:text-background font-bold text-sm py-3.5 rounded-radius transition-all uppercase tracking-wider"
-          >
-            {loading ? "Creating your account..." : "Start Free Trial"}
-          </button>
-
-          <ul className="pt-2 space-y-2">
-            {["No credit card required", "Full access to every feature", "Cancel or extend anytime"].map((item) => (
-              <li key={item} className="flex items-center gap-2 text-xs text-text-secondary font-medium">
-                <Check size={13} className="text-primary shrink-0" strokeWidth={3} />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </form>
-
-        <p className="text-xs text-text-secondary font-medium text-center mt-8">
+        </>
+      }
+      footer={
+        <p className="text-xs text-center" style={{ color: "var(--text-3)" }}>
           Already have an account?{" "}
-          <Link href="https://app.managemycounter.com/dashboard" className="text-primary font-bold">Log in</Link>
+          <Link href="/login" className="text-primary font-bold">Log in</Link>
         </p>
-      </div>
-    </div>
+      }
+    >
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <AuthField label="Invite Code *">
+          <input required value={inviteCode} onChange={(e) => setInviteCode(e.target.value.toUpperCase())} placeholder="XXXX-XXXX" className={`${authInputClassName} font-mono tracking-widest`} style={authInputStyle} />
+        </AuthField>
+        <AuthField label="Business Name *">
+          <input required value={companyName} onChange={(e) => setCompanyName(e.target.value)} className={authInputClassName} style={authInputStyle} />
+        </AuthField>
+        <div className="grid grid-cols-2 gap-3">
+          <AuthField label="First Name *">
+            <input required value={firstName} onChange={(e) => setFirstName(e.target.value)} className={authInputClassName} style={authInputStyle} />
+          </AuthField>
+          <AuthField label="Last Name">
+            <input value={lastName} onChange={(e) => setLastName(e.target.value)} className={authInputClassName} style={authInputStyle} />
+          </AuthField>
+        </div>
+        <AuthField label="State">
+          <input value={state} onChange={(e) => setState(e.target.value)} placeholder="e.g. Maharashtra" className={authInputClassName} style={authInputStyle} />
+        </AuthField>
+        <AuthField label="Email *">
+          <input required type="email" autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} className={authInputClassName} style={authInputStyle} />
+        </AuthField>
+        <AuthField label="Password *">
+          <input required minLength={6} type="password" autoComplete="new-password" value={password} onChange={(e) => setPassword(e.target.value)} className={authInputClassName} style={authInputStyle} />
+        </AuthField>
+
+        {error && (
+          <div className="flex items-start gap-2.5 p-3 rounded-lg" style={{ background: "var(--red-dim)", border: "1px solid color-mix(in srgb, var(--red) 20%, transparent)" }}>
+            <AlertCircle size={15} className="shrink-0 mt-0.5" style={{ color: "var(--red)" }} />
+            <p className="text-xs font-semibold" style={{ color: "var(--red)" }}>{error}</p>
+          </div>
+        )}
+
+        <button type="submit" disabled={loading} className="btn btn-primary w-full" style={{ opacity: loading ? 0.6 : 1 }}>
+          {loading ? "Creating your account..." : "Start Free Trial"}
+        </button>
+
+        <ul className="pt-2 space-y-2">
+          {["No credit card required", "Full access to every feature", "Cancel or extend anytime"].map((item) => (
+            <li key={item} className="flex items-center gap-2 text-xs font-medium" style={{ color: "var(--text-3)" }}>
+              <Check size={13} className="text-primary shrink-0" strokeWidth={3} />
+              {item}
+            </li>
+          ))}
+        </ul>
+      </form>
+    </AuthLayout>
   );
 }

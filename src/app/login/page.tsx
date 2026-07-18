@@ -2,9 +2,9 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { AlertCircle, HelpCircle } from "lucide-react";
-import Image from "next/image";
+import { AlertCircle } from "lucide-react";
 import { merchantLogin } from "@/lib/merchantSession";
+import { AuthLayout, AuthField, authInputClassName, authInputStyle } from "@/components/auth/AuthLayout";
 
 // Merchant Portal login — the web version of the app. Uses the exact same
 // credentials (email/password) a company's owner/manager/staff already uses
@@ -35,68 +35,49 @@ export default function MerchantLoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex items-center justify-center px-6 py-12">
-      <div className="w-full max-w-md">
-        <Link href="/" className="inline-flex items-center gap-2 text-lg font-black tracking-tight uppercase mb-8">
-          <Image src="/logo-icon.png" alt="managemycounter" width={22} height={22} className="shrink-0" />
-          managemycounter
-        </Link>
-
-        <h1 className="text-2xl font-semibold tracking-tight mb-2">Log in to your business</h1>
-        <p className="text-sm text-text-secondary font-medium mb-8">
-          Use the same email and password you use to sign into the managemycounter mobile app.
-        </p>
-
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Email</label>
-            <input
-              required
-              type="email"
-              autoFocus
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="k-input mt-1.5"
-            />
-          </div>
-          <div>
-            <label className="text-xs font-bold text-text-secondary uppercase tracking-wider">Password</label>
-            <input
-              required
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="k-input mt-1.5"
-            />
-          </div>
-
-          {error && (
-            <div className="flex items-start gap-2 bg-red-500/10 border border-red-500/20 rounded-radius p-3">
-              <AlertCircle size={15} className="text-red-500 shrink-0 mt-0.5" />
-              <p className="text-xs font-semibold text-red-600 dark:text-red-400">{error}</p>
-            </div>
-          )}
-
-          <div className="flex items-center justify-end">
-            <Link href="https://app.managemycounter.com/forgot-password" className="text-xs font-semibold text-primary hover:underline">
-              Forgot password?
-            </Link>
-          </div>
-
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-primary hover:opacity-95 text-white dark:text-background font-bold text-sm py-3.5 rounded-radius transition-all uppercase tracking-wider"
-          >
-            {loading ? "Logging in..." : "Log In"}
-          </button>
-        </form>
-
-        <p className="text-xs text-text-secondary font-medium text-center mt-8">
+    <AuthLayout
+      brandTag="Merchant Portal"
+      panelHeading="managemycounter"
+      panelDescription="GST billing, inventory, ledger, and field operations — everything an Indian retail business needs, in one place."
+      features={[
+        { label: "POS & GST billing", desc: "Retail and wholesale billing with auto HSN/GST" },
+        { label: "Inventory & warehouse", desc: "Real-time stock across multiple locations" },
+        { label: "Party ledger & credit", desc: "Track every customer and supplier balance" },
+      ]}
+      title="Log in to your business"
+      subtitle="Use the same email and password you use to sign into the managemycounter mobile app."
+      footer={
+        <p className="text-xs text-center" style={{ color: "var(--text-3)" }}>
           Don&apos;t have an account?{" "}
-          <Link href="https://app.managemycounter.com/register" className="text-primary font-bold">Start your free trial</Link>
+          <Link href="/register" className="text-primary font-bold">Start your free trial</Link>
         </p>
-      </div>
-    </div>
+      }
+    >
+      <form onSubmit={handleSubmit} className="space-y-5">
+        <AuthField label="Email">
+          <input required type="email" autoFocus autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} className={authInputClassName} style={authInputStyle} />
+        </AuthField>
+        <AuthField label="Password">
+          <input required type="password" autoComplete="current-password" value={password} onChange={(e) => setPassword(e.target.value)} className={authInputClassName} style={authInputStyle} />
+        </AuthField>
+
+        {error && (
+          <div className="flex items-start gap-2.5 p-3 rounded-lg" style={{ background: "var(--red-dim)", border: "1px solid color-mix(in srgb, var(--red) 20%, transparent)" }}>
+            <AlertCircle size={15} className="shrink-0 mt-0.5" style={{ color: "var(--red)" }} />
+            <p className="text-xs font-semibold" style={{ color: "var(--red)" }}>{error}</p>
+          </div>
+        )}
+
+        <div className="flex items-center justify-end">
+          <Link href="https://app.managemycounter.com/forgot-password" className="text-xs font-semibold text-primary hover:underline">
+            Forgot password?
+          </Link>
+        </div>
+
+        <button type="submit" disabled={loading} className="btn btn-primary w-full" style={{ opacity: loading ? 0.6 : 1 }}>
+          {loading ? "Logging in..." : "Log In"}
+        </button>
+      </form>
+    </AuthLayout>
   );
 }
