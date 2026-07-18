@@ -26,7 +26,7 @@ export default function MerchantLoginPage() {
         setError(result.error);
         return;
       }
-      window.location.href = "https://app.papayapalette.online/dashboard";
+      window.location.href = "https://app.managemycounter.com/dashboard";
     } catch (err: any) {
       setError(err.message ?? "Something went wrong.");
     } finally {
@@ -78,7 +78,7 @@ export default function MerchantLoginPage() {
           )}
 
           <div className="flex items-center justify-end">
-            <Link href="https://app.papayapalette.online/forgot-password" className="text-xs font-semibold text-primary hover:underline">
+            <Link href="https://app.managemycounter.com/forgot-password" className="text-xs font-semibold text-primary hover:underline">
               Forgot password?
             </Link>
           </div>
@@ -94,7 +94,7 @@ export default function MerchantLoginPage() {
 
         <p className="text-xs text-text-secondary font-medium text-center mt-8">
           Don&apos;t have an account?{" "}
-          <Link href="https://app.papayapalette.online/register" className="text-primary font-bold">Start your free trial</Link>
+          <Link href="https://app.managemycounter.com/register" className="text-primary font-bold">Start your free trial</Link>
         </p>
       </div>
     </div>

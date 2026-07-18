@@ -313,7 +313,7 @@ function PricingCard({ plan, billingPeriod, index }: { plan: typeof PRICING_PLAN
         <p className="text-xs font-bold text-emerald-600 dark:text-emerald-400 mt-2">₹0 during beta — free, full access</p>
       </div>
       <Link
-        href="https://app.papayapalette.online/register"
+        href="https://app.managemycounter.com/register"
         className={`w-full py-3 rounded-xl text-sm font-bold uppercase tracking-wider transition-all flex items-center justify-center mb-8 ${
           plan.popular
             ? "bg-primary text-white hover:opacity-90 shadow-lg"
@@ -641,7 +641,7 @@ export default function LandingPage() {
             Elevate your online presence, streamline operations, and exceed customer expectations with managemycounter.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-<Link href="https://app.papayapalette.online/register">
+<Link href="https://app.managemycounter.com/register">
   <Button variant="default" size="lg" className="w-full sm:w-auto">
                 Try for Free <ArrowRight size={20} />
               </Button>

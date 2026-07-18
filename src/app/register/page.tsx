@@ -63,7 +63,7 @@ function RegisterForm() {
         return;
       }
       setMerchantSession(json.accessToken, json.refreshToken);
-      window.location.href = "https://app.papayapalette.online/dashboard";
+      window.location.href = "https://app.managemycounter.com/dashboard";
     } catch (err: any) {
       setError(err.message ?? "Something went wrong.");
     } finally {
@@ -150,7 +150,7 @@ function RegisterForm() {
 
         <p className="text-xs text-text-secondary font-medium text-center mt-8">
           Already have an account?{" "}
-          <Link href="https://app.papayapalette.online/dashboard" className="text-primary font-bold">Log in</Link>
+          <Link href="https://app.managemycounter.com/dashboard" className="text-primary font-bold">Log in</Link>
         </p>
       </div>
     </div>

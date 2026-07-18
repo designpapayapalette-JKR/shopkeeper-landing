@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 
-const API_UPSTREAM = process.env.NEXT_PUBLIC_API_URL || "https://api.papayapalette.online";
+const API_UPSTREAM = process.env.NEXT_PUBLIC_API_URL || "https://api.managemycounter.com";
 const SELF = "'self'";
 
 const nextConfig: NextConfig = {
@@ -22,7 +22,7 @@ const nextConfig: NextConfig = {
               `style-src ${SELF} 'unsafe-inline' https://fonts.googleapis.com`,
               `font-src ${SELF} https://fonts.gstatic.com`,
               `img-src ${SELF} data: blob:`,
-              `connect-src ${SELF} https://api.papayapalette.online ${API_UPSTREAM}`,
+              `connect-src ${SELF} https://api.managemycounter.com ${API_UPSTREAM}`,
               `frame-ancestors ${SELF}`,
               `base-uri ${SELF}`,
               `form-action ${SELF}`,

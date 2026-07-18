@@ -98,7 +98,7 @@ export function HeroSection() {
                 >
                   <div className="bg-foreground/10 rounded-[14px] border border-border p-0.5">
                     <Button asChild size="lg" className="rounded-xl px-5 text-base">
-                      <Link href="https://app.papayapalette.online/register">
+                      <Link href="https://app.managemycounter.com/register">
                         <span className="text-nowrap">Get Invite Access</span>
                       </Link>
                     </Button>
@@ -259,7 +259,7 @@ const HeroHeader = () => {
                   </li>
                 ))}
                 <li>
-                  <Link href="https://app.papayapalette.online/dashboard" className="hover:text-foreground block duration-150">
+                  <Link href="https://app.managemycounter.com/dashboard" className="hover:text-foreground block duration-150">
                     <span>Portal</span>
                   </Link>
                 </li>
@@ -280,12 +280,12 @@ const HeroHeader = () => {
               </div>
               <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
                 <Button asChild variant="outline" size="sm">
-                  <Link href="https://app.papayapalette.online/dashboard">
+                  <Link href="https://app.managemycounter.com/dashboard">
                     <span>Log In</span>
                   </Link>
                 </Button>
                 <Button asChild size="sm">
-                  <Link href="https://app.papayapalette.online/register">
+                  <Link href="https://app.managemycounter.com/register">
                     <span>Get Invite Access</span>
                   </Link>
                 </Button>

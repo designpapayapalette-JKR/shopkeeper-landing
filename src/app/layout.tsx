@@ -22,7 +22,7 @@ const TITLE = "managemycounter - All-in-One Retail POS & Field Operations ERP";
 const DESCRIPTION =
   "GST billing in seconds. Stock, staff, and field agents — all in sync, in one app built for Indian shopkeepers. Free during beta, no credit card required.";
 
-const BASE_URL = "https://papayapalette.online";
+const BASE_URL = "https://managemycounter.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
