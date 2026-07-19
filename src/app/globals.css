@@ -7,6 +7,15 @@
    #03A8FE (cyan). Font: Gilroy (local OTF, ExtraBold + Light) — loaded from /public/fonts.
 ══════════════════════════════════════════════ */
 
+/* Tailwind v4's `dark:` variant defaults to the OS/browser
+   prefers-color-scheme media query. This site is light-mode only by
+   design (see above) but many components still carry `dark:` utility
+   classes from earlier work — rather than hunting down and deleting every
+   one of them across every page, gate the variant behind a `.dark` class
+   that is never applied anywhere in the app. Every `dark:` class becomes
+   permanently inert, regardless of the visitor's system theme. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* Gilroy Font — local OTF files from /public/fonts */
 @font-face {
   font-family: "Gilroy";

@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { HeroSection } from "@/components/blocks/hero-section-gemini";
+import { HeroSection } from "@/components/blocks/hero-section-light";
 import { FAQSection } from "@/components/blocks/faq-section";
 import {
   ArrowRight, Check, Smartphone, Send, Users, Tag, Receipt, Package, Landmark,
