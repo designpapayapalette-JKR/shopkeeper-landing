@@ -8,6 +8,7 @@ import { FAQSection } from "@/components/blocks/faq-section";
 import {
   ArrowRight, Check, Smartphone, Send, Users, Tag, Receipt, Package, Landmark,
   Contact, Truck, Scale, KeyboardIcon, MessageCircle, Printer, FileSpreadsheet,
+  ArrowDownCircle, ArrowUpCircle, FileText, TrendingUp, ChevronDown, Barcode,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { APP_DOWNLOAD_URL, AGENT_APP_DOWNLOAD_URL } from "@/lib/config";
@@ -34,7 +35,7 @@ const FEATURE_CATEGORIES = [
     id: "billing",
     label: "Billing & Sales",
     icon: Receipt,
-    intro: "Counter pe bill seconds mein banta hai — keyboard-driven search, one-tap quick-add, aur packed ho ya loose/weighed maal, dono ka billing ek hi jagah.",
+    intro: "Bill in seconds at the counter — keyboard-driven search, one-tap quick-add, and billing for both packed and loose/weighed items in one place.",
     items: [
       { title: "POS & B2B billing", desc: "Retail, GST, or estimate invoices — with Bill of Supply for composition-scheme sellers — from the same counter screen." },
       { title: "Weighing-scale & loose-item billing", desc: "Sell by weight (kg/g/ml/l) alongside fixed-unit packets, with a dual-pricing toggle for products sold both ways." },
@@ -48,7 +49,7 @@ const FEATURE_CATEGORIES = [
     id: "inventory",
     label: "Inventory & Products",
     icon: Package,
-    intro: "Godown ho ya dukaan, maal ka hisab hamesha sahi — Indian retail ko jo fields chahiye, wahi hain, koi generic SKU list nahi.",
+    intro: "Godown or shop floor, stock stays accurate — the fields Indian retail actually needs, not a generic SKU list.",
     items: [
       { title: "Multi-warehouse stock sync", desc: "Real-time quantity across every location, with transfer requests and approvals between them." },
       { title: "Custom product fields", desc: "Company-defined attributes — colour, flavour, dimensions — that show up on the product form and, if you choose, the printed invoice." },
@@ -62,7 +63,7 @@ const FEATURE_CATEGORIES = [
     id: "accounting",
     label: "Accounting & Finance",
     icon: Landmark,
-    intro: "Woh hisab-kitab jo aapka CA maangta hai — sirf total bikri nahi, poora ledger.",
+    intro: "The hisab-kitab your CA actually asks for — not just total sales, the full ledger.",
     items: [
       { title: "Party ledger with udhar reminders", desc: "Running balance per customer/supplier, with one-tap WhatsApp reminders for anything overdue." },
       { title: "Credit/debit notes & bank reconciliation", desc: "Proper adjustment documents, and confidence-scored matching against your bank statement." },
@@ -75,7 +76,7 @@ const FEATURE_CATEGORIES = [
     id: "staff",
     label: "Staff & HR",
     icon: Contact,
-    intro: "Counter pe ho ya godown mein, har karamchari ko utna hi dikhe jitna zaroorat hai — plus roz ki HR jo ek chhoti team ko chahiye.",
+    intro: "At the counter or in the godown, each staff member sees only what they need — plus the everyday HR a small team actually uses.",
     items: [
       { title: "Five distinct roles", desc: "Owner, Manager, Staff, Warehouse Manager, and Field Agent — each sees only what their role needs." },
       { title: "Attendance & payroll", desc: "Daily check-in/out, with wage calculation that reads directly from attendance records." },
@@ -86,7 +87,7 @@ const FEATURE_CATEGORIES = [
     id: "operations",
     label: "Operations & Logistics",
     icon: Truck,
-    intro: "Dukaan ke bahar jo hota hai uske liye — delivery, field visits, aur supplier ko diya gaya order.",
+    intro: "For everything that happens outside the shop — delivery, field visits, and orders placed with suppliers.",
     items: [
       { title: "Live field-agent GPS tracking", desc: "See where your delivery/sales agents are and what they've completed, from the owner's dashboard." },
       { title: "Delivery challans", desc: "GST Rule 55-compliant challans linked to the originating invoice, with driver and vehicle details." },
@@ -96,24 +97,24 @@ const FEATURE_CATEGORIES = [
 ] as const;
 
 const WORKS_WITH = [
-  { icon: MessageCircle, name: "WhatsApp", desc: "PDF invoice seedhe WhatsApp pe bhejo, aur udhaar ka reminder bhi." },
-  { icon: Printer, name: "Thermal & A4 printers", desc: "Bluetooth, USB, ya Wi-Fi thermal receipt printer, plus poora A4 tax invoice." },
-  { icon: FileSpreadsheet, name: "Excel / CSV export", desc: "Har report aur register saaf export hota hai — apne CA ke liye ya spreadsheet mein." },
-  { icon: Scale, name: "Weighing scales", desc: "Loose maal ka weight-billing, scale-hardware integration ke saath." },
+  { icon: MessageCircle, name: "WhatsApp", desc: "Send a PDF invoice straight to WhatsApp, plus udhaar reminders when a payment is overdue." },
+  { icon: Printer, name: "Thermal & A4 printers", desc: "Bluetooth, USB, or Wi-Fi thermal receipt printer, plus a full A4 tax invoice." },
+  { icon: FileSpreadsheet, name: "Excel / CSV export", desc: "Every report and register exports cleanly — ready for your CA or a spreadsheet." },
+  { icon: Scale, name: "Weighing scales", desc: "Weight-billing for loose items, with scale-hardware integration." },
 ];
 
 const PAIN_POINTS = [
-  { before: "Kaante se tolna, phir calculator nikaal ke rate lagana — har customer ke liye", after: "Weight daalo, rate khud ban jaata hai — scale-ready billing" },
-  { before: "Bahi-khata mein udhaar likhna, phir mahine ke end mein grahak ko phone karke yaad dilana", after: "Ek live ledger, aur udhaar ka reminder ek tap mein WhatsApp pe chala jaata hai" },
-  { before: "Teen alag registers palatna ye dekhne ke liye ki godown mein maal bacha hai ya nahi", after: "Ek hi number — har warehouse ka stock, live" },
-  { before: "Din bhar ki bikri raat ko baithkar Tally ya Excel mein dobara type karna", after: "GST-ready reports apne aap ban jaate hain, jaise-jaise bill banta hai" },
+  { before: "Weighing on the kaanta, then reaching for a calculator to work out the rate — for every single customer", after: "Enter the weight, the rate calculates itself — scale-ready billing" },
+  { before: "Writing udhaar in the bahi-khata, then calling customers at month-end to remind them", after: "One live ledger, with udhaar reminders sent over WhatsApp in a tap" },
+  { before: "Flipping through three different registers just to check what's left in the godown", after: "One number — stock across every warehouse, live" },
+  { before: "Re-typing the day's sales into Tally or Excel every night after closing", after: "GST-ready reports build themselves as each bill is made" },
 ];
 
 const DIFFERENTIATORS = [
-  { icon: Scale, title: "Banaya gaya kirana counter ke liye", desc: "Kaante se weight-billing, loose maal ki pricing, aur crate/bottle deposit tracking — ek generic POS nahi jisme GST baad mein jod diya gaya ho." },
-  { icon: KeyboardIcon, title: "Keyboard-first, jaisa purana Tally software chalta hai", desc: "Search karo, arrow keys se select, Enter se add, Ctrl+A se bill pakka — cashier ko mouse chuune ki zaroorat hi nahi." },
-  { icon: Smartphone, title: "Offline-first mobile apps", desc: "Indian network ke liye bana — network chala jaaye to bhi billing aur attendance rukta nahi, connection wapas aate hi sync ho jaata hai." },
-  { icon: Send, title: "Beta mein bilkul free, koi catch nahi", desc: "Har invited dukaan ko aaj hi poora access milta hai, sabhi modules ka. Na credit card, na feature lock." },
+  { icon: Scale, title: "Built for the kirana counter", desc: "Weight-billing off the kaanta, loose-item pricing, and crate/bottle deposit tracking — not a generic POS with GST bolted on afterward." },
+  { icon: KeyboardIcon, title: "Keyboard-first, like the old Tally workflow", desc: "Search, arrow keys to select, Enter to add, Ctrl+A to close the bill — a cashier never needs to touch the mouse." },
+  { icon: Smartphone, title: "Offline-first mobile apps", desc: "Built for Indian network conditions — billing and attendance keep working when the connection drops, and sync the moment it's back." },
+  { icon: Send, title: "Free during beta, no catch", desc: "Every invited shop gets full access to every module today. No credit card, no feature lock." },
 ];
 
 const PRICING_PLANS = [
@@ -172,13 +173,20 @@ const PRICING_PLANS = [
   },
 ];
 
-function Logo({ width = 140, height = 36, className = "" }) {
+// White-text wordmark (for the dark footer) — cropped from the canonical
+// brand source with sharp, same as logo.png/logo-icon.png. The old version
+// pointed straight at the raw, uncropped "ManageMyCounter Rectangle-01.png"
+// (8000x4500 with ~40% empty padding, spaces in the filename) and rendered
+// via fixed width/height props with no object-fit, so the browser silently
+// squished it to fit — never actually broken, just never fixed to look right.
+function Logo({ width = 140, height, className = "" }: { width?: number; height?: number; className?: string }) {
+  const resolvedHeight = height ?? Math.round((width / 900) * 290);
   return (
     <Image
-      src="/ManageMyCounter Rectangle-01.png"
+      src="/logo-white.png"
       alt="managemycounter"
       width={width}
-      height={height}
+      height={resolvedHeight}
       className={`shrink-0 ${className}`}
     />
   );
@@ -192,6 +200,98 @@ function NavLink({ href, children, className = "" }: { href: string; children: R
     >
       {children}
     </Link>
+  );
+}
+
+// A phone-frame recreation of the actual app's real home screen ("Today's
+// Snapshot" stat cards — same labels, colours, and layout as
+// shopkeeper-app/app/(tabs)/index.tsx) instead of a generic stock photo.
+function MobileAppPreview() {
+  return (
+    <div className="relative mx-auto" style={{ width: 300 }}>
+      <div className="rounded-[2.5rem] border-[10px] border-zinc-900 bg-zinc-900 shadow-2xl overflow-hidden">
+        <div className="bg-white rounded-[1.75rem] overflow-hidden">
+          {/* Notch */}
+          <div className="flex justify-center bg-white pt-2 pb-1">
+            <div className="w-24 h-5 bg-zinc-900 rounded-full" />
+          </div>
+
+          {/* App header */}
+          <div className="flex items-center justify-between px-4 py-3 border-b border-zinc-100">
+            <div className="flex items-center gap-2">
+              <Image src="/logo-icon.png" alt="" width={28} height={28} />
+              <div>
+                <p className="text-sm font-black text-blue-600 leading-tight">Sharma General Store</p>
+                <p className="text-[10px] text-zinc-400 leading-tight flex items-center gap-0.5">Main Branch <ChevronDown size={10} /></p>
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <Barcode size={16} className="text-blue-600" />
+              <div className="w-7 h-7 rounded-full bg-blue-50 border border-zinc-200 flex items-center justify-center">
+                <span className="text-[10px] font-bold text-blue-600">RS</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Today's Snapshot */}
+          <div className="px-4 pt-4 pb-5">
+            <div className="flex items-center justify-between mb-2.5">
+              <p className="text-[13px] font-bold text-zinc-800">Today&apos;s Snapshot</p>
+              <p className="text-[10px] font-semibold text-blue-600">View Analytics</p>
+            </div>
+            <div className="grid grid-cols-2 gap-2">
+              <div className="rounded-xl p-2.5" style={{ background: "#E4F6DC" }}>
+                <div className="flex items-center justify-between">
+                  <p className="text-[8px] font-bold uppercase tracking-wider" style={{ color: "#3E8E2F" }}>Receivables</p>
+                  <ArrowDownCircle size={12} style={{ color: "#3E8E2F" }} />
+                </div>
+                <p className="text-[15px] font-black mt-1" style={{ color: "#1F5A19" }}>₹18,240</p>
+              </div>
+              <div className="rounded-xl p-2.5" style={{ background: "#FBE1E6" }}>
+                <div className="flex items-center justify-between">
+                  <p className="text-[8px] font-bold uppercase tracking-wider" style={{ color: "#B0345C" }}>Payables</p>
+                  <ArrowUpCircle size={12} style={{ color: "#B0345C" }} />
+                </div>
+                <p className="text-[15px] font-black mt-1" style={{ color: "#7A1F3D" }}>₹6,500</p>
+              </div>
+              <div className="rounded-xl p-2.5" style={{ background: "#F5F0E1" }}>
+                <div className="flex items-center justify-between">
+                  <p className="text-[8px] font-bold uppercase tracking-wider" style={{ color: "#8B6914" }}>Invoices</p>
+                  <FileText size={12} style={{ color: "#8B6914" }} />
+                </div>
+                <p className="text-[15px] font-black mt-1" style={{ color: "#5C4510" }}>23</p>
+              </div>
+              <div className="rounded-xl p-2.5" style={{ background: "#E1F0FB" }}>
+                <div className="flex items-center justify-between">
+                  <p className="text-[8px] font-bold uppercase tracking-wider" style={{ color: "#1E6FA6" }}>Sales</p>
+                  <TrendingUp size={12} style={{ color: "#1E6FA6" }} />
+                </div>
+                <p className="text-[15px] font-black mt-1" style={{ color: "#0E3E5C" }}>₹24,580</p>
+              </div>
+            </div>
+
+            {/* Low Stock Alerts */}
+            <div className="mt-4">
+              <div className="flex items-center justify-between mb-2">
+                <p className="text-[13px] font-bold text-zinc-800">Low Stock Alerts</p>
+                <span className="text-[9px] font-bold text-red-500 bg-red-50 px-1.5 py-0.5 rounded">3</span>
+              </div>
+              <div className="space-y-1.5">
+                {[
+                  { name: "Tata Salt 1kg", qty: "4 left" },
+                  { name: "Amul Butter 500g", qty: "2 left" },
+                ].map((item) => (
+                  <div key={item.name} className="flex items-center justify-between bg-zinc-50 rounded-lg px-2.5 py-2">
+                    <p className="text-[11px] font-semibold text-zinc-700">{item.name}</p>
+                    <p className="text-[10px] font-bold text-red-500">{item.qty}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -302,9 +402,20 @@ export default function LandingPage() {
       {/* Pain points */}
       <section className="py-20 md:py-28 bg-white dark:bg-zinc-950">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="grid lg:grid-cols-5 gap-12 items-center mb-12">
-            <div className="lg:col-span-2">
-              <div className="relative rounded-2xl overflow-hidden border border-zinc-200 shadow-lg aspect-[4/5] max-w-sm mx-auto lg:mx-0">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-12">
+            <div className="order-2 lg:order-1 text-center lg:text-left">
+              <h2 className="text-3xl md:text-4xl font-black tracking-tight text-zinc-900 dark:text-white mb-4">
+                Does this feel like your daily routine?
+              </h2>
+              <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-5">
+                Every shopkeeper has tried one of these at some point — the bahi-khata, an Excel sheet, or another app that turned out way too complicated.
+              </p>
+              <p className="text-lg text-zinc-600 dark:text-zinc-400">
+                If your hisab-kitab is still done by hand every night after closing, this app was built for you. Here's what changes:
+              </p>
+            </div>
+            <div className="order-1 lg:order-2">
+              <div className="relative rounded-2xl overflow-hidden border border-zinc-200 shadow-lg aspect-[4/3] max-w-md mx-auto lg:mx-0 lg:ml-auto">
                 <Image
                   src="/images/kirana-ledger-writing.jpg"
                   alt="A shopkeeper doing hisab-kitab by hand in a paper register"
@@ -313,24 +424,16 @@ export default function LandingPage() {
                 />
               </div>
             </div>
-            <div className="lg:col-span-3 text-center lg:text-left">
-              <h2 className="text-3xl md:text-4xl font-black tracking-tight text-zinc-900 dark:text-white mb-4">
-                Yeh sab roz ka jhanjhat lagta hai?
-              </h2>
-              <p className="text-lg text-zinc-600 dark:text-zinc-400">
-                Har dukaandar ne kisi na kisi mod pe yeh try kiya hai — bahi-khata, Excel, ya koi aur app jo bahut complicated nikla. Agar hisab-kitab abhi bhi raat ko haath se ho raha hai, yeh app aapke liye hi bana hai.
-              </p>
-            </div>
           </div>
           <div className="grid sm:grid-cols-2 gap-5">
             {PAIN_POINTS.map((p, i) => (
               <div key={i} className="rounded-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden">
                 <div className="p-5 bg-zinc-50 dark:bg-zinc-900">
-                  <p className="text-xs font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-1.5">Aaj</p>
+                  <p className="text-xs font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-1.5">Today</p>
                   <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed">{p.before}</p>
                 </div>
                 <div className="p-5 bg-primary/5">
-                  <p className="text-xs font-bold uppercase tracking-wider text-primary mb-1.5">managemycounter ke saath</p>
+                  <p className="text-xs font-bold uppercase tracking-wider text-primary mb-1.5">With managemycounter</p>
                   <p className="text-zinc-900 dark:text-white font-semibold leading-relaxed">{p.after}</p>
                 </div>
               </div>
@@ -348,10 +451,10 @@ export default function LandingPage() {
               Every Module
             </span>
             <h2 className="text-4xl md:text-5xl font-black tracking-tight text-zinc-900 dark:text-white mb-6">
-              Ek dashboard, dukaan ka poora kaamkaaj
+              One dashboard, your whole shop's operations
             </h2>
             <p className="text-lg text-zinc-600 dark:text-zinc-400">
-              Wahi grouping jo aapko login karte hi dikhegi — koi category chuno, dekho kya-kya actually bana hai.
+              The same grouping you'll see the moment you log in — pick a category, see exactly what's built.
             </p>
           </div>
           <FeatureExplorer />
@@ -368,10 +471,10 @@ export default function LandingPage() {
                 Why managemycounter
               </span>
               <h2 className="text-4xl md:text-5xl font-black tracking-tight text-zinc-900 dark:text-white mb-6">
-                Ek Indian ERP, Indian dukaandaron ke liye
+                An Indian ERP, built for Indian shopkeepers
               </h2>
               <p className="text-lg text-zinc-600 dark:text-zinc-400">
-                Yeh koi global POS nahi jisme baad mein GST jod diya gaya ho. Har screen — udhaar ka khata, weight-billing, GST return — Indian retail kaise chalta hai, wahi soch ke banayi gayi hai.
+                Not a global POS with GST bolted on afterward. Every screen — the udhaar khata, weight-billing, GST returns — is designed around how Indian retail actually runs.
               </p>
             </div>
             <div className="relative rounded-2xl overflow-hidden border border-zinc-200 shadow-lg aspect-[4/3]">
@@ -409,10 +512,10 @@ export default function LandingPage() {
                 Mobile Apps
               </span>
               <h2 className="text-4xl md:text-5xl font-black tracking-tight text-zinc-900 dark:text-white mb-6">
-                Aapke staff aur field team ke liye bhi
+                For your staff and field team too
               </h2>
               <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-8">
-                Android apps download karo apne staff aur field agents ke liye. Native performance, offline-first, Indian network ke liye bana.
+                Android apps for your staff and field agents. Native performance, offline-first, built for Indian network conditions.
               </p>
               <div className="grid sm:grid-cols-2 gap-4">
                 <a href={APP_DOWNLOAD_URL} className="group flex items-center gap-4 p-5 bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:border-primary/50 hover:shadow-lg transition-all duration-300">
@@ -435,17 +538,10 @@ export default function LandingPage() {
                 </a>
               </div>
             </div>
-            <div className="relative">
-              <div className="aspect-square max-w-md mx-auto">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-blue-500/20 rounded-3xl blur-3xl" />
-                <Image
-                  src="/phone-mockup.jpg"
-                  alt="Mobile app screenshots"
-                  width={600}
-                  height={600}
-                  className="relative w-full h-full object-cover rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-2xl"
-                  priority
-                />
+            <div className="relative py-8">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-blue-500/20 rounded-3xl blur-3xl" />
+              <div className="relative">
+                <MobileAppPreview />
               </div>
             </div>
           </div>
@@ -461,10 +557,10 @@ export default function LandingPage() {
               Works With
             </span>
             <h2 className="text-4xl md:text-5xl font-black tracking-tight text-zinc-900 dark:text-white mb-6">
-              Jo pehle se use karte ho, usi ke saath chalta hai
+              Works with what you already use
             </h2>
             <p className="text-lg text-zinc-600 dark:text-zinc-400">
-              Koi lock-in nahi, alag se export tool nahi zaroorat — har report waise hi nikalti hai jaise aapke CA ko chahiye.
+              No lock-in, no separate export tool needed — every report comes out exactly the way your CA expects it.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -490,10 +586,10 @@ export default function LandingPage() {
               Pricing
             </span>
             <h2 className="text-4xl md:text-5xl font-black tracking-tight text-zinc-900 dark:text-white mb-6">
-              Seedha, saaf-saaf pricing
+              Simple, straightforward pricing
             </h2>
             <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-8">
-              Abhi private beta chal raha hai — har invited dukaan ko poora access, bilkul free.
+              We're in private beta right now — every invited shop gets full access, completely free.
             </p>
             <div className="inline-flex items-center gap-1 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 p-1 rounded-xl shadow-sm">
               <button
@@ -543,10 +639,10 @@ export default function LandingPage() {
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-blue-500/10" />
         <div className="relative max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-4xl md:text-6xl font-black tracking-tight text-white mb-8">
-            Bahi-khata chhodo, ab digital pe aao
+            Put down the bahi-khata, go digital
           </h2>
           <p className="text-lg md:text-xl text-zinc-300 mb-12 max-w-2xl mx-auto">
-            GST billing, stock, udhaar ka khata, aur field-team tracking — sab ek hi app mein, beta mein bilkul free.
+            GST billing, stock, the udhaar khata, and field-team tracking — all in one app, free during beta.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="https://app.managemycounter.com/register">
@@ -568,9 +664,9 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
             <div className="col-span-2 md:col-span-1">
-              <Logo width={140} height={36} className="mb-4" />
+              <Logo width={140} className="mb-4" />
               <p className="text-zinc-400 text-sm leading-relaxed mb-6">
-                GST billing, hisab-kitab, aur stock ka poora ERP — Indian retail aur wholesale dukaanon ke liye bana.
+                GST billing, hisab-kitab, and a complete stock ERP — built for Indian retail and wholesale shops.
               </p>
             </div>
             {Object.entries(FOOTER_MENU).map(([category, links]) => (
