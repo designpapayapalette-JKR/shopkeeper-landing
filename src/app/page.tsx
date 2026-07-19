@@ -19,7 +19,7 @@ const FOOTER_MENU = {
     { href: "#pricing", label: "Pricing" },
   ],
   Company: [
-    { href: "mailto:hello@shopkeeper.app", label: "Contact us" },
+    { href: "mailto:hello@managemycounter.com", label: "Contact us" },
     { href: "/blog", label: "Blog" },
   ],
   Legal: [
@@ -506,7 +506,12 @@ export default function LandingPage() {
       <FAQSection />
 
       {/* Final CTA */}
-      <section className="py-24 md:py-32 bg-zinc-900 dark:bg-zinc-950 relative overflow-hidden">
+      {/* Extra bottom padding (vs. top) is deliberate: the fixed nav overlays
+          whatever's at the top of the viewport, and this is the last section
+          before a fairly short footer — without this, scrolling to the very
+          bottom of the page pins this heading behind the nav with nowhere
+          left to scroll clear of it. */}
+      <section className="pt-24 pb-40 md:pt-32 md:pb-56 bg-zinc-900 dark:bg-zinc-950 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-blue-500/10" />
         <div className="relative max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-4xl md:text-6xl font-black tracking-tight text-white mb-8">
@@ -521,8 +526,8 @@ export default function LandingPage() {
                 Try for Free <ArrowRight size={20} />
               </Button>
             </Link>
-            <a href="mailto:hello@shopkeeper.app">
-              <Button variant="secondary" size="lg" className="w-full sm:w-auto border-zinc-700 text-zinc-200 hover:bg-zinc-800">
+            <a href="mailto:hello@managemycounter.com">
+              <Button variant="secondary" size="lg" className="w-full sm:w-auto bg-transparent border border-zinc-700 text-white hover:bg-zinc-800">
                 Let's talk
               </Button>
             </a>
@@ -531,7 +536,7 @@ export default function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-zinc-950 dark:bg-black border-t border-zinc-800 pt-16 pb-8">
+      <footer className="bg-zinc-950 dark:bg-black border-t border-zinc-800 pt-16 pb-16">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
             <div className="col-span-2 md:col-span-1">
@@ -539,56 +544,6 @@ export default function LandingPage() {
               <p className="text-zinc-400 text-sm leading-relaxed mb-6">
                 GST billing, inventory, and field-team ERP built for Indian retail and wholesale shops.
               </p>
-              <div className="flex gap-4">
-                <a
-                  href="https://facebook.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Facebook"
-                  className="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center text-zinc-400 hover:bg-zinc-700 hover:text-white transition-colors"
-                >
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-                  </svg>
-                </a>
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram"
-                  className="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center text-zinc-400 hover:bg-zinc-700 hover:text-white transition-colors"
-                >
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                    <circle cx="17.5" cy="6.5" r="1" />
-                  </svg>
-                </a>
-                <a
-                  href="https://twitter.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Twitter"
-                  className="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center text-zinc-400 hover:bg-zinc-700 hover:text-white transition-colors"
-                >
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" />
-                  </svg>
-                </a>
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn"
-                  className="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center text-zinc-400 hover:bg-zinc-700 hover:text-white transition-colors"
-                >
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                    <rect width="4" height="12" x="2" y="9" />
-                    <circle cx="4" cy="4" r="2" />
-                  </svg>
-                </a>
-              </div>
             </div>
             {Object.entries(FOOTER_MENU).map(([category, links]) => (
               <div key={category}>

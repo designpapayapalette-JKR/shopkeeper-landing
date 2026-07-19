@@ -84,7 +84,7 @@ function RegisterForm() {
       subtitle={
         <>
           Private beta — you need an invite code to sign up. Ask whoever invited you, or{" "}
-          <a href="mailto:hello@shopkeeper.app" className="text-primary font-bold">request access</a>.
+          <a href="mailto:hello@managemycounter.com" className="text-primary font-bold">request access</a>.
         </>
       }
       footer={

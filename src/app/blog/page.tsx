@@ -23,8 +23,8 @@ export default function BlogPage() {
           <Link href="/" className="inline-flex items-center gap-2 text-sm font-bold text-primary hover:underline">
             <ArrowLeft size={16} /> Back to home
           </Link>
-          <a href="mailto:hello@shopkeeper.app" className="text-sm font-bold text-primary hover:underline">
-            hello@shopkeeper.app
+          <a href="mailto:hello@managemycounter.com" className="text-sm font-bold text-primary hover:underline">
+            hello@managemycounter.com
           </a>
         </div>
       </div>
