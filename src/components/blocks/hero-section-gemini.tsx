@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, Menu, X } from "lucide-react";
+import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
 import Image from "next/image";
 import { useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -12,20 +12,12 @@ import { cn } from "@/lib/utils";
 
 const transitionVariants = {
   item: {
-    hidden: {
-      opacity: 0,
-      filter: "blur(12px)",
-      y: 12,
-    },
+    hidden: { opacity: 0, filter: "blur(12px)", y: 12 },
     visible: {
       opacity: 1,
       filter: "blur(0px)",
       y: 0,
-      transition: {
-        type: "spring" as const,
-        bounce: 0.3,
-        duration: 1.5,
-      },
+      transition: { type: "spring" as const, bounce: 0.3, duration: 1.5 },
     },
   },
 };
@@ -46,14 +38,12 @@ const menuItems = [
   { name: "FAQs", href: "#faq" },
 ];
 
-const HeroHeader = () => {
+function HeroHeader() {
   const [menuState, setMenuState] = React.useState(false);
   const [isScrolled, setIsScrolled] = React.useState(false);
 
   React.useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -73,7 +63,6 @@ const HeroHeader = () => {
                 <Image src="/logo-icon.png" alt="managemycounter" width={22} height={22} className="shrink-0" />
                 managemycounter
               </Link>
-
               <button
                 onClick={() => setMenuState(!menuState)}
                 aria-label={menuState ? "Close Menu" : "Open Menu"}
@@ -83,46 +72,34 @@ const HeroHeader = () => {
                 <X className="group-data-[state=active]:rotate-0 group-data-[state=active]:scale-100 group-data-[state=active]:opacity-100 absolute inset-0 m-auto size-6 -rotate-180 scale-0 opacity-0 duration-200" />
               </button>
             </div>
-
             <div className="absolute inset-0 m-auto hidden size-fit lg:block">
               <ul className="flex gap-8 text-xs font-bold text-muted-foreground uppercase tracking-wider">
                 {menuItems.map((item) => (
                   <li key={item.name}>
-                    <Link href={item.href} className="hover:text-foreground block duration-150">
-                      <span>{item.name}</span>
-                    </Link>
+                    <Link href={item.href} className="hover:text-foreground block duration-150"><span>{item.name}</span></Link>
                   </li>
                 ))}
                 <li>
-                  <Link href="https://app.managemycounter.com/dashboard" className="hover:text-foreground block duration-150">
-                    <span>Portal</span>
-                  </Link>
+                  <Link href="https://app.managemycounter.com/dashboard" className="hover:text-foreground block duration-150"><span>Portal</span></Link>
                 </li>
               </ul>
             </div>
-
             <div className="bg-background group-data-[state=active]:flex mb-6 hidden w-full flex-wrap items-center justify-end space-y-8 rounded-3xl border border-border p-6 shadow-2xl md:flex-nowrap lg:m-0 lg:flex lg:w-fit lg:gap-6 lg:space-y-0 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none">
               <div className="lg:hidden">
                 <ul className="space-y-6 text-base">
                   {menuItems.map((item) => (
                     <li key={item.name}>
-                      <Link href={item.href} className="text-muted-foreground hover:text-foreground block duration-150">
-                        <span>{item.name}</span>
-                      </Link>
+                      <Link href={item.href} className="text-muted-foreground hover:text-foreground block duration-150"><span>{item.name}</span></Link>
                     </li>
                   ))}
                 </ul>
               </div>
               <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
                 <Button asChild variant="outline" size="sm">
-                  <Link href="https://app.managemycounter.com/dashboard">
-                    <span>Log In</span>
-                  </Link>
+                  <Link href="https://app.managemycounter.com/dashboard"><span>Log In</span></Link>
                 </Button>
                 <Button asChild size="sm">
-                  <Link href="https://app.managemycounter.com/register">
-                    <span>Get Invite Access</span>
-                  </Link>
+                  <Link href="https://app.managemycounter.com/register"><span>Get Invite Access</span></Link>
                 </Button>
               </div>
             </div>
@@ -131,10 +108,10 @@ const HeroHeader = () => {
       </nav>
     </header>
   );
-};
+}
 
 export function HeroSection() {
-  const ref = React.useRef(null);
+  const ref = React.useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
@@ -146,17 +123,13 @@ export function HeroSection() {
   const pathLengthFourth = useTransform(scrollYProgress, [0, 0.8], [0.05, 1.2]);
   const pathLengthFifth = useTransform(scrollYProgress, [0, 0.8], [0, 1.2]);
 
-  const handleScrollToFeatures = () => {
-    const el = document.getElementById("features");
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <>
       <HeroHeader />
-      {/* Intro section above the Gemini scroll effect */}
-      <section className="relative min-h-screen bg-background overflow-hidden">
-        <div className="relative z-10 pt-36 md:pt-44">
+
+      {/* === PHASE 1: Compact intro — hooks the visitor, then scroll cue into dark section === */}
+      <section className="relative min-h-[60vh] bg-background overflow-hidden flex items-end pb-16 md:pb-24">
+        <div className="w-full pt-32 md:pt-40">
           <div className="mx-auto max-w-7xl px-6">
             <div className="text-center">
               <AnimatedGroup variants={transitionVariants}>
@@ -165,15 +138,11 @@ export function HeroSection() {
                   className="hover:bg-background bg-muted group mx-auto flex w-fit items-center gap-4 rounded-full border border-border p-1 pl-4 shadow-md shadow-black/5 transition-all duration-300"
                 >
                   <span className="text-foreground text-sm">BETA · Free during beta — no credit card, ever</span>
-                  <span className="block h-4 w-0.5 border-l border-border bg-white"></span>
+                  <span className="block h-4 w-0.5 border-l border-border bg-white" />
                   <div className="bg-background group-hover:bg-muted size-6 overflow-hidden rounded-full duration-500">
                     <div className="flex w-12 -translate-x-1/2 duration-500 ease-in-out group-hover:translate-x-0">
-                      <span className="flex size-6">
-                        <ArrowRight className="m-auto size-3" />
-                      </span>
-                      <span className="flex size-6">
-                        <ArrowRight className="m-auto size-3" />
-                      </span>
+                      <span className="flex size-6"><ArrowRight className="m-auto size-3" /></span>
+                      <span className="flex size-6"><ArrowRight className="m-auto size-3" /></span>
                     </div>
                   </div>
                 </Link>
@@ -184,7 +153,7 @@ export function HeroSection() {
                   Everything else, <span className="font-serif italic font-normal text-primary">automatic</span>.
                 </h1>
                 <p className="mx-auto mt-8 max-w-2xl text-balance text-lg text-muted-foreground">
-                  Keep scrolling to see how we put your entire counter — billing, stock, udhar, and field team — on one screen.
+                  Scroll to see how we put your entire counter — invoicing, stock, udhar, and field team — on one screen.
                 </p>
               </AnimatedGroup>
 
@@ -192,15 +161,12 @@ export function HeroSection() {
                 variants={{
                   container: {
                     visible: {
-                      transition: {
-                        staggerChildren: 0.05,
-                        delayChildren: 0.75,
-                      },
+                      transition: { staggerChildren: 0.05, delayChildren: 0.75 },
                     },
                   },
                   ...transitionVariants,
                 }}
-                className="mt-12 flex flex-col items-center justify-center gap-2 md:flex-row"
+                className="mt-10 flex flex-col items-center justify-center gap-4"
               >
                 <div className="bg-foreground/10 rounded-[14px] border border-border p-0.5">
                   <Button asChild size="lg" className="rounded-xl px-5 text-base">
@@ -209,35 +175,21 @@ export function HeroSection() {
                     </Link>
                   </Button>
                 </div>
-                <Button onClick={handleScrollToFeatures} size="lg" variant="ghost" className="h-10.5 rounded-xl px-5">
-                  <span className="text-nowrap">Explore Features ↓</span>
-                </Button>
+                <ChevronDown className="text-muted-foreground size-5 animate-bounce mt-4" />
               </AnimatedGroup>
             </div>
           </div>
         </div>
 
-        {/* Subtle gradient overlay at bottom */}
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent to-background z-10" />
+        {/* Gradient fade to black — bridges white intro into dark Gemini section */}
+        <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-transparent to-black z-10 pointer-events-none" />
       </section>
 
-      {/* Google Gemini Effect - scroll-triggered SVG animation */}
-      <section ref={ref} className="h-[400vh] bg-black w-full relative overflow-clip">
-        <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
-          <div className="text-center px-6 mt-40 md:mt-48">
-            <AnimatedGroup variants={transitionVariants}>
-              <p className="text-4xl md:text-7xl font-normal pb-4 text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-100 to-neutral-300">
-                One dashboard.
-                <br />
-                <span className="text-primary">Five modules.</span>
-              </p>
-              <p className="text-sm md:text-xl text-center text-neutral-400 mt-4 max-w-2xl mx-auto leading-relaxed">
-                Billing & Sales · Inventory & Products · Accounting & Finance · Staff & HR · Operations & Logistics
-              </p>
-            </AnimatedGroup>
-          </div>
-        </div>
-
+      {/* === PHASE 2: Google Gemini Effect — demo pattern, 400vh scroll-driven SVG animation === */}
+      <section
+        ref={ref}
+        className="h-[400vh] bg-black w-full relative overflow-clip"
+      >
         <GoogleGeminiEffect
           pathLengths={[
             pathLengthFirst,
@@ -246,15 +198,15 @@ export function HeroSection() {
             pathLengthFourth,
             pathLengthFifth,
           ]}
-          title=""
-          description=""
-          buttonText="See What's Built ↓"
-          buttonHref="#features"
+          title="One dashboard. Five modules."
+          description="Billing & Sales · Inventory & Products · Accounting & Finance · Staff & HR · Operations & Logistics"
+          buttonText="Get Invite Access →"
+          buttonHref="https://app.managemycounter.com/register"
         />
       </section>
 
-      {/* Segment strip */}
-      <section className="bg-background pb-16 pt-16 md:pb-24">
+      {/* === PHASE 3: Segment strip — transitions back to brand theme === */}
+      <section className="bg-white pb-16 pt-16 md:pb-24 border-t border-border">
         <div className="mx-auto max-w-5xl px-6">
           <p className="text-center text-xs font-bold text-muted-foreground uppercase tracking-widest mb-8">
             Built for every kind of Indian retail business
