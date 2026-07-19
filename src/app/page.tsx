@@ -9,6 +9,7 @@ import {
   ArrowRight, Check, Smartphone, Send, Users, Tag, Receipt, Package, Landmark,
   Contact, Truck, Scale, KeyboardIcon, MessageCircle, Printer, FileSpreadsheet,
   ArrowDownCircle, ArrowUpCircle, FileText, TrendingUp, ChevronDown, Barcode,
+  DownloadCloud, ShieldCheck,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { APP_DOWNLOAD_URL, AGENT_APP_DOWNLOAD_URL } from "@/lib/config";
@@ -517,26 +518,54 @@ export default function LandingPage() {
               <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-8">
                 Android apps for your staff and field agents. Native performance, offline-first, built for Indian network conditions.
               </p>
-              <div className="grid sm:grid-cols-2 gap-4">
-                <a href={APP_DOWNLOAD_URL} className="group flex items-center gap-4 p-5 bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:border-primary/50 hover:shadow-lg transition-all duration-300">
-                  <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
-                    <Smartphone size={28} className="text-primary group-hover:text-white transition-colors" strokeWidth={1.5} />
+              <div className="space-y-4">
+                <a
+                  href={APP_DOWNLOAD_URL}
+                  className="group relative flex items-center gap-5 p-6 bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-primary hover:shadow-xl hover:shadow-primary/10 transition-all duration-300"
+                >
+                  <div className="w-16 h-16 shrink-0 rounded-2xl bg-primary flex items-center justify-center">
+                    <Smartphone size={30} className="text-white" strokeWidth={1.75} />
                   </div>
-                  <div>
-                    <h3 className="font-bold text-zinc-900 dark:text-white group-hover:text-primary transition-colors">managemycounter App</h3>
-                    <p className="text-sm text-zinc-500 dark:text-zinc-400">For owners, managers & staff — POS, inventory, ledger, expenses</p>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2">
+                      <h3 className="font-bold text-lg text-zinc-900 dark:text-white">managemycounter App</h3>
+                      <span className="hidden sm:inline-flex text-[10px] font-bold uppercase tracking-wider text-primary bg-primary/10 px-2 py-0.5 rounded-full">
+                        For Owners &amp; Staff
+                      </span>
+                    </div>
+                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">POS, inventory, ledger &amp; expenses — the full ERP in your pocket</p>
+                  </div>
+                  <div className="hidden sm:flex flex-col items-center gap-1 shrink-0 pl-4 border-l border-zinc-200 dark:border-zinc-800">
+                    <DownloadCloud size={22} className="text-primary" strokeWidth={2} />
+                    <span className="text-[11px] font-bold text-zinc-500 dark:text-zinc-400">APK</span>
                   </div>
                 </a>
-                <a href={AGENT_APP_DOWNLOAD_URL} className="group flex items-center gap-4 p-5 bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:border-primary/50 hover:shadow-lg transition-all duration-300">
-                  <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
-                    <Users size={28} className="text-primary group-hover:text-white transition-colors" strokeWidth={1.5} />
+                <a
+                  href={AGENT_APP_DOWNLOAD_URL}
+                  className="group relative flex items-center gap-5 p-6 bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-primary hover:shadow-xl hover:shadow-primary/10 transition-all duration-300"
+                >
+                  <div className="w-16 h-16 shrink-0 rounded-2xl bg-zinc-900 dark:bg-zinc-800 flex items-center justify-center">
+                    <Users size={30} className="text-white" strokeWidth={1.75} />
                   </div>
-                  <div>
-                    <h3 className="font-bold text-zinc-900 dark:text-white group-hover:text-primary transition-colors">Agent App</h3>
-                    <p className="text-sm text-zinc-500 dark:text-zinc-400">For field agents — attendance, expenses, tasks, GPS tracking</p>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2">
+                      <h3 className="font-bold text-lg text-zinc-900 dark:text-white">Agent App</h3>
+                      <span className="hidden sm:inline-flex text-[10px] font-bold uppercase tracking-wider text-zinc-600 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800 px-2 py-0.5 rounded-full">
+                        For Field Staff
+                      </span>
+                    </div>
+                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">Attendance, expenses, tasks &amp; live GPS check-ins on the move</p>
+                  </div>
+                  <div className="hidden sm:flex flex-col items-center gap-1 shrink-0 pl-4 border-l border-zinc-200 dark:border-zinc-800">
+                    <DownloadCloud size={22} className="text-zinc-900 dark:text-white" strokeWidth={2} />
+                    <span className="text-[11px] font-bold text-zinc-500 dark:text-zinc-400">APK</span>
                   </div>
                 </a>
               </div>
+              <p className="flex items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400 mt-4">
+                <ShieldCheck size={14} className="text-primary shrink-0" />
+                Direct APK download, not on Play Store yet — Android will ask you to confirm "install from unknown sources" once. Your data stays exactly as safe either way.
+              </p>
             </div>
             <div className="relative py-8">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-blue-500/20 rounded-3xl blur-3xl" />
