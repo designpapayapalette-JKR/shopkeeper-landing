@@ -3,7 +3,7 @@
 import React, { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Menu, X, Search, IndianRupee } from "lucide-react";
+import { ArrowRight, Menu, X, Search, IndianRupee, Heart } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { AnimatedGroup } from "@/components/ui/animated-group";
@@ -33,8 +33,8 @@ const SEGMENTS = [
 
 const NAV_ITEMS = [
   { name: "Features", href: "#features" },
-  { name: "Download App", href: "#download" },
-  { name: "Pricing", href: "#pricing" },
+  { name: "Blog", href: "/blog" },
+  { name: "About", href: "#about" },
   { name: "FAQs", href: "#faq" },
 ];
 
@@ -220,10 +220,10 @@ export function HeroSection() {
                 <div className="text-center sm:mx-auto lg:mr-auto lg:mt-0">
                   <AnimatedGroup variants={transitionVariants}>
                     <Link
-                      href="#pricing"
+                      href="#about"
                       className="hover:bg-white bg-white/70 group mx-auto flex w-fit items-center gap-4 rounded-full border border-zinc-200 p-1 pl-4 shadow-md shadow-black/5 backdrop-blur-sm transition-all duration-300"
                     >
-                      <span className="text-zinc-800 text-sm">BETA · Made for the Indian dukaandar — free, no card</span>
+                      <span className="text-zinc-800 text-sm"><Heart size={12} className="inline text-red-500 mr-1" /> Made by a shopkeeper · Free for the community</span>
                       <span className="block h-4 w-0.5 border-l border-zinc-300" />
                       <div className="bg-white group-hover:bg-zinc-100 size-6 overflow-hidden rounded-full duration-500">
                         <div className="flex w-12 -translate-x-1/2 duration-500 ease-in-out group-hover:translate-x-0">

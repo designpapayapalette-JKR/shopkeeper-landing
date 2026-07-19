@@ -6,10 +6,10 @@ import Image from "next/image";
 import { HeroSection } from "@/components/blocks/hero-section-light";
 import { FAQSection } from "@/components/blocks/faq-section";
 import {
-  ArrowRight, Check, Smartphone, Send, Users, Tag, Receipt, Package, Landmark,
+  ArrowRight, Smartphone, Users, Tag, Receipt, Package, Landmark,
   Contact, Truck, Scale, KeyboardIcon, MessageCircle, Printer, FileSpreadsheet,
   ArrowDownCircle, ArrowUpCircle, FileText, TrendingUp, ChevronDown, Barcode,
-  DownloadCloud, ShieldCheck,
+  DownloadCloud, ShieldCheck, Heart,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { APP_DOWNLOAD_URL, AGENT_APP_DOWNLOAD_URL } from "@/lib/config";
@@ -18,11 +18,11 @@ const FOOTER_MENU = {
   Product: [
     { href: "#features", label: "Features" },
     { href: "#works-with", label: "Works With" },
-    { href: "#pricing", label: "Pricing" },
+    { href: "/blog", label: "Blog" },
   ],
   Company: [
     { href: "mailto:hello@managemycounter.com", label: "Contact us" },
-    { href: "/blog", label: "Blog" },
+    { href: "#about", label: "About Us" },
   ],
   Legal: [
     { href: "/privacy", label: "Privacy Policy" },
@@ -112,66 +112,10 @@ const PAIN_POINTS = [
 ];
 
 const DIFFERENTIATORS = [
-  { icon: Scale, title: "Built for the kirana counter", desc: "Weight-billing off the kaanta, loose-item pricing, and crate/bottle deposit tracking — not a generic POS with GST bolted on afterward." },
+  { icon: Scale, title: "Built for the kirana counter — by a shopkeeper", desc: "Weight-billing off the kaanta, loose-item pricing, and crate/bottle deposit tracking. Made by someone who's stood at the same counter — not a generic POS with GST bolted on afterward." },
   { icon: KeyboardIcon, title: "Keyboard-first, like the old Tally workflow", desc: "Search, arrow keys to select, Enter to add, Ctrl+A to close the bill — a cashier never needs to touch the mouse." },
+  { icon: Heart, title: "Free during beta — built for the community", desc: "Every invited shop gets full access to every module today. No credit card, no feature lock, no expiry. We're shopkeepers too — this is for the community." },
   { icon: Smartphone, title: "Offline-first mobile apps", desc: "Built for Indian network conditions — billing and attendance keep working when the connection drops, and sync the moment it's back." },
-  { icon: Send, title: "Free during beta, no catch", desc: "Every invited shop gets full access to every module today. No credit card, no feature lock." },
-];
-
-const PRICING_PLANS = [
-  {
-    name: "Starter Shop",
-    tagline: "Perfect for single retail counters",
-    monthly: 499,
-    yearly: 4990,
-    features: [
-      "Unlimited POS Transactions",
-      "GST Invoicing & Calculations",
-      "1 Warehouse Stock Tracking",
-      "Direct WhatsApp PDF Share",
-      "Bluetooth Receipt Printing",
-      "Overview Reports Portal",
-    ],
-    cta: "Start Free — No Card",
-    popular: false,
-  },
-  {
-    name: "Pro ERP",
-    tagline: "For shops with warehouses & field teams",
-    monthly: 1499,
-    yearly: 14999,
-    features: [
-      "Everything in Starter, plus:",
-      "Multi-Warehouse Inventory Sync",
-      "Digital Credit Ledger (Udhar)",
-      "Up to 5 Staff/Agent Accounts",
-      "Live GPS Field Tracking & Maps",
-      "Expense Upload & Supervisor Approval",
-      "GST-Compliant Delivery Challans",
-      "Credit/Debit Notes & Bank Reconciliation",
-      "Balance Sheet, Trial Balance & Aging Reports",
-      "Excel Export on Every Module",
-    ],
-    cta: "Start Free — No Card",
-    popular: true,
-  },
-  {
-    name: "Enterprise Group",
-    tagline: "For wholesale chains & large businesses",
-    monthly: 4999,
-    yearly: 49990,
-    features: [
-      "Everything in Pro, plus:",
-      "Unlimited Warehouses & Stores",
-      "Unlimited Staff & Agents",
-      "Custom Role & Access Policies",
-      "Dedicated High-Perf Cloud Hosting",
-      "Priority WhatsApp & Phone SLA",
-      "Custom Invoice Templates",
-    ],
-    cta: "Contact Sales",
-    popular: false,
-  },
 ];
 
 // White-text wordmark (for the dark footer) — cropped from the canonical
@@ -296,61 +240,6 @@ function MobileAppPreview() {
   );
 }
 
-function PricingCard({ plan, billingPeriod }: { plan: typeof PRICING_PLANS[0]; billingPeriod: "monthly" | "yearly" }) {
-  const price = billingPeriod === "monthly" ? plan.monthly : plan.yearly;
-  const period = billingPeriod === "monthly" ? "month" : "year";
-  const savings = billingPeriod === "yearly" ? Math.round((plan.monthly * 12 - plan.yearly) / (plan.monthly * 12) * 100) : 0;
-
-  return (
-    <div className={`relative flex flex-col h-full rounded-2xl border-2 p-8 transition-all duration-300 ${
-      plan.popular
-        ? "border-primary bg-primary/5 shadow-xl shadow-primary/10"
-        : "border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 hover:border-primary/50"
-    }`}>
-      {plan.popular && (
-        <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full">
-          Most Popular
-        </div>
-      )}
-      <div className="mb-6">
-        <h3 className="text-2xl font-bold text-zinc-900 dark:text-white mb-1">{plan.name}</h3>
-        <p className="text-zinc-500 dark:text-zinc-400">{plan.tagline}</p>
-      </div>
-      <div className="mb-6">
-        <div className="flex items-baseline gap-1">
-          <span className="text-5xl font-black text-zinc-900 dark:text-white">₹{price.toLocaleString()}</span>
-          <span className="text-zinc-500 dark:text-zinc-400 mb-2">/{period}</span>
-        </div>
-        {billingPeriod === "yearly" && savings > 0 && (
-          <p className="text-emerald-600 dark:text-emerald-400 text-sm font-semibold mt-2">
-            Save {savings}% annually
-          </p>
-        )}
-        <p className="text-xs font-bold text-emerald-600 dark:text-emerald-400 mt-2">₹0 during beta — free, full access</p>
-      </div>
-      <Link
-        href="https://app.managemycounter.com/register"
-        className={`w-full py-3 rounded-xl text-sm font-bold uppercase tracking-wider transition-all flex items-center justify-center mb-8 ${
-          plan.popular
-            ? "bg-primary text-white hover:opacity-90 shadow-lg"
-            : "bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-white hover:bg-zinc-200 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700"
-        }`}
-      >
-        {plan.cta}
-      </Link>
-
-      <ul className="space-y-4 mt-auto flex-1">
-        {plan.features.map((feature, i) => (
-          <li key={i} className="flex items-start gap-2.5 text-sm text-zinc-600 dark:text-zinc-400">
-            <Check size={14} className={plan.popular ? "text-primary shrink-0" : "text-emerald-500 shrink-0"} strokeWidth={3} />
-            <span>{feature}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
 function FeatureExplorer() {
   const [activeId, setActiveId] = useState<typeof FEATURE_CATEGORIES[number]["id"]>("billing");
   const active = FEATURE_CATEGORIES.find((c) => c.id === activeId)!;
@@ -392,11 +281,50 @@ function FeatureExplorer() {
   );
 }
 
-export default function LandingPage() {
-  const [billingPeriod, setBillingPeriod] = useState<"monthly" | "yearly">("yearly");
+const FAQ_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Do I need to know accounting to use this?",
+      acceptedAnswer: { "@type": "Answer", text: "No. There's no accounting jargon on screen — just billing, udhaar ka hisab, and stock, in the same language you already use at your counter. Your CA still gets proper GSTR-ready reports at month-end." },
+    },
+    {
+      "@type": "Question",
+      name: "Is managemycounter really free during the beta?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes — every invited shop gets full access to all modules at no cost while we're in private beta. No card required to sign up." },
+    },
+    {
+      "@type": "Question",
+      name: "Does it handle CGST/SGST/IGST automatically?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes. Tax is split automatically based on the customer's billing state versus your registered state. No manual CGST/SGST/IGST calculation needed." },
+    },
+    {
+      "@type": "Question",
+      name: "Can I manage stock across more than one warehouse or store?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes — multi-warehouse stock sync is included for every invited shop during the beta, with real-time cross-location visibility and transfers." },
+    },
+    {
+      "@type": "Question",
+      name: "What happens to my data if I lose internet connectivity?",
+      acceptedAnswer: { "@type": "Answer", text: "The Android apps are built offline-first — staff can keep billing and recording attendance without a live connection, and everything syncs automatically once you're back online." },
+    },
+    {
+      "@type": "Question",
+      name: "Can customers get their invoice without installing anything?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes — invoices can be shared as a direct link over WhatsApp or email. Customers open it in their browser to view or download the PDF." },
+    },
+  ],
+};
 
+export default function LandingPage() {
   return (
     <div className="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white font-sans antialiased">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_SCHEMA) }}
+      />
       {/* Hero with Google Gemini Effect */}
       <HeroSection />
 
@@ -606,52 +534,38 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Pricing */}
-      <section id="pricing" className="py-24 md:py-32 bg-zinc-50 dark:bg-zinc-900">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <span className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider mb-6">
-              <Tag size={14} />
-              Pricing
-            </span>
-            <h2 className="text-4xl md:text-5xl font-black tracking-tight text-zinc-900 dark:text-white mb-6">
-              Simple, straightforward pricing
-            </h2>
-            <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-8">
-              We're in private beta right now — every invited shop gets full access, completely free.
-            </p>
-            <div className="inline-flex items-center gap-1 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 p-1 rounded-xl shadow-sm">
-              <button
-                onClick={() => setBillingPeriod("monthly")}
-                className={`px-6 py-2.5 rounded-lg text-sm font-bold transition-all ${
-                  billingPeriod === "monthly"
-                    ? "bg-primary text-white shadow"
-                    : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"
-                }`}
-              >
-                Monthly
-              </button>
-              <button
-                onClick={() => setBillingPeriod("yearly")}
-                className={`px-6 py-2.5 rounded-lg text-sm font-bold transition-all flex items-center gap-1.5 ${
-                  billingPeriod === "yearly"
-                    ? "bg-primary text-white shadow"
-                    : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"
-                }`}
-              >
-                Yearly
-                <span className="bg-primary/20 text-primary dark:text-white text-xs px-2 py-0.5 rounded font-bold">SAVE 16%</span>
-              </button>
-            </div>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {PRICING_PLANS.map((plan, i) => (
-              <PricingCard key={i} plan={plan} billingPeriod={billingPeriod} />
-            ))}
-          </div>
-          <p className="text-center text-sm text-zinc-500 dark:text-zinc-500 mt-12">
-            Free during private beta. No credit card required. Cancel anytime.
+      {/* Built by a shopkeeper for shopkeepers — About section */}
+      <section id="about" className="py-24 md:py-32 bg-zinc-50 dark:bg-zinc-900">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <span className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider mb-6">
+            <Heart size={14} />
+            Made by an Indian Shopkeeper
+          </span>
+          <h2 className="text-4xl md:text-5xl font-black tracking-tight text-zinc-900 dark:text-white mb-6">
+            For the Indian shopkeeper community
+          </h2>
+          <p className="text-lg text-zinc-600 dark:text-zinc-400 max-w-3xl mx-auto mb-8 leading-relaxed">
+            managemycounter wasn't built in a corporate boardroom. It was built behind a counter — by someone who's
+            weighed atta on the kaanta, written udhaar in a notebook, and stayed late doing hisab-kitab after closing.
+            We built the tool we wish we had.
           </p>
+          <p className="text-lg text-zinc-600 dark:text-zinc-400 max-w-3xl mx-auto mb-10 leading-relaxed">
+            That's why it's free during beta. No trials that expire, no credit card needed, no feature gates.
+            Every invited shop gets the full ERP — because we're not trying to trap you into a subscription.
+            We're building something the Indian dukaandar community actually deserves.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link href="https://app.managemycounter.com/register">
+              <Button variant="default" size="lg" className="w-full sm:w-auto">
+                Get Invite Access — Free <ArrowRight size={20} />
+              </Button>
+            </Link>
+            <a href="mailto:hello@managemycounter.com">
+              <Button variant="secondary" size="lg" className="w-full sm:w-auto bg-transparent border border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800">
+                Write to us
+              </Button>
+            </a>
+          </div>
         </div>
       </section>
 

@@ -23,7 +23,7 @@ const FAQS = [
   {
     question: "Can I manage stock across more than one warehouse or store?",
     answer:
-      "Yes, the Pro and Enterprise plans support multi-warehouse stock sync — you can check availability across every location in real time and record transfers between them without manual reconciliation.",
+      "Yes — multi-warehouse stock sync is included for every invited shop during the beta, no upgrade needed. Check availability across every location in real time and record transfers between them without manual reconciliation.",
   },
   {
     question: "What happens to my data if I lose internet connectivity?",
@@ -46,9 +46,9 @@ const FAQS = [
       "Both. You can configure separate templates for thermal receipt printers and full A4 tax invoices, including which fields (logo, HSN codes, bank details, signature) appear on each.",
   },
   {
-    question: "What if I outgrow the Starter plan?",
+    question: "What happens when the beta ends?",
     answer:
-      "You can upgrade to Pro or Enterprise at any time — your invoice numbering, party ledgers, and stock history all carry over, so switching plans doesn't mean starting over.",
+      "Paid plans will follow once the beta wraps up, but nothing changes overnight — we'll give every invited shop advance notice before any billing starts. Your invoice numbering, party ledgers, and stock history stay exactly as they are; nothing gets reset or locked.",
   },
 ];
 
