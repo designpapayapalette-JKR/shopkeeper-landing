@@ -1,9 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Menu, X, Search, IndianRupee } from "lucide-react";
+import { motion, useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { AnimatedGroup } from "@/components/ui/animated-group";
 
@@ -185,63 +186,84 @@ function ProductPreview() {
 }
 
 export function HeroSection() {
+  const gradientRef = useRef<HTMLDivElement>(null);
+  const gradientInView = useInView(gradientRef, { once: true });
+
   return (
     <>
       <SiteHeader />
       <main className="overflow-hidden bg-white">
         <section>
-          <div className="relative pt-16 md:pt-24">
-            <div
-              aria-hidden
-              className="absolute inset-0 -z-10 size-full [background:radial-gradient(125%_125%_at_50%_100%,transparent_0%,white_75%)]"
-            />
-            <div className="mx-auto max-w-7xl px-6">
-              <div className="text-center sm:mx-auto lg:mr-auto lg:mt-0">
-                <AnimatedGroup variants={transitionVariants}>
-                  <Link
-                    href="#pricing"
-                    className="hover:bg-white bg-zinc-100 group mx-auto flex w-fit items-center gap-4 rounded-full border border-zinc-200 p-1 pl-4 shadow-md shadow-black/5 transition-all duration-300"
-                  >
-                    <span className="text-zinc-800 text-sm">BETA · Made for the Indian dukaandar — free, no card</span>
-                    <span className="block h-4 w-0.5 border-l border-zinc-300" />
-                    <div className="bg-white group-hover:bg-zinc-100 size-6 overflow-hidden rounded-full duration-500">
-                      <div className="flex w-12 -translate-x-1/2 duration-500 ease-in-out group-hover:translate-x-0">
-                        <span className="flex size-6"><ArrowRight className="m-auto size-3" /></span>
-                        <span className="flex size-6"><ArrowRight className="m-auto size-3" /></span>
+          <div className="relative px-4 pt-8 md:px-6 md:pt-12">
+            {/* Warm gradient backdrop behind the announcement pill, headline
+                and subhead — fades to white before the product preview so
+                the rest of the page stays on the site's plain-white system. */}
+            <div className="relative isolate mx-auto max-w-7xl overflow-hidden rounded-3xl">
+              <motion.div
+                ref={gradientRef}
+                initial={{ opacity: 0, y: -30 }}
+                animate={gradientInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 1.6, ease: "easeOut" }}
+                aria-hidden
+                className="absolute inset-0 -z-10"
+                style={{
+                  backgroundImage: `
+                    linear-gradient(180deg, #ffffff 0%, #FFF3E0 25%, #FFE0D6 50%, #FDE2E9 72%, #ECE0F7 88%, #ffffff 100%),
+                    radial-gradient(at 15% 20%, #ffffff66 0%, transparent 55%),
+                    radial-gradient(at 85% 75%, #ede4fb66 0%, transparent 60%)
+                  `,
+                  backgroundBlendMode: "overlay, screen",
+                }}
+              />
+
+              <div className="mx-auto max-w-7xl px-6 pt-10 pb-16 md:pt-16 md:pb-20">
+                <div className="text-center sm:mx-auto lg:mr-auto lg:mt-0">
+                  <AnimatedGroup variants={transitionVariants}>
+                    <Link
+                      href="#pricing"
+                      className="hover:bg-white bg-white/70 group mx-auto flex w-fit items-center gap-4 rounded-full border border-zinc-200 p-1 pl-4 shadow-md shadow-black/5 backdrop-blur-sm transition-all duration-300"
+                    >
+                      <span className="text-zinc-800 text-sm">BETA · Made for the Indian dukaandar — free, no card</span>
+                      <span className="block h-4 w-0.5 border-l border-zinc-300" />
+                      <div className="bg-white group-hover:bg-zinc-100 size-6 overflow-hidden rounded-full duration-500">
+                        <div className="flex w-12 -translate-x-1/2 duration-500 ease-in-out group-hover:translate-x-0">
+                          <span className="flex size-6"><ArrowRight className="m-auto size-3" /></span>
+                          <span className="flex size-6"><ArrowRight className="m-auto size-3" /></span>
+                        </div>
                       </div>
+                    </Link>
+
+                    <h1 className="mt-8 max-w-4xl mx-auto text-balance text-5xl md:text-6xl lg:mt-12 lg:text-7xl text-zinc-900">
+                      Your khata, udhaar &amp; GST —
+                      <br />
+                      finally <span className="font-serif italic font-normal text-blue-600">sorted</span>.
+                    </h1>
+                    <p className="mx-auto mt-8 max-w-2xl text-balance text-lg text-zinc-600">
+                      Built in India for the Indian shopkeeper who's tried a diary, tried Excel, maybe even tried another app — and still ends up doing hisab-kitab by hand at closing time. One app for billing, udhaar, stock, and GST — no accounting degree required.
+                    </p>
+                  </AnimatedGroup>
+
+                  <AnimatedGroup
+                    variants={{
+                      container: { visible: { transition: { staggerChildren: 0.05, delayChildren: 0.75 } } },
+                      ...transitionVariants,
+                    }}
+                    className="mt-10 flex flex-col items-center justify-center gap-2 md:flex-row"
+                  >
+                    <div className="bg-white/70 rounded-[14px] border border-zinc-200 p-0.5 backdrop-blur-sm">
+                      <Button asChild size="lg" className="rounded-xl px-5 text-base">
+                        <Link href="https://app.managemycounter.com/register">
+                          <span className="text-nowrap">Get Invite Access</span>
+                        </Link>
+                      </Button>
                     </div>
-                  </Link>
-
-                  <h1 className="mt-8 max-w-4xl mx-auto text-balance text-5xl md:text-6xl lg:mt-12 lg:text-7xl text-zinc-900">
-                    Your khata, udhaar &amp; GST —
-                    <br />
-                    finally <span className="font-serif italic font-normal text-blue-600">sorted</span>.
-                  </h1>
-                  <p className="mx-auto mt-8 max-w-2xl text-balance text-lg text-zinc-600">
-                    Built in India for the Indian shopkeeper who's tried a diary, tried Excel, maybe even tried another app — and still ends up doing hisab-kitab by hand at closing time. One app for billing, udhaar, stock, and GST — no accounting degree required.
-                  </p>
-                </AnimatedGroup>
-
-                <AnimatedGroup
-                  variants={{
-                    container: { visible: { transition: { staggerChildren: 0.05, delayChildren: 0.75 } } },
-                    ...transitionVariants,
-                  }}
-                  className="mt-10 flex flex-col items-center justify-center gap-2 md:flex-row"
-                >
-                  <div className="bg-zinc-100 rounded-[14px] border border-zinc-200 p-0.5">
-                    <Button asChild size="lg" className="rounded-xl px-5 text-base">
-                      <Link href="https://app.managemycounter.com/register">
-                        <span className="text-nowrap">Get Invite Access</span>
+                    <Button asChild size="lg" variant="ghost" className="h-10.5 rounded-xl px-5">
+                      <Link href="#features">
+                        <span className="text-nowrap">Explore Features ↓</span>
                       </Link>
                     </Button>
-                  </div>
-                  <Button asChild size="lg" variant="ghost" className="h-10.5 rounded-xl px-5">
-                    <Link href="#features">
-                      <span className="text-nowrap">Explore Features ↓</span>
-                    </Link>
-                  </Button>
-                </AnimatedGroup>
+                  </AnimatedGroup>
+                </div>
               </div>
             </div>
 
@@ -251,9 +273,9 @@ export function HeroSection() {
                 ...transitionVariants,
               }}
             >
-              <div className="relative mt-10 overflow-hidden px-6 sm:mt-14 md:mt-16">
-                <div aria-hidden className="bg-gradient-to-b to-white absolute inset-0 z-10 from-transparent from-70%" />
-                <div className="relative mx-auto max-w-4xl">
+              <div className="relative mt-4 overflow-hidden px-2 sm:px-6">
+                <div aria-hidden className="bg-gradient-to-b to-white absolute inset-0 z-10 from-transparent from-60%" />
+                <div className="ring-1 ring-zinc-950/10 shadow-xl shadow-zinc-950/10 relative mx-auto max-w-4xl rounded-2xl border border-zinc-200 border-b-0 bg-white p-3">
                   <ProductPreview />
                 </div>
               </div>
