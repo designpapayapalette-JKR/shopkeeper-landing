@@ -3,7 +3,7 @@
 import React, { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Menu, X, Search, IndianRupee, Heart } from "lucide-react";
+import { ArrowRight, Menu, X, Search, IndianRupee } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { AnimatedGroup } from "@/components/ui/animated-group";
@@ -40,6 +40,33 @@ const NAV_ITEMS = [
 
 function SiteHeader() {
   const [menuOpen, setMenuOpen] = React.useState(false);
+  const menuRef = React.useRef<HTMLDivElement | null>(null);
+
+  // Close the mobile overlay on Escape or a click outside it, and lock
+  // background scroll while it's open — the plain toggle this replaced had
+  // none of these, so it stayed open under a scrolled-away page and never
+  // caught a stray outside tap.
+  React.useEffect(() => {
+    if (!menuOpen) return;
+
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setMenuOpen(false);
+    }
+    function onClickOutside(e: MouseEvent) {
+      if (menuRef.current?.contains(e.target as Node)) return;
+      setMenuOpen(false);
+    }
+
+    document.addEventListener("keydown", onKey);
+    document.addEventListener("click", onClickOutside);
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.removeEventListener("click", onClickOutside);
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-zinc-200">
@@ -77,38 +104,46 @@ function SiteHeader() {
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
             className="lg:hidden p-2 -mr-2 text-zinc-700"
           >
             {menuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
+      </div>
 
-        {menuOpen && (
-          <div className="lg:hidden border-t border-zinc-200 py-5 space-y-5">
-            <ul className="space-y-4">
-              {NAV_ITEMS.map((item) => (
-                <li key={item.name}>
-                  <Link href={item.href} onClick={() => setMenuOpen(false)} className="text-base font-semibold text-zinc-700">
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-              <li>
-                <Link href="https://app.managemycounter.com/dashboard" className="text-base font-semibold text-zinc-700">
-                  Portal
+      {/* Mobile overlay menu */}
+      <div
+        ref={menuRef}
+        aria-hidden={!menuOpen}
+        className={`lg:hidden fixed inset-x-0 top-16 h-[calc(100vh-4rem)] bg-white overflow-y-auto transition-all duration-300 ${
+          menuOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-2 pointer-events-none"
+        }`}
+      >
+        <div className="px-6 py-8 space-y-8">
+          <ul className="space-y-5">
+            {NAV_ITEMS.map((item) => (
+              <li key={item.name}>
+                <Link href={item.href} onClick={() => setMenuOpen(false)} className="text-lg font-bold text-zinc-800">
+                  {item.name}
                 </Link>
               </li>
-            </ul>
-            <div className="flex flex-col gap-3">
-              <Button asChild variant="outline" size="sm">
-                <Link href="https://app.managemycounter.com/dashboard">Log In</Link>
-              </Button>
-              <Button asChild size="sm">
-                <Link href="https://app.managemycounter.com/register">Get Invite Access</Link>
-              </Button>
-            </div>
+            ))}
+            <li>
+              <Link href="https://app.managemycounter.com/dashboard" onClick={() => setMenuOpen(false)} className="text-lg font-bold text-zinc-800">
+                Portal
+              </Link>
+            </li>
+          </ul>
+          <div className="flex flex-col gap-3 pt-2 border-t border-zinc-200">
+            <Button asChild variant="outline" size="sm">
+              <Link href="https://app.managemycounter.com/dashboard">Log In</Link>
+            </Button>
+            <Button asChild size="sm">
+              <Link href="https://app.managemycounter.com/register">Get Invite Access</Link>
+            </Button>
           </div>
-        )}
+        </div>
       </div>
     </header>
   );
@@ -145,7 +180,7 @@ function ProductPreview() {
               <div key={p.name} className="rounded-lg border border-zinc-200 p-2.5">
                 <p className="text-[12px] font-bold text-zinc-800 leading-snug">{p.name}</p>
                 <div className="flex items-center justify-between mt-2">
-                  <span className="text-[13px] font-black text-blue-600">{p.price}</span>
+                  <span className="text-[13px] font-black text-primary">{p.price}</span>
                   <span className="text-[9px] font-bold text-zinc-400">{p.tag}</span>
                 </div>
               </div>
@@ -176,7 +211,7 @@ function ProductPreview() {
               <IndianRupee size={14} className="inline" strokeWidth={3} />2,194.50
             </span>
           </div>
-          <button className="mt-3 w-full rounded-lg bg-blue-600 text-white text-xs font-bold py-2.5">
+          <button className="mt-3 w-full rounded-lg bg-primary text-white text-xs font-bold py-2.5">
             Charge ₹2,194.50
           </button>
         </div>
@@ -215,15 +250,28 @@ export function HeroSection() {
                   backgroundBlendMode: "overlay, screen",
                 }}
               />
+              {/* Subtle dot-grid texture over the gradient — self-contained CSS,
+                  no external image, faded out toward the edges via a mask so it
+                  reads as texture rather than a hard-edged tile. */}
+              <div
+                aria-hidden
+                className="absolute inset-0 -z-10 opacity-[0.4]"
+                style={{
+                  backgroundImage: "radial-gradient(circle, #05004022 1px, transparent 1px)",
+                  backgroundSize: "28px 28px",
+                  maskImage: "radial-gradient(ellipse 80% 60% at 50% 30%, black 40%, transparent 100%)",
+                  WebkitMaskImage: "radial-gradient(ellipse 80% 60% at 50% 30%, black 40%, transparent 100%)",
+                }}
+              />
 
               <div className="mx-auto max-w-7xl px-6 pt-10 pb-16 md:pt-16 md:pb-20">
                 <div className="text-center sm:mx-auto lg:mr-auto lg:mt-0">
                   <AnimatedGroup variants={transitionVariants}>
                     <Link
-                      href="#about"
+                      href="#features"
                       className="hover:bg-white bg-white/70 group mx-auto flex w-fit items-center gap-4 rounded-full border border-zinc-200 p-1 pl-4 shadow-md shadow-black/5 backdrop-blur-sm transition-all duration-300"
                     >
-                      <span className="text-zinc-800 text-sm"><Heart size={12} className="inline text-red-500 mr-1" /> Made by a shopkeeper · Free for the community</span>
+                      <span className="text-zinc-800 text-sm">Full ERP, free during beta — no trial, no card</span>
                       <span className="block h-4 w-0.5 border-l border-zinc-300" />
                       <div className="bg-white group-hover:bg-zinc-100 size-6 overflow-hidden rounded-full duration-500">
                         <div className="flex w-12 -translate-x-1/2 duration-500 ease-in-out group-hover:translate-x-0">
@@ -234,12 +282,12 @@ export function HeroSection() {
                     </Link>
 
                     <h1 className="mt-8 max-w-4xl mx-auto text-balance text-5xl md:text-6xl lg:mt-12 lg:text-7xl text-zinc-900">
-                      Your khata, udhaar &amp; GST —
+                      Bill fast. Track udhaar.
                       <br />
-                      finally <span className="font-serif italic font-normal text-blue-600">sorted</span>.
+                      Stay <span className="font-serif italic font-normal text-primary">GST-ready</span>.
                     </h1>
                     <p className="mx-auto mt-8 max-w-2xl text-balance text-lg text-zinc-600">
-                      Built in India for the Indian shopkeeper who's tried a diary, tried Excel, maybe even tried another app — and still ends up doing hisab-kitab by hand at closing time. One app for billing, udhaar, stock, and GST — no accounting degree required.
+                      One counter app for Indian shopkeepers — POS billing, a live credit ledger instead of the bahi-khata, stock across every warehouse, and GST reports that build themselves as you bill. Made by a shopkeeper, for the shopkeeper community.
                     </p>
                   </AnimatedGroup>
 
@@ -259,7 +307,7 @@ export function HeroSection() {
                     </div>
                     <Button asChild size="lg" variant="ghost" className="h-10.5 rounded-xl px-5">
                       <Link href="#features">
-                        <span className="text-nowrap">Explore Features ↓</span>
+                        <span className="text-nowrap">See What&apos;s Inside ↓</span>
                       </Link>
                     </Button>
                   </AnimatedGroup>

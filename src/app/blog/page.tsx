@@ -42,7 +42,7 @@ export default function BlogPage() {
         {/* Hero */}
         <section className="py-16 md:py-24 bg-zinc-50 border-b border-zinc-200">
           <div className="max-w-4xl mx-auto px-6 text-center">
-            <span className="inline-flex items-center gap-2 bg-blue-600/10 text-blue-600 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider mb-6">
+            <span className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider mb-6">
               Blog
             </span>
             <h1 className="text-4xl md:text-5xl font-black tracking-tight text-zinc-900 mb-6">
@@ -63,15 +63,15 @@ export default function BlogPage() {
                 <Link
                   key={post.slug}
                   href={`/blog/${post.slug}`}
-                  className="group rounded-2xl border border-zinc-200 p-6 hover:border-blue-600/50 hover:shadow-lg transition-all duration-300"
+                  className="group rounded-2xl border border-zinc-200 p-6 hover:border-primary/50 hover:shadow-lg transition-all duration-300"
                 >
                   <div className="flex items-center gap-3 mb-4">
-                    <span className="inline-block bg-blue-600/10 text-blue-600 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded">
+                    <span className="inline-block bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded">
                       {post.category}
                     </span>
                     <span className="text-xs text-zinc-400">{post.readingTime}</span>
                   </div>
-                  <h2 className="text-xl font-bold text-zinc-900 group-hover:text-blue-600 transition-colors mb-3 leading-snug">
+                  <h2 className="text-xl font-bold text-zinc-900 group-hover:text-primary transition-colors mb-3 leading-snug">
                     {post.title}
                   </h2>
                   <p className="text-sm text-zinc-600 leading-relaxed mb-4">
@@ -79,7 +79,7 @@ export default function BlogPage() {
                   </p>
                   <div className="flex items-center justify-between">
                     <span className="text-xs text-zinc-400">{post.date}</span>
-                    <span className="text-xs font-bold text-zinc-900 group-hover:text-blue-600 transition-colors">
+                    <span className="text-xs font-bold text-zinc-900 group-hover:text-primary transition-colors">
                       Read More →
                     </span>
                   </div>

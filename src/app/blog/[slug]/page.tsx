@@ -163,7 +163,7 @@ export default async function BlogPostPage({ params }: Props) {
             {/* Header */}
             <header className="mb-10">
               <div className="flex items-center gap-3 mb-4">
-                <span className="inline-block bg-blue-600/10 text-blue-600 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded">
+                <span className="inline-block bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded">
                   {post.category}
                 </span>
                 <span className="text-xs text-zinc-400">{post.readingTime}</span>
@@ -197,7 +197,7 @@ export default async function BlogPostPage({ params }: Props) {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="https://app.managemycounter.com/register"
-              className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-xl text-sm font-bold uppercase tracking-wider hover:opacity-90 transition-all shadow-lg"
+              className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-xl text-sm font-bold uppercase tracking-wider hover:opacity-90 transition-all shadow-lg"
             >
               Try for Free
             </Link>

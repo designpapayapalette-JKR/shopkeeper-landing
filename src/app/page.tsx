@@ -166,14 +166,14 @@ function MobileAppPreview() {
             <div className="flex items-center gap-2">
               <Image src="/logo-icon.png" alt="" width={28} height={28} />
               <div>
-                <p className="text-sm font-black text-blue-600 leading-tight">Sharma General Store</p>
+                <p className="text-sm font-black text-primary leading-tight">Sharma General Store</p>
                 <p className="text-[10px] text-zinc-400 leading-tight flex items-center gap-0.5">Main Branch <ChevronDown size={10} /></p>
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <Barcode size={16} className="text-blue-600" />
-              <div className="w-7 h-7 rounded-full bg-blue-50 border border-zinc-200 flex items-center justify-center">
-                <span className="text-[10px] font-bold text-blue-600">RS</span>
+              <Barcode size={16} className="text-primary" />
+              <div className="w-7 h-7 rounded-full bg-primary/10 border border-zinc-200 flex items-center justify-center">
+                <span className="text-[10px] font-bold text-primary">RS</span>
               </div>
             </div>
           </div>
@@ -182,7 +182,7 @@ function MobileAppPreview() {
           <div className="px-4 pt-4 pb-5">
             <div className="flex items-center justify-between mb-2.5">
               <p className="text-[13px] font-bold text-zinc-800">Today&apos;s Snapshot</p>
-              <p className="text-[10px] font-semibold text-blue-600">View Analytics</p>
+              <p className="text-[10px] font-semibold text-primary">View Analytics</p>
             </div>
             <div className="grid grid-cols-2 gap-2">
               <div className="rounded-xl p-2.5" style={{ background: "#E4F6DC" }}>
@@ -329,11 +329,11 @@ export default function LandingPage() {
       <HeroSection />
 
       {/* Pain points */}
-      <section className="py-20 md:py-28 bg-white dark:bg-zinc-950">
+      <section className="py-24 md:py-32 bg-white dark:bg-zinc-950">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-12">
             <div className="order-2 lg:order-1 text-center lg:text-left">
-              <h2 className="text-3xl md:text-4xl font-black tracking-tight text-zinc-900 dark:text-white mb-4">
+              <h2 className="text-4xl md:text-5xl font-black tracking-tight text-zinc-900 dark:text-white mb-6">
                 Does this feel like your daily routine?
               </h2>
               <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-5">
@@ -496,7 +496,7 @@ export default function LandingPage() {
               </p>
             </div>
             <div className="relative py-8">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-blue-500/20 rounded-3xl blur-3xl" />
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/40 rounded-3xl blur-3xl" />
               <div className="relative">
                 <MobileAppPreview />
               </div>
@@ -579,7 +579,7 @@ export default function LandingPage() {
           bottom of the page pins this heading behind the nav with nowhere
           left to scroll clear of it. */}
       <section className="pt-24 pb-40 md:pt-32 md:pb-56 bg-zinc-900 dark:bg-zinc-950 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-blue-500/10" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-primary/20" />
         <div className="relative max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-4xl md:text-6xl font-black tracking-tight text-white mb-8">
             Put down the bahi-khata, go digital
