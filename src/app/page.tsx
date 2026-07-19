@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { HeroSection } from "@/components/blocks/hero-section-1";
+import { HeroSection } from "@/components/blocks/hero-section-gemini";
 import { FAQSection } from "@/components/blocks/faq-section";
 import {
   ArrowRight, Check, Smartphone, Send, Users, Tag, Receipt, Package, Landmark,
@@ -29,10 +29,6 @@ const FOOTER_MENU = {
   ],
 };
 
-// Every feature listed here is something actually built and shipped in the
-// product today — grouped the same way the app's own dashboard groups
-// them (Billing & Sales / Inventory & Products / Accounting & Finance /
-// Staff & HR / Operations & Logistics), not generic SaaS marketing copy.
 const FEATURE_CATEGORIES = [
   {
     id: "billing",
@@ -99,9 +95,6 @@ const FEATURE_CATEGORIES = [
   },
 ] as const;
 
-// Only real, verified capabilities — no fabricated third-party API
-// integrations. WhatsApp sharing, thermal printing, and Excel export are
-// all genuinely built; there is no live Tally/Razorpay/CRM sync today.
 const WORKS_WITH = [
   { icon: MessageCircle, name: "WhatsApp", desc: "Share PDF invoices and send udhar payment reminders directly." },
   { icon: Printer, name: "Thermal & A4 printers", desc: "Bluetooth, USB, or Wi-Fi thermal receipt printers, plus full A4 tax invoices." },
@@ -109,8 +102,6 @@ const WORKS_WITH = [
   { icon: Scale, name: "Weighing scales", desc: "Loose-goods billing by weight, ready for scale-hardware integration as it rolls out." },
 ];
 
-// Named plainly, in the cashier/owner's own language — the specific daily
-// friction this replaces, not abstract "inefficiency."
 const PAIN_POINTS = [
   { before: "Weighing rice or dal, then typing the price into a calculator by hand", after: "Scale-ready weight billing — the price computes itself" },
   { before: "A notebook full of udhaar you have to chase down by phone", after: "A live ledger with one-tap WhatsApp payment reminders" },
@@ -265,9 +256,6 @@ function FeatureExplorer() {
 
   return (
     <div>
-      {/* Category tabs — deliberately mirrors the same 5-category grouping
-          the actual app's own sidebar uses, so this section teaches the
-          real product's information architecture, not a marketing fiction. */}
       <div className="flex flex-wrap justify-center gap-2 mb-10">
         {FEATURE_CATEGORIES.map((cat) => {
           const Icon = cat.icon;
@@ -308,12 +296,10 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white font-sans antialiased">
-      {/* Hero */}
+      {/* Hero with Google Gemini Effect */}
       <HeroSection />
 
-      {/* Pain points — names the specific daily friction before the feature
-          list, so a visitor recognizes their own counter before being sold
-          to. */}
+      {/* Pain points */}
       <section className="py-20 md:py-28 bg-white dark:bg-zinc-950">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
@@ -338,8 +324,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Features Section — interactive explorer across the 5 real module
-          categories, replacing a flat generic 9-card grid. */}
+      {/* Features */}
       <section id="features" className="py-24 md:py-32 bg-zinc-50 dark:bg-zinc-900">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -358,9 +343,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Why managemycounter — honest differentiators, no fabricated
-          customer testimonials (there's no installed base to quote yet
-          during beta). */}
+      {/* Differentiators */}
       <section className="py-24 md:py-32 bg-white dark:bg-zinc-950">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -388,7 +371,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Platform Showcase */}
+      {/* Mobile Apps */}
       <section id="download" className="py-24 md:py-32 bg-zinc-50 dark:bg-zinc-900">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -441,9 +424,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Works With — only real, verified capabilities. No fabricated
-          third-party API integrations (there is no live Tally/Razorpay/CRM
-          sync today, however aspirational). */}
+      {/* Works With */}
       <section id="works-with" className="py-24 md:py-32 bg-white dark:bg-zinc-950">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-3xl mx-auto mb-16">
