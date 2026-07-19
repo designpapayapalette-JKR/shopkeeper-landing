@@ -18,9 +18,9 @@ const inter = Inter({
   weight: ["300", "400", "500", "600", "700"],
 });
 
-const TITLE = "managemycounter - All-in-One Retail POS & Field Operations ERP";
+const TITLE = "managemycounter - GST Billing, Khata & Stock App for Indian Shopkeepers";
 const DESCRIPTION =
-  "GST billing in seconds. Stock, staff, and field agents — all in sync, in one app built for Indian shopkeepers. Free during beta, no credit card required.";
+  "An Indian ERP for Indian shopkeepers — GST billing, udhaar khata, stock, and staff, all in one app. No accounting degree needed. Free during beta, no credit card required.";
 
 const BASE_URL = "https://managemycounter.com";
 

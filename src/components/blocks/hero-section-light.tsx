@@ -202,7 +202,7 @@ export function HeroSection() {
                     href="#pricing"
                     className="hover:bg-white bg-zinc-100 group mx-auto flex w-fit items-center gap-4 rounded-full border border-zinc-200 p-1 pl-4 shadow-md shadow-black/5 transition-all duration-300"
                   >
-                    <span className="text-zinc-800 text-sm">BETA · Free during beta — no credit card, ever</span>
+                    <span className="text-zinc-800 text-sm">BETA · Made for the Indian dukaandar — free, no card</span>
                     <span className="block h-4 w-0.5 border-l border-zinc-300" />
                     <div className="bg-white group-hover:bg-zinc-100 size-6 overflow-hidden rounded-full duration-500">
                       <div className="flex w-12 -translate-x-1/2 duration-500 ease-in-out group-hover:translate-x-0">
@@ -213,12 +213,12 @@ export function HeroSection() {
                   </Link>
 
                   <h1 className="mt-8 max-w-4xl mx-auto text-balance text-5xl md:text-6xl lg:mt-12 lg:text-7xl text-zinc-900">
-                    GST billing in seconds.
+                    Your khata, udhaar &amp; GST —
                     <br />
-                    Everything else, <span className="font-serif italic font-normal text-blue-600">automatic</span>.
+                    finally <span className="font-serif italic font-normal text-blue-600">sorted</span>.
                   </h1>
                   <p className="mx-auto mt-8 max-w-2xl text-balance text-lg text-zinc-600">
-                    Retail, GST, or estimate invoices with custom tax slabs — printed straight to any Bluetooth, USB, or Wi-Fi thermal printer. Stock synced across warehouses, udhar ledgers that update themselves, and live GPS tracking for your field team.
+                    Built in India for the Indian shopkeeper who's tried a diary, tried Excel, maybe even tried another app — and still ends up doing hisab-kitab by hand at closing time. One app for billing, udhaar, stock, and GST — no accounting degree required.
                   </p>
                 </AnimatedGroup>
 

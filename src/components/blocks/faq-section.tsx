@@ -6,6 +6,11 @@ import { Reveal } from "@/components/ui/reveal";
 
 const FAQS = [
   {
+    question: "Do I need to know accounting to use this?",
+    answer:
+      "No. If you can use WhatsApp, you can use managemycounter. There's no accounting jargon on screen — just billing, udhaar ka hisab, and stock, in the same language you already use at your counter. Your CA still gets proper GSTR-ready reports at month-end.",
+  },
+  {
     question: "Is managemycounter really free during the beta?",
     answer:
       "Yes — every invited shop gets full access to all modules (POS, GST invoicing, multi-warehouse inventory, field-agent tracking, and reporting) at no cost while we're in private beta. No card required to sign up.",

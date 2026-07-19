@@ -34,7 +34,7 @@ const FEATURE_CATEGORIES = [
     id: "billing",
     label: "Billing & Sales",
     icon: Receipt,
-    intro: "A counter workflow built for speed — keyboard-driven search, one-tap quick-add, and billing for both packaged and loose/weighed goods.",
+    intro: "Counter pe bill seconds mein banta hai — keyboard-driven search, one-tap quick-add, aur packed ho ya loose/weighed maal, dono ka billing ek hi jagah.",
     items: [
       { title: "POS & B2B billing", desc: "Retail, GST, or estimate invoices — with Bill of Supply for composition-scheme sellers — from the same counter screen." },
       { title: "Weighing-scale & loose-item billing", desc: "Sell by weight (kg/g/ml/l) alongside fixed-unit packets, with a dual-pricing toggle for products sold both ways." },
@@ -48,7 +48,7 @@ const FEATURE_CATEGORIES = [
     id: "inventory",
     label: "Inventory & Products",
     icon: Package,
-    intro: "Stock that stays accurate across every warehouse, with the specific fields Indian retail actually needs — not a generic SKU list.",
+    intro: "Godown ho ya dukaan, maal ka hisab hamesha sahi — Indian retail ko jo fields chahiye, wahi hain, koi generic SKU list nahi.",
     items: [
       { title: "Multi-warehouse stock sync", desc: "Real-time quantity across every location, with transfer requests and approvals between them." },
       { title: "Custom product fields", desc: "Company-defined attributes — colour, flavour, dimensions — that show up on the product form and, if you choose, the printed invoice." },
@@ -62,7 +62,7 @@ const FEATURE_CATEGORIES = [
     id: "accounting",
     label: "Accounting & Finance",
     icon: Landmark,
-    intro: "The reports and ledger behaviour a shop's accountant actually asks for, not just a sales total.",
+    intro: "Woh hisab-kitab jo aapka CA maangta hai — sirf total bikri nahi, poora ledger.",
     items: [
       { title: "Party ledger with udhar reminders", desc: "Running balance per customer/supplier, with one-tap WhatsApp reminders for anything overdue." },
       { title: "Credit/debit notes & bank reconciliation", desc: "Proper adjustment documents, and confidence-scored matching against your bank statement." },
@@ -75,7 +75,7 @@ const FEATURE_CATEGORIES = [
     id: "staff",
     label: "Staff & HR",
     icon: Contact,
-    intro: "Role-based access for everyone who touches the counter or the stockroom, plus the day-to-day HR a small team needs.",
+    intro: "Counter pe ho ya godown mein, har karamchari ko utna hi dikhe jitna zaroorat hai — plus roz ki HR jo ek chhoti team ko chahiye.",
     items: [
       { title: "Five distinct roles", desc: "Owner, Manager, Staff, Warehouse Manager, and Field Agent — each sees only what their role needs." },
       { title: "Attendance & payroll", desc: "Daily check-in/out, with wage calculation that reads directly from attendance records." },
@@ -86,7 +86,7 @@ const FEATURE_CATEGORIES = [
     id: "operations",
     label: "Operations & Logistics",
     icon: Truck,
-    intro: "For the part of the business that happens outside the shop — deliveries, field visits, and supplier orders.",
+    intro: "Dukaan ke bahar jo hota hai uske liye — delivery, field visits, aur supplier ko diya gaya order.",
     items: [
       { title: "Live field-agent GPS tracking", desc: "See where your delivery/sales agents are and what they've completed, from the owner's dashboard." },
       { title: "Delivery challans", desc: "GST Rule 55-compliant challans linked to the originating invoice, with driver and vehicle details." },
@@ -96,24 +96,24 @@ const FEATURE_CATEGORIES = [
 ] as const;
 
 const WORKS_WITH = [
-  { icon: MessageCircle, name: "WhatsApp", desc: "Share PDF invoices and send udhar payment reminders directly." },
-  { icon: Printer, name: "Thermal & A4 printers", desc: "Bluetooth, USB, or Wi-Fi thermal receipt printers, plus full A4 tax invoices." },
-  { icon: FileSpreadsheet, name: "Excel / CSV export", desc: "Every report and register exports cleanly for your accountant or a spreadsheet." },
-  { icon: Scale, name: "Weighing scales", desc: "Loose-goods billing by weight, ready for scale-hardware integration as it rolls out." },
+  { icon: MessageCircle, name: "WhatsApp", desc: "PDF invoice seedhe WhatsApp pe bhejo, aur udhaar ka reminder bhi." },
+  { icon: Printer, name: "Thermal & A4 printers", desc: "Bluetooth, USB, ya Wi-Fi thermal receipt printer, plus poora A4 tax invoice." },
+  { icon: FileSpreadsheet, name: "Excel / CSV export", desc: "Har report aur register saaf export hota hai — apne CA ke liye ya spreadsheet mein." },
+  { icon: Scale, name: "Weighing scales", desc: "Loose maal ka weight-billing, scale-hardware integration ke saath." },
 ];
 
 const PAIN_POINTS = [
-  { before: "Weighing rice or dal, then typing the price into a calculator by hand", after: "Scale-ready weight billing — the price computes itself" },
-  { before: "A notebook full of udhaar you have to chase down by phone", after: "A live ledger with one-tap WhatsApp payment reminders" },
-  { before: "Checking three different registers to see what's actually in stock", after: "One number, synced live across every warehouse" },
-  { before: "Retyping the same bill into Tally at the end of the day", after: "GST-ready reports and exports, generated as you sell" },
+  { before: "Kaante se tolna, phir calculator nikaal ke rate lagana — har customer ke liye", after: "Weight daalo, rate khud ban jaata hai — scale-ready billing" },
+  { before: "Bahi-khata mein udhaar likhna, phir mahine ke end mein grahak ko phone karke yaad dilana", after: "Ek live ledger, aur udhaar ka reminder ek tap mein WhatsApp pe chala jaata hai" },
+  { before: "Teen alag registers palatna ye dekhne ke liye ki godown mein maal bacha hai ya nahi", after: "Ek hi number — har warehouse ka stock, live" },
+  { before: "Din bhar ki bikri raat ko baithkar Tally ya Excel mein dobara type karna", after: "GST-ready reports apne aap ban jaate hain, jaise-jaise bill banta hai" },
 ];
 
 const DIFFERENTIATORS = [
-  { icon: Scale, title: "Actually built for kirana counters", desc: "Weighing-scale billing, loose-goods pricing, and container deposits — not a generic retail POS with GST bolted on." },
-  { icon: KeyboardIcon, title: "Keyboard-first, like the desktop software you already know", desc: "Search, arrow keys, Enter to add, Ctrl+A to charge. Built for a cashier who never wants to touch the mouse." },
-  { icon: Smartphone, title: "Offline-first mobile apps", desc: "Built for Indian network conditions — billing and attendance keep working without a live connection, and sync once you're back online." },
-  { icon: Send, title: "Free during beta, no catch", desc: "Every invited shop gets full access to every module today. No credit card, no feature gate." },
+  { icon: Scale, title: "Banaya gaya kirana counter ke liye", desc: "Kaante se weight-billing, loose maal ki pricing, aur crate/bottle deposit tracking — ek generic POS nahi jisme GST baad mein jod diya gaya ho." },
+  { icon: KeyboardIcon, title: "Keyboard-first, jaisa purana Tally software chalta hai", desc: "Search karo, arrow keys se select, Enter se add, Ctrl+A se bill pakka — cashier ko mouse chuune ki zaroorat hi nahi." },
+  { icon: Smartphone, title: "Offline-first mobile apps", desc: "Indian network ke liye bana — network chala jaaye to bhi billing aur attendance rukta nahi, connection wapas aate hi sync ho jaata hai." },
+  { icon: Send, title: "Beta mein bilkul free, koi catch nahi", desc: "Har invited dukaan ko aaj hi poora access milta hai, sabhi modules ka. Na credit card, na feature lock." },
 ];
 
 const PRICING_PLANS = [
@@ -301,21 +301,36 @@ export default function LandingPage() {
 
       {/* Pain points */}
       <section className="py-20 md:py-28 bg-white dark:bg-zinc-950">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="text-3xl md:text-4xl font-black tracking-tight text-zinc-900 dark:text-white">
-              If this sounds like your counter, it's built for you
-            </h2>
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid lg:grid-cols-5 gap-12 items-center mb-12">
+            <div className="lg:col-span-2">
+              <div className="relative rounded-2xl overflow-hidden border border-zinc-200 shadow-lg aspect-[4/5] max-w-sm mx-auto lg:mx-0">
+                <Image
+                  src="/images/kirana-ledger-writing.jpg"
+                  alt="A shopkeeper doing hisab-kitab by hand in a paper register"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </div>
+            <div className="lg:col-span-3 text-center lg:text-left">
+              <h2 className="text-3xl md:text-4xl font-black tracking-tight text-zinc-900 dark:text-white mb-4">
+                Yeh sab roz ka jhanjhat lagta hai?
+              </h2>
+              <p className="text-lg text-zinc-600 dark:text-zinc-400">
+                Har dukaandar ne kisi na kisi mod pe yeh try kiya hai — bahi-khata, Excel, ya koi aur app jo bahut complicated nikla. Agar hisab-kitab abhi bhi raat ko haath se ho raha hai, yeh app aapke liye hi bana hai.
+              </p>
+            </div>
           </div>
           <div className="grid sm:grid-cols-2 gap-5">
             {PAIN_POINTS.map((p, i) => (
               <div key={i} className="rounded-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden">
                 <div className="p-5 bg-zinc-50 dark:bg-zinc-900">
-                  <p className="text-xs font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-1.5">Today</p>
+                  <p className="text-xs font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-1.5">Aaj</p>
                   <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed">{p.before}</p>
                 </div>
                 <div className="p-5 bg-primary/5">
-                  <p className="text-xs font-bold uppercase tracking-wider text-primary mb-1.5">With managemycounter</p>
+                  <p className="text-xs font-bold uppercase tracking-wider text-primary mb-1.5">managemycounter ke saath</p>
                   <p className="text-zinc-900 dark:text-white font-semibold leading-relaxed">{p.after}</p>
                 </div>
               </div>
@@ -333,10 +348,10 @@ export default function LandingPage() {
               Every Module
             </span>
             <h2 className="text-4xl md:text-5xl font-black tracking-tight text-zinc-900 dark:text-white mb-6">
-              One dashboard, five job-to-be-done categories
+              Ek dashboard, dukaan ka poora kaamkaaj
             </h2>
             <p className="text-lg text-zinc-600 dark:text-zinc-400">
-              The same grouping you'll see the moment you log in — pick a category to see what's actually built.
+              Wahi grouping jo aapko login karte hi dikhegi — koi category chuno, dekho kya-kya actually bana hai.
             </p>
           </div>
           <FeatureExplorer />
@@ -346,14 +361,27 @@ export default function LandingPage() {
       {/* Differentiators */}
       <section className="py-24 md:py-32 bg-white dark:bg-zinc-950">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider mb-6">
-              <Users size={14} />
-              Why managemycounter
-            </span>
-            <h2 className="text-4xl md:text-5xl font-black tracking-tight text-zinc-900 dark:text-white mb-6">
-              Built for how a kirana counter actually runs
-            </h2>
+          <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
+            <div>
+              <span className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider mb-6">
+                <Users size={14} />
+                Why managemycounter
+              </span>
+              <h2 className="text-4xl md:text-5xl font-black tracking-tight text-zinc-900 dark:text-white mb-6">
+                Ek Indian ERP, Indian dukaandaron ke liye
+              </h2>
+              <p className="text-lg text-zinc-600 dark:text-zinc-400">
+                Yeh koi global POS nahi jisme baad mein GST jod diya gaya ho. Har screen — udhaar ka khata, weight-billing, GST return — Indian retail kaise chalta hai, wahi soch ke banayi gayi hai.
+              </p>
+            </div>
+            <div className="relative rounded-2xl overflow-hidden border border-zinc-200 shadow-lg aspect-[4/3]">
+              <Image
+                src="/images/kirana-storefront.jpg"
+                alt="A typical Indian kirana store counter"
+                fill
+                className="object-cover"
+              />
+            </div>
           </div>
           <div className="grid sm:grid-cols-2 gap-6">
             {DIFFERENTIATORS.map((d, i) => (
@@ -381,10 +409,10 @@ export default function LandingPage() {
                 Mobile Apps
               </span>
               <h2 className="text-4xl md:text-5xl font-black tracking-tight text-zinc-900 dark:text-white mb-6">
-                Companion apps for your team
+                Aapke staff aur field team ke liye bhi
               </h2>
               <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-8">
-                Download the Android apps for your staff and field agents. Native performance, offline-first, built for Indian networks.
+                Android apps download karo apne staff aur field agents ke liye. Native performance, offline-first, Indian network ke liye bana.
               </p>
               <div className="grid sm:grid-cols-2 gap-4">
                 <a href={APP_DOWNLOAD_URL} className="group flex items-center gap-4 p-5 bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:border-primary/50 hover:shadow-lg transition-all duration-300">
@@ -433,10 +461,10 @@ export default function LandingPage() {
               Works With
             </span>
             <h2 className="text-4xl md:text-5xl font-black tracking-tight text-zinc-900 dark:text-white mb-6">
-              Fits into what you already use
+              Jo pehle se use karte ho, usi ke saath chalta hai
             </h2>
             <p className="text-lg text-zinc-600 dark:text-zinc-400">
-              No lock-in, no separate export tool — every report leaves in a format your accountant already works with.
+              Koi lock-in nahi, alag se export tool nahi zaroorat — har report waise hi nikalti hai jaise aapke CA ko chahiye.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -462,10 +490,10 @@ export default function LandingPage() {
               Pricing
             </span>
             <h2 className="text-4xl md:text-5xl font-black tracking-tight text-zinc-900 dark:text-white mb-6">
-              Simple, transparent pricing
+              Seedha, saaf-saaf pricing
             </h2>
             <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-8">
-              We are in private beta — every invited shop gets full access at no cost today.
+              Abhi private beta chal raha hai — har invited dukaan ko poora access, bilkul free.
             </p>
             <div className="inline-flex items-center gap-1 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 p-1 rounded-xl shadow-sm">
               <button
@@ -515,10 +543,10 @@ export default function LandingPage() {
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-blue-500/10" />
         <div className="relative max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-4xl md:text-6xl font-black tracking-tight text-white mb-8">
-            Run your counter without the notebook
+            Bahi-khata chhodo, ab digital pe aao
           </h2>
           <p className="text-lg md:text-xl text-zinc-300 mb-12 max-w-2xl mx-auto">
-            GST billing, stock, udhar ledger, and field-team tracking — one app, free during beta.
+            GST billing, stock, udhaar ka khata, aur field-team tracking — sab ek hi app mein, beta mein bilkul free.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="https://app.managemycounter.com/register">
@@ -542,7 +570,7 @@ export default function LandingPage() {
             <div className="col-span-2 md:col-span-1">
               <Logo width={140} height={36} className="mb-4" />
               <p className="text-zinc-400 text-sm leading-relaxed mb-6">
-                GST billing, inventory, and field-team ERP built for Indian retail and wholesale shops.
+                GST billing, hisab-kitab, aur stock ka poora ERP — Indian retail aur wholesale dukaanon ke liye bana.
               </p>
             </div>
             {Object.entries(FOOTER_MENU).map(([category, links]) => (
