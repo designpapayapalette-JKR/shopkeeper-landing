@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Menu, X, Search, IndianRupee } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AnimatedGroup } from "@/components/ui/animated-group";
-import { GlowyWavesHero } from "@/components/ui/glowy-waves-hero-shadcnui";
+import { HeroSectionGrid } from "@/components/ui/hero-section-grid";
 
 const transitionVariants = {
   item: {
@@ -79,7 +79,7 @@ function SiteHeader() {
               width={8000}
               height={4500}
               priority
-              className="h-9 w-auto object-contain shrink-0"
+              className="h-14 lg:h-16 w-auto object-contain shrink-0 -my-2"
             />
           </Link>
 
@@ -234,7 +234,7 @@ export function HeroSection() {
         <section>
           <div className="relative px-4 pt-8 md:px-6 md:pt-12">
             <div className="relative isolate mx-auto max-w-7xl">
-              <GlowyWavesHero />
+              <HeroSectionGrid />
             </div>
 
             <AnimatedGroup
