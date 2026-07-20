@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useRef } from "react";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Menu, X, Search, IndianRupee } from "lucide-react";
-import { motion, useInView } from "framer-motion";
+import { Menu, X, Search, IndianRupee } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AnimatedGroup } from "@/components/ui/animated-group";
+import { GlowyWavesHero } from "@/components/ui/glowy-waves-hero-shadcnui";
 
 const transitionVariants = {
   item: {
@@ -227,98 +227,14 @@ function ProductPreview() {
 }
 
 export function HeroSection() {
-  const gradientRef = useRef<HTMLDivElement>(null);
-  const gradientInView = useInView(gradientRef, { once: true });
-
   return (
     <>
       <SiteHeader />
       <main className="overflow-hidden bg-white">
         <section>
           <div className="relative px-4 pt-8 md:px-6 md:pt-12">
-            {/* Warm gradient backdrop behind the announcement pill, headline
-                and subhead — fades to white before the product preview so
-                the rest of the page stays on the site's plain-white system. */}
-            <div className="relative isolate mx-auto max-w-7xl overflow-hidden rounded-3xl">
-              <motion.div
-                ref={gradientRef}
-                initial={{ opacity: 0, y: -30 }}
-                animate={gradientInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 1.6, ease: "easeOut" }}
-                aria-hidden
-                className="absolute inset-0 -z-10"
-                style={{
-                  backgroundImage: `
-                    linear-gradient(180deg, #ffffff 0%, #FFF3E0 25%, #FFE0D6 50%, #FDE2E9 72%, #ECE0F7 88%, #ffffff 100%),
-                    radial-gradient(at 15% 20%, #ffffff66 0%, transparent 55%),
-                    radial-gradient(at 85% 75%, #ede4fb66 0%, transparent 60%)
-                  `,
-                  backgroundBlendMode: "overlay, screen",
-                }}
-              />
-              {/* Subtle dot-grid texture over the gradient — self-contained CSS,
-                  no external image, faded out toward the edges via a mask so it
-                  reads as texture rather than a hard-edged tile. */}
-              <div
-                aria-hidden
-                className="absolute inset-0 -z-10 opacity-[0.4]"
-                style={{
-                  backgroundImage: "radial-gradient(circle, #05004022 1px, transparent 1px)",
-                  backgroundSize: "28px 28px",
-                  maskImage: "radial-gradient(ellipse 80% 60% at 50% 30%, black 40%, transparent 100%)",
-                  WebkitMaskImage: "radial-gradient(ellipse 80% 60% at 50% 30%, black 40%, transparent 100%)",
-                }}
-              />
-
-              <div className="mx-auto max-w-7xl px-6 pt-10 pb-16 md:pt-16 md:pb-20">
-                <div className="text-center sm:mx-auto lg:mr-auto lg:mt-0">
-                  <AnimatedGroup variants={transitionVariants}>
-                    <Link
-                      href="#features"
-                      className="hover:bg-white bg-white/70 group mx-auto flex w-fit items-center gap-4 rounded-full border border-zinc-200 p-1 pl-4 shadow-md shadow-black/5 backdrop-blur-sm transition-all duration-300"
-                    >
-                      <span className="text-zinc-800 text-sm">Full ERP, free during beta — no trial, no card</span>
-                      <span className="block h-4 w-0.5 border-l border-zinc-300" />
-                      <div className="bg-white group-hover:bg-zinc-100 size-6 overflow-hidden rounded-full duration-500">
-                        <div className="flex w-12 -translate-x-1/2 duration-500 ease-in-out group-hover:translate-x-0">
-                          <span className="flex size-6"><ArrowRight className="m-auto size-3" /></span>
-                          <span className="flex size-6"><ArrowRight className="m-auto size-3" /></span>
-                        </div>
-                      </div>
-                    </Link>
-
-                    <h1 className="mt-8 max-w-4xl mx-auto text-balance text-5xl md:text-6xl lg:mt-12 lg:text-7xl text-zinc-900">
-                      Bill fast. Track udhaar.
-                      <br />
-                      Stay <span className="font-serif italic font-normal text-primary">GST-ready</span>.
-                    </h1>
-                    <p className="mx-auto mt-8 max-w-2xl text-balance text-lg text-zinc-600">
-                      One counter app for Indian shopkeepers — POS billing, a live credit ledger instead of the bahi-khata, stock across every warehouse, and GST reports that build themselves as you bill. Made by a shopkeeper, for the shopkeeper community.
-                    </p>
-                  </AnimatedGroup>
-
-                  <AnimatedGroup
-                    variants={{
-                      container: { visible: { transition: { staggerChildren: 0.05, delayChildren: 0.75 } } },
-                      ...transitionVariants,
-                    }}
-                    className="mt-10 flex flex-col items-center justify-center gap-2 md:flex-row"
-                  >
-                    <div className="bg-white/70 rounded-[14px] border border-zinc-200 p-0.5 backdrop-blur-sm">
-                      <Button asChild size="lg" className="rounded-xl px-5 text-base">
-                        <Link href="https://app.managemycounter.com/register">
-                          <span className="text-nowrap">Get Invite Access</span>
-                        </Link>
-                      </Button>
-                    </div>
-                    <Button asChild size="lg" variant="ghost" className="h-10.5 rounded-xl px-5">
-                      <Link href="#features">
-                        <span className="text-nowrap">See What&apos;s Inside ↓</span>
-                      </Link>
-                    </Button>
-                  </AnimatedGroup>
-                </div>
-              </div>
+            <div className="relative isolate mx-auto max-w-7xl">
+              <GlowyWavesHero />
             </div>
 
             <AnimatedGroup
