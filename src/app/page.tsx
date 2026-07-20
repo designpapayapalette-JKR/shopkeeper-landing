@@ -118,14 +118,13 @@ const DIFFERENTIATORS = [
   { icon: Smartphone, title: "Offline-first mobile apps", desc: "Built for Indian network conditions — billing and attendance keep working when the connection drops, and sync the moment it's back." },
 ];
 
-// White-text wordmark (for the dark footer) — cropped from the canonical
-// brand source with sharp, same as logo.png/logo-icon.png. The old version
-// pointed straight at the raw, uncropped "ManageMyCounter Rectangle-01.png"
-// (8000x4500 with ~40% empty padding, spaces in the filename) and rendered
-// via fixed width/height props with no object-fit, so the browser silently
-// squished it to fit — never actually broken, just never fixed to look right.
+// White-text wordmark (for the dark footer) — cropped to its real content
+// bounding box (6672x816, ratio ~8.18:1) via sharp; the previous "Straight"
+// source PNGs were 8000x4500 with the actual logo occupying only a ~680px
+// strip in the middle, so anything sized off the raw canvas rendered as a
+// barely-visible sliver regardless of the display height requested.
 function Logo({ width = 140, height, className = "" }: { width?: number; height?: number; className?: string }) {
-  const resolvedHeight = height ?? Math.round((width / 900) * 290);
+  const resolvedHeight = height ?? Math.round(width / 8.176);
   return (
     <Image
       src="/logo-white.png"
@@ -607,7 +606,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
             <div className="col-span-2 md:col-span-1">
-              <Logo width={140} className="mb-4" />
+              <Logo width={200} className="mb-4" />
               <p className="text-zinc-400 text-sm leading-relaxed mb-6">
                 GST billing, hisab-kitab, and a complete stock ERP — built for Indian retail and wholesale shops.
               </p>

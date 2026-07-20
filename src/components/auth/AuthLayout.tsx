@@ -57,7 +57,7 @@ export function AuthLayout({
         />
         <div className="relative z-10 text-white max-w-md">
           <div className="w-14 h-14 rounded-2xl bg-white/15 backdrop-blur-sm flex items-center justify-center mb-8 border border-white/10 overflow-hidden">
-            <Image src="/logo-icon.png" alt="managemycounter" width={40} height={40} className="w-full h-full object-contain" />
+            <Image src="/logo-icon-white.png" alt="managemycounter" width={40} height={40} className="w-full h-full object-contain" />
           </div>
           <h2 className="text-3xl font-bold tracking-tight mb-4">{panelHeading}</h2>
           <p className="text-emerald-100/80 text-base leading-relaxed mb-8">{panelDescription}</p>
@@ -85,7 +85,7 @@ export function AuthLayout({
         <div className={`w-full ${wide ? "max-w-md" : "max-w-sm"}`}>
           <div className="flex items-center gap-3 mb-10">
             <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 overflow-hidden" style={{ background: "var(--primary)" }}>
-              <Image src="/logo-icon.png" alt="managemycounter" width={40} height={40} className="w-full h-full object-contain" />
+              <Image src="/logo-icon-white.png" alt="managemycounter" width={40} height={40} className="w-full h-full object-contain" />
             </div>
             <div>
               <div className="text-sm font-bold" style={{ color: "var(--text)" }}>managemycounter</div>
