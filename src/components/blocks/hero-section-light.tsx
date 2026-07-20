@@ -7,6 +7,7 @@ import { Menu, X, Search, IndianRupee } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AnimatedGroup } from "@/components/ui/animated-group";
 import { HeroSectionGrid } from "@/components/ui/hero-section-grid";
+import { FeaturesSectionWithCardGradient } from "@/components/ui/feature-section-with-card-gradient";
 
 const transitionVariants = {
   item: {
@@ -19,17 +20,6 @@ const transitionVariants = {
     },
   },
 };
-
-// Business segments the product is built for — not customer logos, so we
-// never fabricate a "trusted by" claim we can't back up.
-const SEGMENTS = [
-  "Kirana & General Stores",
-  "Wholesale & Distribution",
-  "Pharmacies",
-  "Apparel & Fashion",
-  "Electronics Retail",
-  "Multi-branch Chains",
-];
 
 const NAV_ITEMS = [
   { name: "Features", href: "#features" },
@@ -255,19 +245,8 @@ export function HeroSection() {
 
         {/* Segment strip — business categories the product is built for,
             not fabricated "trusted by" customer logos. */}
-        <section className="bg-white pb-16 pt-16 md:pb-24">
-          <div className="mx-auto max-w-5xl px-6">
-            <p className="text-center text-xs font-bold text-zinc-400 uppercase tracking-widest mb-8">
-              Built for every kind of Indian retail business
-            </p>
-            <div className="mx-auto grid max-w-3xl grid-cols-2 gap-x-8 gap-y-5 sm:grid-cols-3">
-              {SEGMENTS.map((s) => (
-                <div key={s} className="text-center text-sm font-semibold text-zinc-500">
-                  {s}
-                </div>
-              ))}
-            </div>
-          </div>
+        <section className="bg-white">
+          <FeaturesSectionWithCardGradient />
         </section>
       </main>
     </>
