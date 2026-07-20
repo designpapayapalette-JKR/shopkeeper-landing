@@ -72,9 +72,15 @@ function SiteHeader() {
     <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-zinc-200">
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex items-center justify-between h-16 lg:h-[72px]">
-          <Link href="/" aria-label="home" className="flex items-center gap-2 text-lg font-black tracking-tight uppercase text-zinc-900 shrink-0">
-            <Image src="/logo-icon.png" alt="managemycounter" width={26} height={26} className="shrink-0" />
-            managemycounter
+          <Link href="/" aria-label="home" className="flex items-center shrink-0">
+            <Image
+              src="/logo.png"
+              alt="managemycounter"
+              width={8000}
+              height={4500}
+              priority
+              className="h-9 w-auto object-contain shrink-0"
+            />
           </Link>
 
           <ul className="hidden lg:flex items-center gap-8 text-xs font-bold text-zinc-500 uppercase tracking-wider">
