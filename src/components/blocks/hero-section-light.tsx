@@ -76,13 +76,13 @@ function SiteHeader() {
           <ul className="hidden lg:flex items-center gap-8 text-xs font-bold text-zinc-500 uppercase tracking-wider">
             {NAV_ITEMS.map((item) => (
               <li key={item.name}>
-                <Link href={item.href} className="hover:text-zinc-900 transition-colors">
+                <Link href={item.href} className="hover:text-foreground transition-colors">
                   {item.name}
                 </Link>
               </li>
             ))}
             <li>
-              <Link href="https://app.managemycounter.com/dashboard" className="hover:text-zinc-900 transition-colors">
+              <Link href="https://app.managemycounter.com/dashboard" className="hover:text-foreground transition-colors">
                 Portal
               </Link>
             </li>
@@ -203,7 +203,7 @@ function ProductPreview() {
           </div>
           <div className="flex items-center justify-between pt-3 mt-3 border-t-2 border-zinc-800">
             <span className="text-xs font-black text-zinc-800">Grand Total</span>
-            <span className="text-base font-black text-zinc-900 flex items-center">
+            <span className="text-base font-black text-foreground flex items-center">
               <IndianRupee size={14} className="inline" strokeWidth={3} />2,194.50
             </span>
           </div>

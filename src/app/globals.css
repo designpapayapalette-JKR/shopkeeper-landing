@@ -3,8 +3,9 @@
 /* ══════════════════════════════════════════════
    MANAGEMYCOUNTER  ·  Brand: Blue on white
    Light theme only · Blue accent · Clean, professional UI
-   Brand palette: #0368FE (primary) / #004CFA (deep) /
-   #03A8FE (cyan). Font: Gilroy (local OTF, ExtraBold + Light) — loaded from /public/fonts.
+   Brand palette: #0368FE (primary) / #004CFA (deep, hover/active) /
+   #03A8FE (cyan, chart accent) / #000D3A (navy, body/heading text).
+   Font: Gilroy (local OTF, ExtraBold + Light) — loaded from /public/fonts.
 ══════════════════════════════════════════════ */
 
 /* Tailwind v4's `dark:` variant defaults to the OS/browser
@@ -35,15 +36,15 @@
 :root {
   /* Light theme (only theme) */
   --background: #ffffff;
-  --foreground: #0f172a;
+  --foreground: #000D3A;
   --card: #ffffff;
-  --card-foreground: #0f172a;
+  --card-foreground: #000D3A;
   --popover: #ffffff;
-  --popover-foreground: #0f172a;
+  --popover-foreground: #000D3A;
   --primary: #0368FE;
   --primary-foreground: #ffffff;
   --secondary: #f1f5f9;
-  --secondary-foreground: #0f172a;
+  --secondary-foreground: #000D3A;
   --muted: #f1f5f9;
   --muted-foreground: #64748b;
   --accent: #e0f2fe;
@@ -66,7 +67,7 @@
 
   /* Sidebar */
   --sidebar: #f8fafc;
-  --sidebar-foreground: #0f172a;
+  --sidebar-foreground: #000D3A;
   --sidebar-primary: #0368FE;
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #e0f2fe;

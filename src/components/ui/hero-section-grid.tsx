@@ -42,7 +42,7 @@ export function HeroSectionGrid() {
           </div>
         </Link>
 
-        <h1 className="mt-8 max-w-4xl text-balance text-4xl md:text-6xl lg:text-7xl text-zinc-900">
+        <h1 className="mt-8 max-w-4xl text-balance text-4xl md:text-6xl lg:text-7xl text-foreground">
           Bill fast. Track udhaar.
           <br />
           Stay <span className="font-serif italic font-normal text-primary">GST-ready</span>.

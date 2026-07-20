@@ -271,7 +271,7 @@ function FeatureExplorer() {
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {active.items.map((item, i) => (
           <div key={i} className="bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 p-6 hover:border-primary/50 hover:shadow-lg transition-all duration-300">
-            <h3 className="font-bold text-zinc-900 dark:text-white mb-2">{item.title}</h3>
+            <h3 className="font-bold text-foreground dark:text-white mb-2">{item.title}</h3>
             <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">{item.desc}</p>
           </div>
         ))}
@@ -319,7 +319,7 @@ const FAQ_SCHEMA = {
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white font-sans antialiased">
+    <div className="min-h-screen bg-white dark:bg-zinc-950 text-foreground dark:text-white font-sans antialiased">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_SCHEMA) }}
@@ -332,7 +332,7 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-12">
             <div className="order-2 lg:order-1 text-center lg:text-left">
-              <h2 className="text-4xl md:text-5xl font-black tracking-tight text-zinc-900 dark:text-white mb-6">
+              <h2 className="text-4xl md:text-5xl font-black tracking-tight text-foreground dark:text-white mb-6">
                 Does this feel like your daily routine?
               </h2>
               <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-5">
@@ -362,7 +362,7 @@ export default function LandingPage() {
                 </div>
                 <div className="p-5 bg-primary/5">
                   <p className="text-xs font-bold uppercase tracking-wider text-primary mb-1.5">With managemycounter</p>
-                  <p className="text-zinc-900 dark:text-white font-semibold leading-relaxed">{p.after}</p>
+                  <p className="text-foreground dark:text-white font-semibold leading-relaxed">{p.after}</p>
                 </div>
               </div>
             ))}
@@ -378,7 +378,7 @@ export default function LandingPage() {
               <Tag size={14} />
               Every Module
             </span>
-            <h2 className="text-4xl md:text-5xl font-black tracking-tight text-zinc-900 dark:text-white mb-6">
+            <h2 className="text-4xl md:text-5xl font-black tracking-tight text-foreground dark:text-white mb-6">
               One dashboard, your whole shop's operations
             </h2>
             <p className="text-lg text-zinc-600 dark:text-zinc-400">
@@ -398,7 +398,7 @@ export default function LandingPage() {
                 <Users size={14} />
                 Why managemycounter
               </span>
-              <h2 className="text-4xl md:text-5xl font-black tracking-tight text-zinc-900 dark:text-white mb-6">
+              <h2 className="text-4xl md:text-5xl font-black tracking-tight text-foreground dark:text-white mb-6">
                 An Indian ERP, built for Indian shopkeepers
               </h2>
               <p className="text-lg text-zinc-600 dark:text-zinc-400">
@@ -421,7 +421,7 @@ export default function LandingPage() {
                   <d.icon size={22} className="text-primary" strokeWidth={1.75} />
                 </div>
                 <div>
-                  <h3 className="font-bold text-zinc-900 dark:text-white mb-1.5">{d.title}</h3>
+                  <h3 className="font-bold text-foreground dark:text-white mb-1.5">{d.title}</h3>
                   <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">{d.desc}</p>
                 </div>
               </div>
@@ -439,7 +439,7 @@ export default function LandingPage() {
                 <Smartphone size={14} />
                 Mobile Apps
               </span>
-              <h2 className="text-4xl md:text-5xl font-black tracking-tight text-zinc-900 dark:text-white mb-6">
+              <h2 className="text-4xl md:text-5xl font-black tracking-tight text-foreground dark:text-white mb-6">
                 For your staff and field team too
               </h2>
               <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-8">
@@ -455,7 +455,7 @@ export default function LandingPage() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <h3 className="font-bold text-lg text-zinc-900 dark:text-white">managemycounter App</h3>
+                      <h3 className="font-bold text-lg text-foreground dark:text-white">managemycounter App</h3>
                       <span className="hidden sm:inline-flex text-[10px] font-bold uppercase tracking-wider text-primary bg-primary/10 px-2 py-0.5 rounded-full">
                         For Owners &amp; Staff
                       </span>
@@ -476,7 +476,7 @@ export default function LandingPage() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <h3 className="font-bold text-lg text-zinc-900 dark:text-white">Agent App</h3>
+                      <h3 className="font-bold text-lg text-foreground dark:text-white">Agent App</h3>
                       <span className="hidden sm:inline-flex text-[10px] font-bold uppercase tracking-wider text-zinc-600 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800 px-2 py-0.5 rounded-full">
                         For Field Staff
                       </span>
@@ -484,7 +484,7 @@ export default function LandingPage() {
                     <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">Attendance, expenses, tasks &amp; live GPS check-ins on the move</p>
                   </div>
                   <div className="hidden sm:flex flex-col items-center gap-1 shrink-0 pl-4 border-l border-zinc-200 dark:border-zinc-800">
-                    <DownloadCloud size={22} className="text-zinc-900 dark:text-white" strokeWidth={2} />
+                    <DownloadCloud size={22} className="text-foreground dark:text-white" strokeWidth={2} />
                     <span className="text-[11px] font-bold text-zinc-500 dark:text-zinc-400">APK</span>
                   </div>
                 </a>
@@ -512,7 +512,7 @@ export default function LandingPage() {
               <Tag size={14} />
               Works With
             </span>
-            <h2 className="text-4xl md:text-5xl font-black tracking-tight text-zinc-900 dark:text-white mb-6">
+            <h2 className="text-4xl md:text-5xl font-black tracking-tight text-foreground dark:text-white mb-6">
               Works with what you already use
             </h2>
             <p className="text-lg text-zinc-600 dark:text-zinc-400">
@@ -525,7 +525,7 @@ export default function LandingPage() {
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
                   <w.icon size={22} className="text-primary" strokeWidth={1.75} />
                 </div>
-                <p className="font-semibold text-zinc-900 dark:text-white mb-1">{w.name}</p>
+                <p className="font-semibold text-foreground dark:text-white mb-1">{w.name}</p>
                 <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">{w.desc}</p>
               </div>
             ))}
@@ -540,7 +540,7 @@ export default function LandingPage() {
             <Heart size={14} />
             Made by an Indian Shopkeeper
           </span>
-          <h2 className="text-4xl md:text-5xl font-black tracking-tight text-zinc-900 dark:text-white mb-6">
+          <h2 className="text-4xl md:text-5xl font-black tracking-tight text-foreground dark:text-white mb-6">
             For the Indian shopkeeper community
           </h2>
           <p className="text-lg text-zinc-600 dark:text-zinc-400 max-w-3xl mx-auto mb-8 leading-relaxed">
@@ -560,7 +560,7 @@ export default function LandingPage() {
               </Button>
             </Link>
             <a href="mailto:hello@managemycounter.com">
-              <Button variant="secondary" size="lg" className="w-full sm:w-auto bg-transparent border border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800">
+              <Button variant="secondary" size="lg" className="w-full sm:w-auto bg-transparent border border-zinc-300 dark:border-zinc-700 text-foreground dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800">
                 Write to us
               </Button>
             </a>
