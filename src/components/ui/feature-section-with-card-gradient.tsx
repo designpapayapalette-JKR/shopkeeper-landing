@@ -54,9 +54,9 @@ function seededPattern(seed: number): number[][] {
 export function FeaturesSectionWithCardGradient() {
   return (
     <div className="py-16 md:py-20">
-      <p className="text-center text-xs font-bold text-zinc-400 uppercase tracking-widest mb-10">
+      <h2 className="text-center text-4xl md:text-5xl font-black tracking-tight text-zinc-900 mb-12 px-6 max-w-4xl mx-auto">
         Built for every kind of Indian retail business
-      </p>
+      </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-4 max-w-6xl mx-auto px-6">
         {grid.map((feature, i) => (
           <div
