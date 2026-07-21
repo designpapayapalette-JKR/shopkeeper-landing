@@ -12,7 +12,7 @@ import {
   DownloadCloud, ShieldCheck, Heart,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { APP_DOWNLOAD_URL, AGENT_APP_DOWNLOAD_URL } from "@/lib/config";
+import { APP_DOWNLOAD_URL, AGENT_APP_DOWNLOAD_URL, MOBILE_APP_LAST_UPDATED } from "@/lib/config";
 
 const FOOTER_MENU = {
   Product: [
@@ -492,6 +492,9 @@ export default function LandingPage() {
               <p className="flex items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400 mt-4">
                 <ShieldCheck size={14} className="text-primary shrink-0" />
                 Direct APK download, not on Play Store yet — Android will ask you to confirm "install from unknown sources" once. Your data stays exactly as safe either way.
+              </p>
+              <p className="text-xs text-zinc-400 dark:text-zinc-500 mt-2">
+                Apps last updated: {MOBILE_APP_LAST_UPDATED}
               </p>
             </div>
             <div className="relative py-8">
