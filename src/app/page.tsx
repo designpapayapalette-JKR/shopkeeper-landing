@@ -610,9 +610,13 @@ export default function LandingPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
             <div className="col-span-2 md:col-span-1">
               <Logo width={200} className="mb-4" />
-              <p className="text-zinc-400 text-sm leading-relaxed mb-6">
+              <p className="text-zinc-400 text-sm leading-relaxed mb-4">
                 GST billing, hisab-kitab, and a complete stock ERP — built for Indian retail and wholesale shops.
               </p>
+              <div className="text-zinc-400 text-xs leading-relaxed space-y-1">
+                <p><strong className="text-zinc-300">Address:</strong> H-213, Sector 63 Rd, Electronic City, Noida, UP 201309</p>
+                <p><strong className="text-zinc-300">Phone:</strong> <a href="tel:+918287973084" className="hover:text-white transition-colors">+91 8287973084</a></p>
+              </div>
             </div>
             {Object.entries(FOOTER_MENU).map(([category, links]) => (
               <div key={category}>
@@ -629,9 +633,12 @@ export default function LandingPage() {
           </div>
           <div className="pt-8 border-t border-zinc-800">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-              <p className="text-zinc-500 text-sm">
-                © {new Date().getFullYear()} managemycounter. All rights reserved.
-              </p>
+              <div className="text-zinc-500 text-sm">
+                <p>© {new Date().getFullYear()} managemycounter. All rights reserved.</p>
+                <p className="text-xs text-zinc-600 mt-1">
+                  Developed by <span className="font-medium text-zinc-400">PAPAYA PALETTE SOLUTIONS (OPC) PRIVATE LIMITED</span>
+                </p>
+              </div>
               <div className="flex items-center gap-6 text-sm text-zinc-500">
                 <NavLink href="/privacy">Privacy Policy</NavLink>
                 <NavLink href="/terms">Terms of Service</NavLink>
