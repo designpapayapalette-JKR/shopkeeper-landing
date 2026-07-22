@@ -21,5 +21,5 @@ export const AGENT_APP_DOWNLOAD_URL =
   "/downloads/agent-app-latest.apk";
 // Bump this any time either APK link/version above changes — shown on the
 // landing page's Mobile Apps section so visitors can see the build is
-// current. Format: "D MMM YYYY" (matches the rest of the site's date style).
-export const MOBILE_APP_LAST_UPDATED = "22 Jul 2026";
+// current. Format: "D MMM YYYY, h:mm AM/PM" (date + time, IST).
+export const MOBILE_APP_LAST_UPDATED = "22 Jul 2026, 6:32 PM";

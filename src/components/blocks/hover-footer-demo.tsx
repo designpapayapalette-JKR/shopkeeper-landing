@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Mail, Phone, MapPin, Globe, ShieldCheck } from "lucide-react";
 import { FooterBackgroundGradient, TextHoverEffect } from "@/components/ui/hover-footer";
 
@@ -57,11 +58,15 @@ export function HoverFooter() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-12 pb-12">
           {/* Brand section */}
           <div className="lg:col-span-2 flex flex-col space-y-4">
-            <div className="flex items-center space-x-2">
-              <span className="text-white text-2xl md:text-3xl font-extrabold tracking-tight">
-                manage<span className="text-[#0368FE]">mycounter</span>
-              </span>
-            </div>
+            <Link href="/" className="flex items-center shrink-0" aria-label="managemycounter home">
+              <Image
+                src="/logo-white.png"
+                alt="managemycounter"
+                width={140}
+                height={17}
+                className="h-8 lg:h-9 w-auto object-contain shrink-0"
+              />
+            </Link>
             <p className="text-zinc-400 text-sm leading-relaxed max-w-sm">
               GST billing, udhaar hisab-kitab, and a complete stock ERP — built for Indian retail counters, wholesale distributors, and field teams.
             </p>
