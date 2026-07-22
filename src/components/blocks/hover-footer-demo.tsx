@@ -62,8 +62,8 @@ export function HoverFooter() {
               <Image
                 src="/logo-white.png"
                 alt="managemycounter"
-                width={140}
-                height={17}
+                width={5079}
+                height={684}
                 className="h-8 lg:h-9 w-auto object-contain shrink-0"
               />
             </Link>

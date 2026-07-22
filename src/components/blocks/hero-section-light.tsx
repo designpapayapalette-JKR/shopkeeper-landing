@@ -66,8 +66,8 @@ function SiteHeader() {
             <Image
               src="/logo.png"
               alt="managemycounter"
-              width={6672}
-              height={816}
+              width={5079}
+              height={684}
               priority
               className="h-8 lg:h-9 w-auto object-contain shrink-0"
             />
