@@ -110,9 +110,6 @@ const jsonLd = {
         "@type": "PostalAddress",
         addressCountry: "IN",
       },
-      // `sameAs` deliberately omitted — no verified social profiles exist yet.
-      // Add real URLs here once the accounts are actually created; a wrong or
-      // invented profile in schema.org markup is worse than no entry at all.
     },
     {
       "@type": "WebSite",
@@ -122,7 +119,6 @@ const jsonLd = {
       description: DESCRIPTION,
       publisher: { "@id": `${BASE_URL}/#organization` },
       inLanguage: ["en", "hi"],
-      // No SearchAction — there's no on-site search endpoint to point it at.
     },
     {
       "@type": "SoftwareApplication",
@@ -131,16 +127,58 @@ const jsonLd = {
       applicationCategory: "BusinessApplication",
       operatingSystem: "Android, Web",
       description: DESCRIPTION,
-      // The page currently has no pricing tiers — every invited shop gets the
-      // full ERP free during beta (see the "About" section). Claiming paid
-      // tiers here that don't exist on the page would be exactly the kind of
-      // structured-data/page mismatch Google's rich-result guidelines penalize.
       offers: {
         "@type": "Offer",
         price: "0",
         priceCurrency: "INR",
         description: "Free during beta — full feature access, no credit card required",
       },
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${BASE_URL}/#faq`,
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "Do I need to know accounting to use this?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "No. If you can use WhatsApp, you can use managemycounter. There's no accounting jargon on screen — just billing, udhaar ka hisab, and stock, in the same language you already use at your counter. Your CA still gets proper GSTR-ready reports at month-end.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Is managemycounter really free during the beta?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes — every invited shop gets full access to all modules (POS, GST invoicing, multi-warehouse inventory, field-agent tracking, and reporting) at no cost while we're in private beta. No card required to sign up.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Does it handle CGST/SGST/IGST automatically?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes. Tax is split automatically based on the customer's billing state versus your registered state, and every GST invoice is generated audit-ready — no manual CGST/SGST/IGST calculation needed.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Can I manage stock across more than one warehouse or store?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes — multi-warehouse stock sync is included for every invited shop during the beta, no upgrade needed. Check availability across every location in real time and record transfers between them without manual reconciliation.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "What happens to my data if I lose internet connectivity?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "The Android apps are built offline-first for Indian network conditions — staff can keep billing and recording attendance without a live connection, and everything syncs automatically once you're back online.",
+          },
+        },
+      ],
     },
   ],
 };
