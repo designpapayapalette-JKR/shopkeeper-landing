@@ -22,4 +22,4 @@ export const AGENT_APP_DOWNLOAD_URL =
 // Bump this any time either APK link/version above changes — shown on the
 // landing page's Mobile Apps section so visitors can see the build is
 // current. Format: "D MMM YYYY, h:mm AM/PM" (date + time, IST).
-export const MOBILE_APP_LAST_UPDATED = "23 Jul 2026, 10:50 AM";
+export const MOBILE_APP_LAST_UPDATED = "23 Jul 2026, 11:18 AM";
