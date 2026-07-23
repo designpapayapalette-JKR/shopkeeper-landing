@@ -352,7 +352,7 @@ export default function LandingPage() {
       <HeroSection />
 
       {/* Pain points */}
-      <section className="py-24 md:py-32 bg-white dark:bg-zinc-950">
+      <section className="py-16 md:py-24 bg-white dark:bg-zinc-950">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-12">
             <div className="order-2 lg:order-1 text-center lg:text-left">
@@ -395,7 +395,7 @@ export default function LandingPage() {
       </section>
 
       {/* Features */}
-      <section id="features" className="py-24 md:py-32 bg-zinc-50 dark:bg-zinc-900">
+      <section id="features" className="py-16 md:py-24 bg-zinc-50 dark:bg-zinc-900">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider mb-6">
@@ -414,7 +414,7 @@ export default function LandingPage() {
       </section>
 
       {/* Differentiators */}
-      <section className="py-24 md:py-32 bg-white dark:bg-zinc-950">
+      <section className="py-16 md:py-24 bg-white dark:bg-zinc-950">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
             <div>
@@ -455,7 +455,7 @@ export default function LandingPage() {
       </section>
 
       {/* Mobile Apps */}
-      <section id="download" className="py-24 md:py-32 bg-zinc-50 dark:bg-zinc-900">
+      <section id="download" className="py-16 md:py-24 bg-zinc-50 dark:bg-zinc-900">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -532,7 +532,7 @@ export default function LandingPage() {
       </section>
 
       {/* Works With */}
-      <section id="works-with" className="py-24 md:py-32 bg-white dark:bg-zinc-950">
+      <section id="works-with" className="py-16 md:py-24 bg-white dark:bg-zinc-950">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider mb-6">
@@ -561,7 +561,7 @@ export default function LandingPage() {
       </section>
 
       {/* Built by a shopkeeper for shopkeepers — About section */}
-      <section id="about" className="py-24 md:py-32 bg-zinc-50 dark:bg-zinc-900">
+      <section id="about" className="py-16 md:py-24 bg-zinc-50 dark:bg-zinc-900">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <span className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider mb-6">
             <Heart size={14} />
@@ -604,7 +604,7 @@ export default function LandingPage() {
           before a fairly short footer — without this, scrolling to the very
           bottom of the page pins this heading behind the nav with nowhere
           left to scroll clear of it. */}
-      <section className="pt-24 pb-40 md:pt-32 md:pb-56 bg-zinc-900 dark:bg-zinc-950 relative overflow-hidden">
+      <section className="pt-16 pb-32 md:pt-24 md:pb-44 bg-zinc-900 dark:bg-zinc-950 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-primary/20" />
         <div className="relative max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-4xl md:text-6xl font-black tracking-tight text-white mb-8">

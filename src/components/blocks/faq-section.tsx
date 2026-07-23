@@ -92,7 +92,7 @@ function FAQItem({ question, answer, defaultOpen = false }: { question: string; 
 
 export function FAQSection() {
   return (
-    <section id="faq" className="py-24 md:py-32 bg-background">
+    <section id="faq" className="py-16 md:py-24 bg-background">
       <div className="max-w-4xl mx-auto px-6">
         <Reveal>
           <div className="text-center mb-16">
