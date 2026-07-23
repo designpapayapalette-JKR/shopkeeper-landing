@@ -43,14 +43,14 @@ export function HeroSectionGrid() {
         </Link>
 
         <h1 className="mt-8 max-w-4xl text-balance text-4xl md:text-6xl lg:text-7xl text-foreground">
-          Bill fast. Track udhaar.
+          Bill fast. Track udhaar. Stay GST-ready.
           <br />
-          Stay <span className="font-serif italic font-normal text-primary">GST-ready</span>.
+          Track your field force <span className="font-serif italic font-normal text-primary">live</span>.
         </h1>
 
         <p className="mx-auto mt-6 max-w-2xl text-balance text-base md:text-lg text-zinc-600">
-          One counter app for Indian shopkeepers — POS billing, a live credit ledger instead of the
-          bahi-khata, stock across every warehouse, and GST reports that build themselves as you
+          One counter app for Indian shopkeepers — POS billing, a live credit ledger, stock across every
+          warehouse, live field-agent GPS tracking on a map, and GST reports that build themselves as you
           bill. Made by a shopkeeper, for the shopkeeper community.
         </p>
 

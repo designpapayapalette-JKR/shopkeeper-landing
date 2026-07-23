@@ -50,6 +50,16 @@ const FAQS = [
     answer:
       "Paid plans will follow once the beta wraps up, but nothing changes overnight — we'll give every invited shop advance notice before any billing starts. Your invoice numbering, party ledgers, and stock history stay exactly as they are; nothing gets reset or locked.",
   },
+  {
+    question: "Can I track my delivery and sales agents on a live map?",
+    answer:
+      "Yes. The owner and manager dashboard shows every field agent's live GPS location, their active/idle/offline status, route history, and what tasks they've completed. Agents use a dedicated Android app with GPS-based attendance, task check-in at customer locations, and offline-first sync.",
+  },
+  {
+    question: "What can field agents do from their phone?",
+    answer:
+      "Field agents get a dedicated Android app with GPS attendance check-in/out, task dispatch with 7 visit outcomes (Collected Order, Delivered, Payment Collected, Issue Logged, and more), expense claims with photo receipts, and live location pings. Everything works offline and syncs when connectivity returns.",
+  },
 ];
 
 function FAQItem({ question, answer, defaultOpen = false }: { question: string; answer: string; defaultOpen?: boolean }) {
@@ -93,7 +103,7 @@ export function FAQSection() {
               Frequently asked questions
             </h2>
             <p className="text-lg text-muted-foreground">
-              Everything you need to know about billing, security, and how the beta works.
+              Everything you need to know about billing, field agent tracking, security, and how the beta works.
             </p>
           </div>
         </Reveal>

@@ -21,7 +21,7 @@ const inter = Inter({
 const SITE_NAME = "managemycounter";
 const TITLE = "managemycounter - GST Billing, Khata & Stock ERP App for Indian Shopkeepers";
 const DESCRIPTION =
-  "Indian ERP for dukaandars — GST billing, udhaar khata, inventory, and field team tracking in one app. Built for kirana stores, wholesale shops, and retail chains. Free during beta.";
+  "Indian ERP for dukaandars — GST billing, udhaar khata, inventory, and live field agent GPS tracking in one app. Built for kirana stores, wholesale shops, and retail chains. Free during beta.";
 const BASE_URL = "https://managemycounter.com";
 
 export const metadata: Metadata = {
@@ -41,7 +41,10 @@ export const metadata: Metadata = {
     "POS billing system India",
     "barcode billing software",
     "multi-warehouse inventory",
-    "field agent tracking",
+    "field agent tracking software India",
+    "delivery boy GPS tracking app",
+    "sales team tracking for retail business",
+    "field force automation for kirana store",
     "GST invoice generator",
     "retail billing software",
     "wholesale billing app",

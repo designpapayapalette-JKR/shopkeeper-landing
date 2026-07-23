@@ -10,7 +10,7 @@ import {
   ArrowRight, Smartphone, Users, Tag, Receipt, Package, Landmark,
   Contact, Truck, Scale, KeyboardIcon, MessageCircle, Printer, FileSpreadsheet,
   ArrowDownCircle, ArrowUpCircle, FileText, TrendingUp, ChevronDown, Barcode,
-  DownloadCloud, ShieldCheck, Heart,
+  DownloadCloud, ShieldCheck, Heart, MapPin,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { APP_DOWNLOAD_URL, AGENT_APP_DOWNLOAD_URL, MOBILE_APP_LAST_UPDATED } from "@/lib/config";
@@ -39,7 +39,8 @@ const FEATURE_CATEGORIES = [
     icon: Receipt,
     intro: "Bill in seconds at the counter — keyboard-driven search, one-tap quick-add, and billing for both packed and loose/weighed items in one place.",
     items: [
-      { title: "POS & B2B billing", desc: "Retail, GST, or estimate invoices — with Bill of Supply for composition-scheme sellers — from the same counter screen." },
+      { title: "POS retail billing", desc: "Fast counter billing with barcode scanning, keyboard-driven search, and split payments (cash, UPI, card, credit) on one bill." },
+      { title: "B2B wholesale invoicing", desc: "Bulk-order invoices with GSTIN format checks, composition-scheme Bill of Supply, and tiered pricing by customer group." },
       { title: "Weighing-scale & loose-item billing", desc: "Sell by weight (kg/g/ml/l) alongside fixed-unit packets, with a dual-pricing toggle for products sold both ways." },
       { title: "Keyboard-driven checkout", desc: "Arrow keys to pick a search match, Enter to add it, Ctrl+A to charge — a cashier never has to reach for the mouse." },
       { title: "Split payments & cash change", desc: "Cash, UPI, card, or credit in any combination on one bill, with a live Cash Received / Change Due calculator." },
@@ -86,13 +87,25 @@ const FEATURE_CATEGORIES = [
     ],
   },
   {
+    id: "field-force",
+    label: "Field Force Management",
+    icon: MapPin,
+    intro: "GPS-powered field team management — assign tasks, track agents live on a map, and manage expenses, all from one dashboard.",
+    items: [
+      { title: "Live GPS agent tracking on map", desc: "See every field agent's real-time location from the owner's dashboard — active, idle, or offline status at a glance." },
+      { title: "Task dispatch & visit lifecycle", desc: "Assign tasks with customer details, agents check in via GPS at location, and complete visits with one of 7 outcome types." },
+      { title: "GPS-based attendance check-in/out", desc: "Field agents mark attendance with GPS verification — know exactly when and where your team clocked in." },
+      { title: "Expense claims with photo receipts", desc: "Agents submit expenses with receipt photos from the field; managers review, approve, or reimburse from the dashboard." },
+      { title: "Agent performance dashboard", desc: "Monthly task completion trends, visit outcome breakdown, and expense analytics per agent — all in one view." },
+    ],
+  },
+  {
     id: "operations",
     label: "Operations & Logistics",
     icon: Truck,
-    intro: "For everything that happens outside the shop — delivery, field visits, and orders placed with suppliers.",
+    intro: "For deliveries and supplier orders — everything beyond the counter.",
     items: [
-      { title: "Live field-agent GPS tracking", desc: "See where your delivery/sales agents are and what they've completed, from the owner's dashboard." },
-      { title: "Delivery challans", desc: "GST Rule 55-compliant challans linked to the originating invoice, with driver and vehicle details." },
+      { title: "Delivery challans", desc: "GST Rule 55-compliant challans linked to the originating invoice, with driver and vehicle details and status tracking (pending → in-transit → delivered)." },
       { title: "Purchase Orders & reorder suggestions", desc: "Raise a PO against a supplier, receive it partially or in full, and get low-stock reorder suggestions automatically." },
     ],
   },
@@ -315,6 +328,16 @@ const FAQ_SCHEMA = {
       name: "Can customers get their invoice without installing anything?",
       acceptedAnswer: { "@type": "Answer", text: "Yes — invoices can be shared as a direct link over WhatsApp or email. Customers open it in their browser to view or download the PDF." },
     },
+    {
+      "@type": "Question",
+      name: "Can I track my delivery and sales agents on a live map?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes. The owner and manager dashboard shows every field agent's live GPS location, their active/idle/offline status, route history, and what tasks they've completed. Agents use a dedicated Android app with GPS-based attendance, task check-in at customer locations, and offline-first sync." },
+    },
+    {
+      "@type": "Question",
+      name: "What can field agents do from their phone?",
+      acceptedAnswer: { "@type": "Answer", text: "Field agents get a dedicated Android app with GPS attendance check-in/out, task dispatch with 7 visit outcomes (Collected Order, Delivered, Payment Collected, Issue Logged, and more), expense claims with photo receipts, and live location pings. Everything works offline and syncs when connectivity returns." },
+    },
   ],
 };
 
@@ -461,7 +484,7 @@ export default function LandingPage() {
                         For Owners &amp; Staff
                       </span>
                     </div>
-                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">POS, inventory, ledger &amp; expenses — the full ERP in your pocket</p>
+                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">POS, inventory, ledger, field agent tracking &amp; expenses — the full ERP in your pocket</p>
                   </div>
                   <div className="hidden sm:flex flex-col items-center gap-1 shrink-0 pl-4 border-l border-zinc-200 dark:border-zinc-800">
                     <DownloadCloud size={22} className="text-primary" strokeWidth={2} />
@@ -482,7 +505,7 @@ export default function LandingPage() {
                         For Field Staff
                       </span>
                     </div>
-                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">Attendance, expenses, tasks &amp; live GPS check-ins on the move</p>
+                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">GPS attendance, task dispatch with visit outcomes, expense claims with photo receipts &amp; live location pings — offline-first</p>
                   </div>
                   <div className="hidden sm:flex flex-col items-center gap-1 shrink-0 pl-4 border-l border-zinc-200 dark:border-zinc-800">
                     <DownloadCloud size={22} className="text-foreground dark:text-white" strokeWidth={2} />
@@ -588,7 +611,7 @@ export default function LandingPage() {
             Put down the bahi-khata, go digital
           </h2>
           <p className="text-lg md:text-xl text-zinc-300 mb-12 max-w-2xl mx-auto">
-            GST billing, stock, the udhaar khata, and field-team tracking — all in one app, free during beta.
+            GST billing, stock, udhaar khata, and live field-force GPS tracking — all in one app, free during beta.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="https://app.managemycounter.com/register">
