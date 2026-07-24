@@ -13,7 +13,7 @@ const FOOTER_LINKS = [
       { label: "Features", href: "#features" },
       { label: "Works With", href: "#works-with" },
       { label: "Blog", href: "/blog" },
-      { label: "Mobile Apps", href: "#mobile-apps" },
+      { label: "Mobile Apps", href: "#download" },
     ],
   },
   {

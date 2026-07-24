@@ -13,13 +13,13 @@ export const WEB_APP_URL = process.env.NEXT_PUBLIC_WEB_APP_URL || "https://app.m
 // access follows using the same login — not the other way round.
 export const APP_DOWNLOAD_URL =
   process.env.NEXT_PUBLIC_APP_DOWNLOAD_URL ||
-  "/downloads/shopkeeper-app-latest.apk";
+  "https://github.com/designpapayapalette-JKR/shopkeeper-app/releases/download/beta-latest/shopkeeper-app-latest.apk";
 // Invited staff/field agents use a separate, employee-facing app — not the
 // owner-facing app above — so their invite message must link to this one.
 export const AGENT_APP_DOWNLOAD_URL =
   process.env.NEXT_PUBLIC_AGENT_APP_DOWNLOAD_URL ||
-  "/downloads/agent-app-latest.apk";
+  "https://github.com/designpapayapalette-JKR/agent-app/releases/download/beta-latest/agent-app-latest.apk";
 // Bump this any time either APK link/version above changes — shown on the
 // landing page's Mobile Apps section so visitors can see the build is
 // current. Format: "D MMM YYYY, h:mm AM/PM" (date + time, IST).
-export const MOBILE_APP_LAST_UPDATED = "23 Jul 2026, 11:18 AM";
+export const MOBILE_APP_LAST_UPDATED = "24 Jul 2026, 5:30 PM";
