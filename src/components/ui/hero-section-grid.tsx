@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { AndroidIcon } from "@/components/ui/android-icon";
 
 // Grid-pattern hero backdrop, self-hosted via CSS (no external image
 // dependency) — thin hairline grid fading toward the edges via a mask so it
@@ -35,7 +36,7 @@ export function HeroSectionGrid() {
           href="#features"
           className="hover:bg-white bg-white/70 group mx-auto flex w-fit items-center gap-4 rounded-full border border-zinc-200 p-1 pl-4 shadow-md shadow-black/5 backdrop-blur-sm transition-all duration-300"
         >
-          <span className="text-zinc-800 text-sm">Full ERP, free during beta — no trial, no card</span>
+          <span className="text-zinc-800 text-sm">Free for 3 months as part of our beta — no card required</span>
           <span className="block h-4 w-0.5 border-l border-zinc-300" />
           <div className="bg-white group-hover:bg-zinc-100 size-6 overflow-hidden rounded-full duration-500 flex items-center justify-center">
             <ArrowRight className="size-3" />
@@ -62,6 +63,14 @@ export function HeroSectionGrid() {
             <Link href="#features">See What&apos;s Inside ↓</Link>
           </Button>
         </div>
+
+        <Link
+          href="#download"
+          className="mt-5 inline-flex items-center gap-1.5 text-sm text-zinc-500 hover:text-primary transition-colors"
+        >
+          <AndroidIcon className="size-4 text-[#3DDC84]" />
+          Web dashboard + Android app included — for your staff and field team too
+        </Link>
       </div>
     </section>
   );

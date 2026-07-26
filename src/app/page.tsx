@@ -12,6 +12,7 @@ import {
   DownloadCloud, ShieldCheck, Heart, MapPin, Store, TrendingUp, Building2, Crown, IndianRupee, Info,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { AndroidIcon } from "@/components/ui/android-icon";
 import {
   type FeatureItem,
   PricingTable,
@@ -510,8 +511,8 @@ export default function LandingPage() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <span className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider mb-6">
-                <Smartphone size={14} />
-                Mobile Apps
+                <AndroidIcon className="size-3.5" />
+                Android Apps
               </span>
               <h2 className="text-4xl md:text-5xl font-black tracking-tight text-foreground dark:text-white mb-6">
                 For your staff and field team too
@@ -525,7 +526,7 @@ export default function LandingPage() {
                   className="group relative flex items-center gap-5 p-6 bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-primary hover:shadow-xl hover:shadow-primary/10 transition-all duration-300"
                 >
                   <div className="w-16 h-16 shrink-0 rounded-2xl bg-primary flex items-center justify-center">
-                    <Smartphone size={30} className="text-white" strokeWidth={1.75} />
+                    <AndroidIcon className="size-7 text-white" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
