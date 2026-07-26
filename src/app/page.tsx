@@ -9,9 +9,19 @@ import { HoverFooter } from "@/components/blocks/hover-footer-demo";
 import {
   ArrowRight, Smartphone, Users, Tag, Receipt, Package, Landmark,
   Contact, Truck, Scale, KeyboardIcon, MessageCircle, Printer, FileSpreadsheet,
-  DownloadCloud, ShieldCheck, Heart, MapPin,
+  DownloadCloud, ShieldCheck, Heart, MapPin, Store, TrendingUp, Building2, Crown, IndianRupee,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  type FeatureItem,
+  PricingTable,
+  PricingTableHeader,
+  PricingTableBody,
+  PricingTableRow,
+  PricingTableHead,
+  PricingTableCell,
+  PricingTablePlan,
+} from "@/components/ui/pricing-table";
 import { APP_DOWNLOAD_URL, AGENT_APP_DOWNLOAD_URL, MOBILE_APP_LAST_UPDATED } from "@/lib/config";
 
 const FOOTER_MENU = {
@@ -109,6 +119,37 @@ const FEATURE_CATEGORIES = [
     ],
   },
 ] as const;
+
+// Real plan limits/features — kept in sync with shopkeeper-api's
+// prisma/seed.ts (starter_monthly, growth_monthly, pro_monthly,
+// enterprise_custom) and src/middleware/enforceSubscription.ts, which
+// actually enforces these at checkout/product-creation time. Prices shown
+// as "Free" with the real price struck through via `compareAt` — every
+// invited shop gets full access during beta, this is what applies after.
+const PRICING_PLANS = [
+  { name: "Starter", icon: Store, badge: "Small Shops", price: "Free", compareAt: "₹499/mo" },
+  { name: "Growth", icon: TrendingUp, badge: "Most Popular", price: "Free", compareAt: "₹999/mo" },
+  { name: "Pro", icon: Building2, badge: "Multi-Outlet", price: "Free", compareAt: "₹1,499/mo" },
+  { name: "Enterprise", icon: Crown, badge: "Custom", price: "Custom" },
+] as const;
+
+const PRICING_FEATURES: FeatureItem[] = [
+  { label: "Invoices / month", values: ["1,000", "3,000", "8,000", "Custom"] },
+  { label: "Products", values: ["500", "3,000", "15,000", "Unlimited"] },
+  { label: "Staff members", values: ["2", "5", "15", "Unlimited"] },
+  { label: "Outlets & warehouses", values: ["1 each", "2 each", "5 each", "Unlimited"] },
+  { label: "POS billing & GST invoices", values: [true, true, true, true] },
+  { label: "Party ledger & udhaar tracking", values: [true, true, true, true] },
+  { label: "B2B wholesale invoicing", values: [false, true, true, true] },
+  { label: "Multi-warehouse stock transfers", values: [false, true, true, true] },
+  { label: "Purchase orders & reorder suggestions", values: [false, true, true, true] },
+  { label: "Bank reconciliation", values: [false, true, true, true] },
+  { label: "Field agent GPS tracking & tasks", values: [false, false, true, true] },
+  { label: "E-Invoice / E-Way Bill generation", values: [false, false, true, true] },
+  { label: "Full accounting (GL, P&L, Balance Sheet)", values: [false, false, true, true] },
+  { label: "Payroll & attendance", values: [false, false, true, true] },
+  { label: "Support", values: ["Email", "Email", "Priority", "Dedicated account manager"] },
+];
 
 const WORKS_WITH = [
   { icon: MessageCircle, name: "WhatsApp", desc: "Send a PDF invoice straight to WhatsApp, plus udhaar reminders when a payment is overdue." },
@@ -220,6 +261,58 @@ function FeatureExplorer() {
         ))}
       </div>
     </div>
+  );
+}
+
+function PricingSection() {
+  return (
+    <PricingTable className="mx-auto max-w-6xl">
+      <PricingTableHeader>
+        <PricingTableRow>
+          <th />
+          {PRICING_PLANS.map((plan, i) => (
+            <th key={plan.name} className="p-1.5">
+              <PricingTablePlan
+                name={plan.name}
+                badge={plan.badge}
+                price={plan.price}
+                compareAt={"compareAt" in plan ? plan.compareAt : undefined}
+                icon={plan.icon}
+                className={i === 1 ? "border-primary/50 shadow-lg shadow-primary/10" : ""}
+              >
+                {plan.name === "Enterprise" ? (
+                  <a href="mailto:hello@managemycounter.com">
+                    <Button variant="outline" className="w-full rounded-lg" size="lg">
+                      Contact Sales
+                    </Button>
+                  </a>
+                ) : (
+                  <Link href="https://app.managemycounter.com/register">
+                    <Button
+                      variant={i === 1 ? "default" : "outline"}
+                      className="w-full rounded-lg"
+                      size="lg"
+                    >
+                      Get Invite Access
+                    </Button>
+                  </Link>
+                )}
+              </PricingTablePlan>
+            </th>
+          ))}
+        </PricingTableRow>
+      </PricingTableHeader>
+      <PricingTableBody>
+        {PRICING_FEATURES.map((feature, i) => (
+          <PricingTableRow key={i}>
+            <PricingTableHead>{feature.label}</PricingTableHead>
+            {feature.values.map((value, j) => (
+              <PricingTableCell key={j}>{value}</PricingTableCell>
+            ))}
+          </PricingTableRow>
+        ))}
+      </PricingTableBody>
+    </PricingTable>
   );
 }
 
@@ -339,6 +432,26 @@ export default function LandingPage() {
             </p>
           </div>
           <FeatureExplorer />
+        </div>
+      </section>
+
+      {/* Pricing */}
+      <section id="pricing" className="py-16 md:py-24 bg-white dark:bg-zinc-950">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <span className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider mb-6">
+              <IndianRupee size={14} />
+              Pricing
+            </span>
+            <h2 className="text-4xl md:text-5xl font-black tracking-tight text-foreground dark:text-white mb-6">
+              Simple, usage-based pricing
+            </h2>
+            <p className="text-lg text-zinc-600 dark:text-zinc-400">
+              Every invited shop gets full access to every module, completely free during beta — no card, no expiry.
+              Here's what each tier includes once beta pricing kicks in.
+            </p>
+          </div>
+          <PricingSection />
         </div>
       </section>
 

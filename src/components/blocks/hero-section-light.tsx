@@ -23,6 +23,7 @@ const transitionVariants = {
 
 const NAV_ITEMS = [
   { name: "Features", href: "#features" },
+  { name: "Pricing", href: "#pricing" },
   { name: "Blog", href: "/blog" },
   { name: "About", href: "#about" },
   { name: "FAQs", href: "#faq" },
