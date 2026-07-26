@@ -9,7 +9,6 @@ import { HoverFooter } from "@/components/blocks/hover-footer-demo";
 import {
   ArrowRight, Smartphone, Users, Tag, Receipt, Package, Landmark,
   Contact, Truck, Scale, KeyboardIcon, MessageCircle, Printer, FileSpreadsheet,
-  ArrowDownCircle, ArrowUpCircle, FileText, TrendingUp, ChevronDown, Barcode,
   DownloadCloud, ShieldCheck, Heart, MapPin,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -161,92 +160,22 @@ function NavLink({ href, children, className = "" }: { href: string; children: R
   );
 }
 
-// A phone-frame recreation of the actual app's real home screen ("Today's
-// Snapshot" stat cards — same labels, colours, and layout as
-// shopkeeper-app/app/(tabs)/index.tsx) instead of a generic stock photo.
+// The real mobile app home screen inside a phone-frame bezel. Swap the
+// file at public/mockups/mobile-dashboard.jpg to update — no layout
+// changes needed as long as the replacement is roughly the same aspect
+// ratio (719×1600).
 function MobileAppPreview() {
   return (
     <div className="relative mx-auto" style={{ width: 300 }}>
       <div className="rounded-[2.5rem] border-[10px] border-zinc-900 bg-zinc-900 shadow-2xl overflow-hidden">
-        <div className="bg-white rounded-[1.75rem] overflow-hidden">
-          {/* Notch */}
-          <div className="flex justify-center bg-white pt-2 pb-1">
-            <div className="w-24 h-5 bg-zinc-900 rounded-full" />
-          </div>
-
-          {/* App header */}
-          <div className="flex items-center justify-between px-4 py-3 border-b border-zinc-100">
-            <div className="flex items-center gap-2">
-              <Image src="/logo-icon.png" alt="" width={28} height={28} />
-              <div>
-                <p className="text-sm font-black text-primary leading-tight">Sharma General Store</p>
-                <p className="text-[10px] text-zinc-400 leading-tight flex items-center gap-0.5">Main Branch <ChevronDown size={10} /></p>
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <Barcode size={16} className="text-primary" />
-              <div className="w-7 h-7 rounded-full bg-primary/10 border border-zinc-200 flex items-center justify-center">
-                <span className="text-[10px] font-bold text-primary">RS</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Today's Snapshot */}
-          <div className="px-4 pt-4 pb-5">
-            <div className="flex items-center justify-between mb-2.5">
-              <p className="text-[13px] font-bold text-zinc-800">Today&apos;s Snapshot</p>
-              <p className="text-[10px] font-semibold text-primary">View Analytics</p>
-            </div>
-            <div className="grid grid-cols-2 gap-2">
-              <div className="rounded-xl p-2.5" style={{ background: "#E4F6DC" }}>
-                <div className="flex items-center justify-between">
-                  <p className="text-[8px] font-bold uppercase tracking-wider" style={{ color: "#3E8E2F" }}>Receivables</p>
-                  <ArrowDownCircle size={12} style={{ color: "#3E8E2F" }} />
-                </div>
-                <p className="text-[15px] font-black mt-1" style={{ color: "#1F5A19" }}>₹18,240</p>
-              </div>
-              <div className="rounded-xl p-2.5" style={{ background: "#FBE1E6" }}>
-                <div className="flex items-center justify-between">
-                  <p className="text-[8px] font-bold uppercase tracking-wider" style={{ color: "#B0345C" }}>Payables</p>
-                  <ArrowUpCircle size={12} style={{ color: "#B0345C" }} />
-                </div>
-                <p className="text-[15px] font-black mt-1" style={{ color: "#7A1F3D" }}>₹6,500</p>
-              </div>
-              <div className="rounded-xl p-2.5" style={{ background: "#F5F0E1" }}>
-                <div className="flex items-center justify-between">
-                  <p className="text-[8px] font-bold uppercase tracking-wider" style={{ color: "#8B6914" }}>Invoices</p>
-                  <FileText size={12} style={{ color: "#8B6914" }} />
-                </div>
-                <p className="text-[15px] font-black mt-1" style={{ color: "#5C4510" }}>23</p>
-              </div>
-              <div className="rounded-xl p-2.5" style={{ background: "#E1F0FB" }}>
-                <div className="flex items-center justify-between">
-                  <p className="text-[8px] font-bold uppercase tracking-wider" style={{ color: "#1E6FA6" }}>Sales</p>
-                  <TrendingUp size={12} style={{ color: "#1E6FA6" }} />
-                </div>
-                <p className="text-[15px] font-black mt-1" style={{ color: "#0E3E5C" }}>₹24,580</p>
-              </div>
-            </div>
-
-            {/* Low Stock Alerts */}
-            <div className="mt-4">
-              <div className="flex items-center justify-between mb-2">
-                <p className="text-[13px] font-bold text-zinc-800">Low Stock Alerts</p>
-                <span className="text-[9px] font-bold text-red-500 bg-red-50 px-1.5 py-0.5 rounded">3</span>
-              </div>
-              <div className="space-y-1.5">
-                {[
-                  { name: "Tata Salt 1kg", qty: "4 left" },
-                  { name: "Amul Butter 500g", qty: "2 left" },
-                ].map((item) => (
-                  <div key={item.name} className="flex items-center justify-between bg-zinc-50 rounded-lg px-2.5 py-2">
-                    <p className="text-[11px] font-semibold text-zinc-700">{item.name}</p>
-                    <p className="text-[10px] font-bold text-red-500">{item.qty}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+        <div className="relative w-full rounded-[1.75rem] overflow-hidden" style={{ aspectRatio: "719 / 1600" }}>
+          <Image
+            src="/mockups/mobile-dashboard.jpg"
+            alt="managemycounter mobile app home screen — today's sales, outlets, and billing & sales shortcuts"
+            fill
+            sizes="300px"
+            className="object-cover object-top"
+          />
         </div>
       </div>
     </div>

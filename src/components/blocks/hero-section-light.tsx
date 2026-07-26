@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, Search, IndianRupee } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AnimatedGroup } from "@/components/ui/animated-group";
 import { HeroSectionGrid } from "@/components/ui/hero-section-grid";
@@ -145,72 +145,29 @@ function SiteHeader() {
   );
 }
 
-// A faithful recreation of the actual POS billing screen's search-and-cart
-// layout (real field labels, real GST split math) as the hero visual —
-// not a generic stock photo, and not passed off as a literal screenshot.
+// The real web dashboard, wrapped in browser-style chrome so it reads
+// clearly as "the app" rather than a floating screenshot. Swap the file at
+// public/mockups/web-dashboard.jpg to update — no layout changes needed as
+// long as the replacement is roughly the same aspect ratio (3016×1756).
 function ProductPreview() {
   return (
     <div className="rounded-2xl border border-zinc-200 bg-white shadow-2xl shadow-zinc-900/10 overflow-hidden text-left">
-      {/* Browser-style chrome to read clearly as "the app", not a random card */}
       <div className="flex items-center gap-1.5 px-4 py-3 bg-zinc-50 border-b border-zinc-200">
         <span className="w-2.5 h-2.5 rounded-full bg-zinc-300" />
         <span className="w-2.5 h-2.5 rounded-full bg-zinc-300" />
         <span className="w-2.5 h-2.5 rounded-full bg-zinc-300" />
-        <span className="ml-3 text-[11px] font-mono text-zinc-400">app.managemycounter.com/dashboard/pos</span>
+        <span className="ml-3 text-[11px] font-mono text-zinc-400">app.managemycounter.com/dashboard</span>
       </div>
 
-      <div className="p-5 grid sm:grid-cols-5 gap-4">
-        {/* Search + product cards */}
-        <div className="sm:col-span-3 space-y-3">
-          <div className="flex items-center gap-2 rounded-lg border border-zinc-200 px-3 py-2.5 text-sm text-zinc-400">
-            <Search size={15} />
-            Search by name or SKU...
-          </div>
-          <div className="grid grid-cols-2 gap-2.5">
-            {[
-              { name: "Apollo Atta 10kg", price: "₹620.00", tag: "GST 5%" },
-              { name: "Fortune Oil 5L", price: "₹850.00", tag: "GST 5%" },
-              { name: "Tata Salt 1kg", price: "₹28.00", tag: "GST 5%" },
-              { name: "Amul Ghee 1L", price: "₹590.00", tag: "GST 12%" },
-            ].map((p) => (
-              <div key={p.name} className="rounded-lg border border-zinc-200 p-2.5">
-                <p className="text-[12px] font-bold text-zinc-800 leading-snug">{p.name}</p>
-                <div className="flex items-center justify-between mt-2">
-                  <span className="text-[13px] font-black text-primary">{p.price}</span>
-                  <span className="text-[9px] font-bold text-zinc-400">{p.tag}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Cart summary */}
-        <div className="sm:col-span-2 rounded-xl bg-zinc-50 border border-zinc-200 p-4 flex flex-col">
-          <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 mb-3">Current Bill</p>
-          <div className="space-y-2 text-[12px] flex-1">
-            <div className="flex justify-between text-zinc-700">
-              <span>Apollo Atta 10kg × 2</span>
-              <span className="font-semibold">₹1,240.00</span>
-            </div>
-            <div className="flex justify-between text-zinc-700">
-              <span>Fortune Oil 5L × 1</span>
-              <span className="font-semibold">₹850.00</span>
-            </div>
-            <div className="flex justify-between text-zinc-400 text-[11px] pt-1 border-t border-zinc-200">
-              <span>CGST + SGST (5%)</span>
-              <span>₹104.50</span>
-            </div>
-          </div>
-          <div className="flex items-center justify-between pt-3 mt-3 border-t-2 border-zinc-800">
-            <span className="text-xs font-black text-zinc-800">Grand Total</span>
-            <span className="text-base font-black text-foreground flex items-center">
-              <IndianRupee size={14} className="inline" strokeWidth={3} />2,194.50
-            </span>
-          </div>
-          <button className="mt-3 w-full rounded-lg bg-primary text-white text-xs font-bold py-2.5">
-            Charge ₹2,194.50
-          </button>
-        </div>
+      <div className="relative w-full" style={{ aspectRatio: "3016 / 1756" }}>
+        <Image
+          src="/mockups/web-dashboard.jpg"
+          alt="managemycounter web dashboard — sales, cash flow, low stock alerts, and recent activity at a glance"
+          fill
+          priority
+          sizes="(min-width: 1024px) 896px, 100vw"
+          className="object-cover object-top"
+        />
       </div>
     </div>
   );
