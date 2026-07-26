@@ -170,8 +170,8 @@ or fabricated. If a feature description changes here, update
 **App 1 — managemycounter App**
 For owners, managers & staff — POS, inventory, ledger, expenses
 
-**App 2 — Agent App**
-For field agents — attendance, expenses, tasks, GPS tracking
+**App 2 — MMC Staff**
+For cashiers, managers & field agents — POS, inventory, ledger & attendance, plus GPS tracking, task dispatch, and expense claims for field staff
 
 ---
 
