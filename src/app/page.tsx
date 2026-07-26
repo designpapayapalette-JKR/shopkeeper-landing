@@ -9,7 +9,7 @@ import { HoverFooter } from "@/components/blocks/hover-footer-demo";
 import {
   ArrowRight, Smartphone, Users, Tag, Receipt, Package, Landmark,
   Contact, Truck, Scale, KeyboardIcon, MessageCircle, Printer, FileSpreadsheet,
-  DownloadCloud, ShieldCheck, Heart, MapPin, Store, TrendingUp, Building2, Crown, IndianRupee,
+  DownloadCloud, ShieldCheck, Heart, MapPin, Store, TrendingUp, Building2, Crown, IndianRupee, Info,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -447,11 +447,19 @@ export default function LandingPage() {
               Simple, usage-based pricing
             </h2>
             <p className="text-lg text-zinc-600 dark:text-zinc-400">
-              Every invited shop gets full access to every module, completely free during beta — no card, no expiry.
-              Here's what each tier includes once beta pricing kicks in.
+              Free for your first 3 months as part of our beta — no card required. Pick the plan that matches
+              your actual invoice volume and team size now, since it becomes your paid plan once the beta ends.
             </p>
           </div>
           <PricingSection />
+          <div className="max-w-3xl mx-auto mt-8 flex items-start gap-3 rounded-xl border border-amber-200 dark:border-amber-900/50 bg-amber-50 dark:bg-amber-950/30 p-4">
+            <Info size={18} className="text-amber-600 dark:text-amber-500 shrink-0 mt-0.5" />
+            <p className="text-sm text-amber-900 dark:text-amber-200 leading-relaxed">
+              <strong className="font-bold">Choose carefully:</strong> whichever plan you pick during the 3-month
+              beta is the plan you'll be on when it ends — plans can't be changed after beta pricing kicks in.
+              Pick based on your real invoice volume and team size, not to try a higher tier for free.
+            </p>
+          </div>
         </div>
       </section>
 
