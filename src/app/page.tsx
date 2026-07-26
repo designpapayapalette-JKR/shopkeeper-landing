@@ -168,7 +168,7 @@ const PAIN_POINTS = [
 const DIFFERENTIATORS = [
   { icon: Scale, title: "Built for the kirana counter — by a shopkeeper", desc: "Weight-billing off the kaanta, loose-item pricing, and crate/bottle deposit tracking. Made by someone who's stood at the same counter — not a generic POS with GST bolted on afterward." },
   { icon: KeyboardIcon, title: "Keyboard-first, like the old Tally workflow", desc: "Search, arrow keys to select, Enter to add, Ctrl+A to close the bill — a cashier never needs to touch the mouse." },
-  { icon: Heart, title: "Free during beta — built for the community", desc: "Every invited shop gets full access to every module today. No credit card, no feature lock, no expiry. We're shopkeepers too — this is for the community." },
+  { icon: Heart, title: "Free for 3 months — built for the community", desc: "Every invited shop picks the plan that fits and gets full access to it for 3 months, no card required. We're shopkeepers too — this is for the community." },
   { icon: Smartphone, title: "Offline-first mobile apps", desc: "Built for Indian network conditions — billing and attendance keep working when the connection drops, and sync the moment it's back." },
 ];
 
@@ -626,8 +626,8 @@ export default function LandingPage() {
             We built the tool we wish we had.
           </p>
           <p className="text-lg text-zinc-600 dark:text-zinc-400 max-w-3xl mx-auto mb-10 leading-relaxed">
-            That's why it's free during beta. No trials that expire, no credit card needed, no feature gates.
-            Every invited shop gets the full ERP — because we're not trying to trap you into a subscription.
+            That's why it's free for your first 3 months. No credit card needed, no feature gates during
+            the beta — every invited shop gets full access to whichever plan matches their business, on us.
             We're building something the Indian dukaandar community actually deserves.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

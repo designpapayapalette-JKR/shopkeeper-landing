@@ -74,10 +74,10 @@ function RegisterForm() {
       wide
       brandTag="Merchant Portal"
       panelHeading="Start your free trial"
-      panelDescription="managemycounter is in private beta — every new business gets full access to every feature, no credit card required."
+      panelDescription="managemycounter is in private beta — every invited business gets free access to the plan that fits them for 3 months, no credit card required."
       features={[
-        { label: "No credit card required", desc: "Full access to every feature" },
-        { label: "Cancel or extend anytime", desc: "No long-term contracts" },
+        { label: "No credit card required", desc: "Free access for your first 3 months" },
+        { label: "Plan matched to your business", desc: "Set up before you sign up, becomes your paid plan after beta" },
         { label: "Onboarding in minutes", desc: "Add products, staff, and start billing today" },
       ]}
       title="Start your free trial"
@@ -131,7 +131,7 @@ function RegisterForm() {
         </button>
 
         <ul className="pt-2 space-y-2">
-          {["No credit card required", "Full access to every feature", "Cancel or extend anytime"].map((item) => (
+          {["No credit card required", "Plan matched to your business", "Free for your first 3 months"].map((item) => (
             <li key={item} className="flex items-center gap-2 text-xs font-medium" style={{ color: "var(--text-3)" }}>
               <Check size={13} className="text-primary shrink-0" strokeWidth={3} />
               {item}
