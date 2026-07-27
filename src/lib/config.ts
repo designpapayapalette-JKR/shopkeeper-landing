@@ -19,7 +19,11 @@ export const APP_DOWNLOAD_URL =
 export const AGENT_APP_DOWNLOAD_URL =
   process.env.NEXT_PUBLIC_AGENT_APP_DOWNLOAD_URL ||
   "https://github.com/designpapayapalette-JKR/agent-app/releases/download/beta-latest/agent-app-latest.apk";
-// Bump this any time either APK link/version above changes — shown on the
-// landing page's Mobile Apps section so visitors can see the build is
-// current. Format: "D MMM YYYY, h:mm AM/PM" (date + time, IST).
-export const MOBILE_APP_LAST_UPDATED = "25 Jul 2026, 4:49 PM";
+// Desktop app installer download URL (Windows .exe)
+export const DESKTOP_APP_DOWNLOAD_URL =
+  process.env.NEXT_PUBLIC_DESKTOP_APP_DOWNLOAD_URL ||
+  "https://github.com/designpapayapalette-JKR/shopkeeper-desktop-connect/releases/download/v0.2.3/managemycounter-Setup-0.2.3.exe";
+// Bump this any time either APK/installer link/version above changes — shown on the
+// landing page's Apps section so visitors can see the build is current. Format: "D MMM YYYY, h:mm AM/PM" (date + time, IST).
+export const MOBILE_APP_LAST_UPDATED = "27 Jul 2026, 7:15 PM";
+

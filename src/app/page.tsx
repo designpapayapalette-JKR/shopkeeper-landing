@@ -9,7 +9,7 @@ import { HoverFooter } from "@/components/blocks/hover-footer-demo";
 import {
   ArrowRight, Smartphone, Users, Tag, Receipt, Package, Landmark,
   Contact, Truck, Scale, KeyboardIcon, MessageCircle, Printer, FileSpreadsheet,
-  DownloadCloud, ShieldCheck, Heart, MapPin, Store, TrendingUp, Building2, Crown, IndianRupee, Info,
+  DownloadCloud, ShieldCheck, Heart, MapPin, Store, TrendingUp, Building2, Crown, IndianRupee, Info, Sparkles, Monitor,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AndroidIcon } from "@/components/ui/android-icon";
@@ -23,7 +23,7 @@ import {
   PricingTableCell,
   PricingTablePlan,
 } from "@/components/ui/pricing-table";
-import { APP_DOWNLOAD_URL, AGENT_APP_DOWNLOAD_URL, MOBILE_APP_LAST_UPDATED } from "@/lib/config";
+import { APP_DOWNLOAD_URL, AGENT_APP_DOWNLOAD_URL, DESKTOP_APP_DOWNLOAD_URL, MOBILE_APP_LAST_UPDATED } from "@/lib/config";
 
 const FOOTER_MENU = {
   Product: [
@@ -110,6 +110,19 @@ const FEATURE_CATEGORIES = [
     ],
   },
   {
+    id: "smart-insights",
+    label: "Smart AI & Loss Prevention",
+    icon: Sparkles,
+    intro: "Zero-cost algorithmic intelligence designed specifically for Indian retail margins — preventing losses, bad debt, and stockouts automatically.",
+    items: [
+      { title: "Near-expiry stock & markdown engine", desc: "Monitors perishable batches and suggests tiered discounts (10%-50%) before products expire and turn into a total loss." },
+      { title: "Customer credit-risk & safe limits", desc: "Analyzes payment delay patterns and udhaar utilization to score credit risk and calculate safe credit limits for buyers." },
+      { title: "Velocity-based demand forecasting", desc: "Predicts stockout risks using real 30-day sales velocity rather than arbitrary static reorder numbers." },
+      { title: "POS discount anomaly detection", desc: "Flags unusual POS billing discounts that deviate from store averages, preventing unauthorized cashier markdowns." },
+      { title: "Smart regional WhatsApp debt nudges", desc: "Generates tone-matched (Friendly, Firm, Urgent) English & Hindi payment reminder messages for overdue customers." },
+    ],
+  },
+  {
     id: "operations",
     label: "Operations & Logistics",
     icon: Truck,
@@ -141,6 +154,7 @@ const PRICING_FEATURES: FeatureItem[] = [
   { label: "Outlets & warehouses", values: ["1 each", "2 each", "5 each", "Unlimited"] },
   { label: "POS billing & GST invoices", values: [true, true, true, true] },
   { label: "Party ledger & udhaar tracking", values: [true, true, true, true] },
+  { label: "Smart AI Insights & Loss Prevention", values: [true, true, true, true] },
   { label: "B2B wholesale invoicing", values: [false, true, true, true] },
   { label: "Multi-warehouse stock transfers", values: [false, true, true, true] },
   { label: "Purchase orders & reorder suggestions", values: [false, true, true, true] },
@@ -505,22 +519,43 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Mobile Apps */}
+      {/* Mobile & Desktop Apps */}
       <section id="download" className="py-16 md:py-24 bg-zinc-50 dark:bg-zinc-900">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <span className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider mb-6">
-                <AndroidIcon className="size-3.5" />
-                Android Apps
+                <Smartphone className="size-3.5" />
+                Mobile &amp; Desktop Apps
               </span>
               <h2 className="text-4xl md:text-5xl font-black tracking-tight text-foreground dark:text-white mb-6">
-                For your staff and field team too
+                For your counter, staff and field team
               </h2>
               <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-8">
-                Android apps for your staff and field agents. Native performance, offline-first, built for Indian network conditions.
+                Native Windows desktop software for your cash counter, plus Android apps for your staff and field agents. Native performance, offline-first sync.
               </p>
               <div className="space-y-4">
+                <a
+                  href={DESKTOP_APP_DOWNLOAD_URL}
+                  className="group relative flex items-center gap-5 p-6 bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-primary hover:shadow-xl hover:shadow-primary/10 transition-all duration-300"
+                >
+                  <div className="w-16 h-16 shrink-0 rounded-2xl bg-blue-600 flex items-center justify-center">
+                    <Monitor size={30} className="text-white" strokeWidth={1.75} />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2">
+                      <h3 className="font-bold text-lg text-foreground dark:text-white">managemycounter Desktop</h3>
+                      <span className="hidden sm:inline-flex text-[10px] font-bold uppercase tracking-wider text-blue-600 bg-blue-50 dark:bg-blue-950/50 px-2 py-0.5 rounded-full">
+                        Windows (64-bit)
+                      </span>
+                    </div>
+                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">Desktop software for cash counter billing, offline POS sync, high-speed thermal printing &amp; tray mode.</p>
+                  </div>
+                  <div className="hidden sm:flex flex-col items-center gap-1 shrink-0 pl-4 border-l border-zinc-200 dark:border-zinc-800">
+                    <DownloadCloud size={22} className="text-blue-600" strokeWidth={2} />
+                    <span className="text-[11px] font-bold text-zinc-500 dark:text-zinc-400">EXE</span>
+                  </div>
+                </a>
                 <a
                   href={APP_DOWNLOAD_URL}
                   className="group relative flex items-center gap-5 p-6 bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-primary hover:shadow-xl hover:shadow-primary/10 transition-all duration-300"
@@ -532,7 +567,7 @@ export default function LandingPage() {
                     <div className="flex items-center gap-2">
                       <h3 className="font-bold text-lg text-foreground dark:text-white">managemycounter App</h3>
                       <span className="hidden sm:inline-flex text-[10px] font-bold uppercase tracking-wider text-primary bg-primary/10 px-2 py-0.5 rounded-full">
-                        For Owners &amp; Staff
+                        Android • For Owners &amp; Staff
                       </span>
                     </div>
                     <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">POS, inventory, ledger, field agent tracking &amp; expenses — the full ERP in your pocket</p>
@@ -553,7 +588,7 @@ export default function LandingPage() {
                     <div className="flex items-center gap-2">
                       <h3 className="font-bold text-lg text-foreground dark:text-white">MMC Staff</h3>
                       <span className="hidden sm:inline-flex text-[10px] font-bold uppercase tracking-wider text-zinc-600 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800 px-2 py-0.5 rounded-full">
-                        For Cashiers, Managers &amp; Field Staff
+                        Android • Cashiers, Managers &amp; Field Staff
                       </span>
                     </div>
                     <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">POS billing, inventory, ledger &amp; attendance for cashiers and managers — plus GPS attendance, task dispatch, and expense claims for field agents. Offline-first.</p>
@@ -566,7 +601,7 @@ export default function LandingPage() {
               </div>
               <p className="flex items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400 mt-4">
                 <ShieldCheck size={14} className="text-primary shrink-0" />
-                Direct APK download, not on Play Store yet — Android will ask you to confirm "install from unknown sources" once. Your data stays exactly as safe either way.
+                Direct Windows .exe installer and Android APK downloads — simple 1-click installation for counter PCs and smartphones.
               </p>
               <p className="text-xs text-zinc-400 dark:text-zinc-500 mt-2">
                 Apps last updated: {MOBILE_APP_LAST_UPDATED}
