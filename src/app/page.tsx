@@ -148,8 +148,8 @@ const PRICING_PLANS = [
 ] as const;
 
 const PRICING_FEATURES: FeatureItem[] = [
-  { label: "Invoices / month", values: ["1,000", "3,000", "8,000", "Custom"] },
-  { label: "Products", values: ["500", "3,000", "15,000", "Unlimited"] },
+  { label: "Invoices / month", values: ["100", "300", "1,000", "Custom"] },
+  { label: "Products", values: ["100", "250", "500", "Unlimited"] },
   { label: "Staff members", values: ["2", "5", "15", "Unlimited"] },
   { label: "Outlets & warehouses", values: ["1 each", "2 each", "5 each", "Unlimited"] },
   { label: "POS billing & GST invoices", values: [true, true, true, true] },
