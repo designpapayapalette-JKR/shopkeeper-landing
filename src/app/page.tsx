@@ -582,19 +582,19 @@ export default function LandingPage() {
                   className="group relative flex items-center gap-5 p-6 bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-primary hover:shadow-xl hover:shadow-primary/10 transition-all duration-300"
                 >
                   <div className="w-16 h-16 shrink-0 rounded-2xl bg-zinc-900 dark:bg-zinc-800 flex items-center justify-center">
-                    <Users size={30} className="text-white" strokeWidth={1.75} />
+                    <AndroidIcon className="size-7 text-white" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
                       <h3 className="font-bold text-lg text-foreground dark:text-white">MMC Staff</h3>
-                      <span className="hidden sm:inline-flex text-[10px] font-bold uppercase tracking-wider text-zinc-600 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800 px-2 py-0.5 rounded-full">
+                      <span className="hidden sm:inline-flex text-[10px] font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50 dark:bg-emerald-950/50 px-2 py-0.5 rounded-full">
                         Android • Cashiers, Managers &amp; Field Staff
                       </span>
                     </div>
-                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">POS billing, inventory, ledger &amp; attendance for cashiers and managers — plus GPS attendance, task dispatch, and expense claims for field agents. Offline-first.</p>
+                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">POS billing, inventory, ledger &amp; attendance for cashiers and managers — plus GPS attendance, task dispatch, and expense claims for field agents. Offline-first Android app.</p>
                   </div>
                   <div className="hidden sm:flex flex-col items-center gap-1 shrink-0 pl-4 border-l border-zinc-200 dark:border-zinc-800">
-                    <DownloadCloud size={22} className="text-foreground dark:text-white" strokeWidth={2} />
+                    <DownloadCloud size={22} className="text-emerald-600" strokeWidth={2} />
                     <span className="text-[11px] font-bold text-zinc-500 dark:text-zinc-400">APK</span>
                   </div>
                 </a>
