@@ -25,5 +25,6 @@ export const DESKTOP_APP_DOWNLOAD_URL =
   "https://github.com/designpapayapalette-JKR/shopkeeper-desktop-connect/releases/download/v0.2.3/managemycounter-Setup-0.2.3.exe";
 // Bump this any time either APK/installer link/version above changes — shown on the
 // landing page's Apps section so visitors can see the build is current. Format: "D MMM YYYY, h:mm AM/PM" (date + time, IST).
-export const MOBILE_APP_LAST_UPDATED = "27 Jul 2026, 7:15 PM";
+export const MOBILE_APP_LAST_UPDATED = "28 Jul 2026, 5:20 PM";
+
 

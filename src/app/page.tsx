@@ -280,54 +280,202 @@ function FeatureExplorer() {
 }
 
 function PricingSection() {
+  const [selectedMobilePlan, setSelectedMobilePlan] = useState<number>(1);
+  const [expandedFeatures, setExpandedFeatures] = useState<boolean>(false);
+
   return (
-    <PricingTable className="mx-auto max-w-6xl">
-      <PricingTableHeader>
-        <PricingTableRow>
-          <th />
-          {PRICING_PLANS.map((plan, i) => (
-            <th key={plan.name} className="p-1.5">
-              <PricingTablePlan
-                name={plan.name}
-                badge={plan.badge}
-                price={plan.price}
-                compareAt={"compareAt" in plan ? plan.compareAt : undefined}
-                icon={plan.icon}
-                className={i === 1 ? "border-primary/50 shadow-lg shadow-primary/10" : ""}
+    <>
+      {/* Desktop Comparison Table */}
+      <div className="hidden md:block">
+        <PricingTable className="mx-auto max-w-6xl">
+          <PricingTableHeader>
+            <PricingTableRow>
+              <th />
+              {PRICING_PLANS.map((plan, i) => (
+                <th key={plan.name} className="p-1.5">
+                  <PricingTablePlan
+                    name={plan.name}
+                    badge={plan.badge}
+                    price={plan.price}
+                    compareAt={"compareAt" in plan ? plan.compareAt : undefined}
+                    icon={plan.icon}
+                    className={i === 1 ? "border-primary/50 shadow-lg shadow-primary/10" : ""}
+                  >
+                    {plan.name === "Enterprise" ? (
+                      <a href="mailto:hello@managemycounter.com">
+                        <Button variant="outline" className="w-full rounded-lg" size="lg">
+                          Contact Sales
+                        </Button>
+                      </a>
+                    ) : (
+                      <Link href="https://app.managemycounter.com/register">
+                        <Button
+                          variant={i === 1 ? "default" : "outline"}
+                          className="w-full rounded-lg"
+                          size="lg"
+                        >
+                          Get Invite Access
+                        </Button>
+                      </Link>
+                    )}
+                  </PricingTablePlan>
+                </th>
+              ))}
+            </PricingTableRow>
+          </PricingTableHeader>
+          <PricingTableBody>
+            {PRICING_FEATURES.map((feature, i) => (
+              <PricingTableRow key={i}>
+                <PricingTableHead>{feature.label}</PricingTableHead>
+                {feature.values.map((value, j) => (
+                  <PricingTableCell key={j}>{value}</PricingTableCell>
+                ))}
+              </PricingTableRow>
+            ))}
+          </PricingTableBody>
+        </PricingTable>
+      </div>
+
+      {/* Mobile-Optimized Pricing Experience */}
+      <div className="block md:hidden space-y-5">
+        {/* Mobile Plan Tab Selector */}
+        <div className="flex justify-between items-center gap-1.5 bg-zinc-100 dark:bg-zinc-900 p-1.5 rounded-2xl border border-zinc-200 dark:border-zinc-800 overflow-x-auto">
+          {PRICING_PLANS.map((plan, idx) => {
+            const isSelected = selectedMobilePlan === idx;
+            const Icon = plan.icon;
+            return (
+              <button
+                key={plan.name}
+                onClick={() => setSelectedMobilePlan(idx)}
+                className={`flex-1 min-w-[70px] py-2 px-2 rounded-xl text-xs font-bold transition-all flex flex-col items-center gap-1 ${
+                  isSelected
+                    ? "bg-primary text-white shadow-md shadow-primary/20 scale-[1.02]"
+                    : "text-zinc-600 dark:text-zinc-400 hover:text-foreground dark:hover:text-white"
+                }`}
               >
-                {plan.name === "Enterprise" ? (
-                  <a href="mailto:hello@managemycounter.com">
-                    <Button variant="outline" className="w-full rounded-lg" size="lg">
+                <div className="flex items-center gap-1">
+                  <Icon size={13} />
+                  <span>{plan.name}</span>
+                </div>
+                {plan.badge === "Most Popular" && (
+                  <span className={`text-[9px] font-extrabold px-1.5 py-0.2 rounded-full ${isSelected ? "bg-white/20 text-white" : "bg-primary/15 text-primary"}`}>
+                    Popular
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Selected Plan Active Card */}
+        {(() => {
+          const activePlan = PRICING_PLANS[selectedMobilePlan];
+          const Icon = activePlan.icon;
+          const isPopular = activePlan.badge === "Most Popular";
+
+          return (
+            <div className={`relative bg-white dark:bg-zinc-900 rounded-3xl border ${isPopular ? "border-2 border-primary shadow-2xl shadow-primary/10" : "border-zinc-200 dark:border-zinc-800 shadow-xl"} p-5 overflow-hidden transition-all duration-300`}>
+              {isPopular && (
+                <div className="absolute top-0 right-0 bg-primary text-white text-[10px] font-extrabold tracking-widest uppercase py-1 px-3.5 rounded-bl-xl shadow-sm flex items-center gap-1">
+                  <Sparkles size={11} /> {activePlan.badge}
+                </div>
+              )}
+
+              {/* Plan Header */}
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
+                  <Icon size={20} />
+                </div>
+                <div>
+                  <h3 className="text-xl font-black text-foreground dark:text-white">{activePlan.name} Plan</h3>
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400">{activePlan.badge}</p>
+                </div>
+              </div>
+
+              {/* Price Tag */}
+              <div className="flex items-baseline gap-2 mb-5 bg-zinc-50 dark:bg-zinc-800/50 p-4 rounded-2xl border border-zinc-100 dark:border-zinc-800">
+                <span className="text-3xl font-black text-foreground dark:text-white">{activePlan.price}</span>
+                {"compareAt" in activePlan && (
+                  <div className="flex flex-col">
+                    <span className="text-xs text-zinc-400 dark:text-zinc-500 line-through font-semibold">{activePlan.compareAt}</span>
+                    <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase">Beta Access Free</span>
+                  </div>
+                )}
+              </div>
+
+              {/* Action Button */}
+              <div className="mb-5">
+                {activePlan.name === "Enterprise" ? (
+                  <a href="mailto:hello@managemycounter.com" className="w-full block">
+                    <Button variant="outline" className="w-full rounded-xl py-5 font-bold text-base">
                       Contact Sales
                     </Button>
                   </a>
                 ) : (
-                  <Link href="https://app.managemycounter.com/register">
+                  <Link href="https://app.managemycounter.com/register" className="w-full block">
                     <Button
-                      variant={i === 1 ? "default" : "outline"}
-                      className="w-full rounded-lg"
-                      size="lg"
+                      variant={isPopular ? "default" : "outline"}
+                      className="w-full rounded-xl py-5 font-bold text-base shadow-lg shadow-primary/20"
                     >
-                      Get Invite Access
+                      Get Invite Access — Free
                     </Button>
                   </Link>
                 )}
-              </PricingTablePlan>
-            </th>
-          ))}
-        </PricingTableRow>
-      </PricingTableHeader>
-      <PricingTableBody>
-        {PRICING_FEATURES.map((feature, i) => (
-          <PricingTableRow key={i}>
-            <PricingTableHead>{feature.label}</PricingTableHead>
-            {feature.values.map((value, j) => (
-              <PricingTableCell key={j}>{value}</PricingTableCell>
-            ))}
-          </PricingTableRow>
-        ))}
-      </PricingTableBody>
-    </PricingTable>
+              </div>
+
+              {/* Core Limits Summary Grid (Top 4 Quotas) */}
+              <div className="grid grid-cols-2 gap-2 mb-5">
+                {PRICING_FEATURES.slice(0, 4).map((feat, idx) => (
+                  <div key={idx} className="p-3 bg-zinc-50 dark:bg-zinc-800/40 rounded-xl border border-zinc-100 dark:border-zinc-800">
+                    <p className="text-[11px] font-semibold text-zinc-500 dark:text-zinc-400">{feat.label}</p>
+                    <p className="text-base font-black text-foreground dark:text-white mt-0.5">
+                      {String(feat.values[selectedMobilePlan])}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Feature Checklist */}
+              <div className="border-t border-zinc-100 dark:border-zinc-800 pt-4 space-y-2.5">
+                <p className="text-[11px] font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-2">
+                  Included Features ({activePlan.name})
+                </p>
+                {(expandedFeatures ? PRICING_FEATURES.slice(4) : PRICING_FEATURES.slice(4, 10)).map((feature, i) => {
+                  const val = feature.values[selectedMobilePlan];
+                  const isIncluded = val === true || (typeof val === "string" && val !== "false");
+                  return (
+                    <div key={i} className="flex items-center justify-between text-xs py-1">
+                      <span className={`font-medium ${isIncluded ? "text-zinc-800 dark:text-zinc-200" : "text-zinc-400 dark:text-zinc-600 line-through"}`}>
+                        {feature.label}
+                      </span>
+                      {typeof val === "boolean" ? (
+                        val ? (
+                          <div className="w-5 h-5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0 font-bold text-[11px]">
+                            ✓
+                          </div>
+                        ) : (
+                          <span className="text-zinc-400 dark:text-zinc-600 font-bold text-xs shrink-0">—</span>
+                        )
+                      ) : (
+                        <span className="font-bold text-primary shrink-0 bg-primary/10 px-2 py-0.5 rounded-md text-[11px]">
+                          {val}
+                        </span>
+                      )}
+                    </div>
+                  );
+                })}
+                <button
+                  onClick={() => setExpandedFeatures(!expandedFeatures)}
+                  className="w-full text-center text-xs font-bold text-primary hover:underline pt-2"
+                >
+                  {expandedFeatures ? "Show fewer features ↑" : `View all ${PRICING_FEATURES.length - 4} features ↓`}
+                </button>
+              </div>
+            </div>
+          );
+        })()}
+      </div>
+    </>
   );
 }
 
