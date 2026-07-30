@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Mail, Phone, MapPin, Globe, ShieldCheck } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 import { FooterBackgroundGradient, TextHoverEffect } from "@/components/ui/hover-footer";
 
 const FOOTER_LINKS = [

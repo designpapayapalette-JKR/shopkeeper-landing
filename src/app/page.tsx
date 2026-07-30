@@ -25,23 +25,6 @@ import {
 } from "@/components/ui/pricing-table";
 import { APP_DOWNLOAD_URL, AGENT_APP_DOWNLOAD_URL, DESKTOP_APP_DOWNLOAD_URL, MOBILE_APP_LAST_UPDATED } from "@/lib/config";
 
-const FOOTER_MENU = {
-  Product: [
-    { href: "#features", label: "Features" },
-    { href: "#works-with", label: "Works With" },
-    { href: "/blog", label: "Blog" },
-  ],
-  Company: [
-    { href: "mailto:hello@managemycounter.com", label: "Contact us" },
-    { href: "#about", label: "About Us" },
-  ],
-  Legal: [
-    { href: "/privacy", label: "Privacy Policy" },
-    { href: "/terms", label: "Terms of Service" },
-    { href: "/security", label: "Security" },
-  ],
-};
-
 const FEATURE_CATEGORIES = [
   {
     id: "billing",
@@ -186,35 +169,6 @@ const DIFFERENTIATORS = [
   { icon: Heart, title: "Free for 3 months — built for the community", desc: "Every invited shop picks the plan that fits and gets full access to it for 3 months, no card required. We're shopkeepers too — this is for the community." },
   { icon: Smartphone, title: "Offline-first mobile apps", desc: "Built for Indian network conditions — billing and attendance keep working when the connection drops, and sync the moment it's back." },
 ];
-
-// White-text wordmark (for the dark footer) — cropped to its real content
-// bounding box (6672x816, ratio ~8.18:1) via sharp; the previous "Straight"
-// source PNGs were 8000x4500 with the actual logo occupying only a ~680px
-// strip in the middle, so anything sized off the raw canvas rendered as a
-// barely-visible sliver regardless of the display height requested.
-function Logo({ width = 140, height, className = "" }: { width?: number; height?: number; className?: string }) {
-  const resolvedHeight = height ?? Math.round(width / 8.176);
-  return (
-    <Image
-      src="/logo-white.png"
-      alt="managemycounter"
-      width={width}
-      height={resolvedHeight}
-      className={`shrink-0 ${className}`}
-    />
-  );
-}
-
-function NavLink({ href, children, className = "" }: { href: string; children: React.ReactNode; className?: string }) {
-  return (
-    <Link
-      href={href}
-      className={`text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-primary transition-colors ${className}`}
-    >
-      {children}
-    </Link>
-  );
-}
 
 // The real mobile app home screen inside a phone-frame bezel. Swap the
 // file at public/mockups/mobile-dashboard.jpg to update — no layout
