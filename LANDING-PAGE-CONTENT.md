@@ -86,9 +86,10 @@ or fabricated. If a feature description changes here, update
 
 ### 4.1 Billing & Sales
 
-**Category intro:** A counter workflow built for speed — keyboard-driven search, one-tap quick-add, and billing for both packaged and loose/weighed goods.
+**Category intro:** A counter workflow built for speed — keyboard-driven search, one-tap quick-add, and billing for both packed and loose/weighed goods.
 
 - **POS & B2B billing** — Retail, GST, or estimate invoices — with Bill of Supply for composition-scheme sellers — from the same counter screen.
+- **Credit limit & negative stock guard** — Enforces customer credit limits pre-checkout with warning prompts, plus stock alerts when cart quantity exceeds stock.
 - **Weighing-scale & loose-item billing** — Sell by weight (kg/g/ml/l) alongside fixed-unit packets, with a dual-pricing toggle for products sold both ways.
 - **Keyboard-driven checkout** — Arrow keys to pick a search match, Enter to add it, Ctrl+A to charge — a cashier never has to reach for the mouse.
 - **Split payments & cash change** — Cash, UPI, card, or credit in any combination on one bill, with a live Cash Received / Change Due calculator.
@@ -100,17 +101,18 @@ or fabricated. If a feature description changes here, update
 **Category intro:** Stock that stays accurate across every warehouse, with the specific fields Indian retail actually needs — not a generic SKU list.
 
 - **Multi-warehouse stock sync** — Real-time quantity across every location, with transfer requests and approvals between them.
-- **Custom product fields** — Company-defined attributes — colour, flavour, dimensions — that show up on the product form and, if you choose, the printed invoice.
-- **Rack/shelf & quick-add** — Tag a product's physical location for faster picking, and pin your actual best-sellers to a one-tap grid at the counter.
+- **Barcode label generator & sticker studio** — Generate barcode stickers with SVG live preview, single-sticker modal, and multi-item batch print quantity manager.
+- **Catalog cost price auto-update** — Recording purchase bills with new unit costs automatically updates catalog cost prices to keep COGS and gross profit accurate.
+- **FEFO batch, expiry & serial tracking** — FEFO-aware batch numbers & expiry dates for perishables, and unit-level serial/IMEI tracking printed on invoices for warranty proof.
+- **Custom product fields** — Company-defined attributes — colour, flavour, dimensions — that show up on product forms and printed invoices.
+- **Rack/shelf & quick-add** — Tag a product's physical location for faster picking, and pin best-sellers to a one-tap grid at the counter.
 - **Container/crate deposit tracking** — Returnable-container deposits (crates, jars) tracked per party, with recovery and aging reports.
-- **Batch, expiry & serial tracking** — FEFO-aware batch/expiry for perishables, and unit-level serial/IMEI tracking for electronics — printed on the invoice for warranty proof.
-- **Barcode generation & GST rate tools** — Print barcode labels in bulk, and catch HSN/GST-rate mismatches across your whole catalogue in one pass.
 
 ### 4.3 Accounting & Finance
 
-**Category intro:** The reports and ledger behaviour a shop's accountant actually asks for, not just a sales total.
+**Category intro:** The hisab-kitab your CA actually asks for — not just total sales, the full ledger.
 
-- **Party ledger with udhar reminders** — Running balance per customer/supplier, with one-tap WhatsApp reminders for anything overdue.
+- **Party ledger with udhar reminders** — Running balance per customer/supplier, direct invoice allocation, and one-tap WhatsApp reminders for anything overdue.
 - **Credit/debit notes & bank reconciliation** — Proper adjustment documents, and confidence-scored matching against your bank statement.
 - **P&L, Balance Sheet, Trial Balance** — Plus Aging, Stock Valuation, and HSN-wise summary — the standard set your CA expects to see.
 - **GSTR-ready exports** — B2B/B2C sales and purchase registers formatted for GSTR-1/3B filing, plus TDS/TCS and RCM handling on purchases.

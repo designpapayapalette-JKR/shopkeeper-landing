@@ -34,6 +34,7 @@ const FEATURE_CATEGORIES = [
     items: [
       { title: "POS retail billing", desc: "Fast counter billing with barcode scanning, keyboard-driven search, and split payments (cash, UPI, card, credit) on one bill." },
       { title: "B2B wholesale invoicing", desc: "Bulk-order invoices with GSTIN format checks, composition-scheme Bill of Supply, and tiered pricing by customer group." },
+      { title: "Credit limit & negative stock guard", desc: "Enforces customer credit limits pre-checkout with warning prompts, plus stock alerts when cart quantity exceeds stock." },
       { title: "Weighing-scale & loose-item billing", desc: "Sell by weight (kg/g/ml/l) alongside fixed-unit packets, with a dual-pricing toggle for products sold both ways." },
       { title: "Keyboard-driven checkout", desc: "Arrow keys to pick a search match, Enter to add it, Ctrl+A to charge — a cashier never has to reach for the mouse." },
       { title: "Split payments & cash change", desc: "Cash, UPI, card, or credit in any combination on one bill, with a live Cash Received / Change Due calculator." },
@@ -48,11 +49,12 @@ const FEATURE_CATEGORIES = [
     intro: "Godown or shop floor, stock stays accurate — the fields Indian retail actually needs, not a generic SKU list.",
     items: [
       { title: "Multi-warehouse stock sync", desc: "Real-time quantity across every location, with transfer requests and approvals between them." },
-      { title: "Custom product fields", desc: "Company-defined attributes — colour, flavour, dimensions — that show up on the product form and, if you choose, the printed invoice." },
-      { title: "Rack/shelf & quick-add", desc: "Tag a product's physical location for faster picking, and pin your actual best-sellers to a one-tap grid at the counter." },
+      { title: "Barcode label generator & sticker studio", desc: "Generate barcode stickers with SVG live preview, single-sticker modal, and multi-item batch print quantity manager." },
+      { title: "Catalog cost price auto-update", desc: "Recording purchase bills with new unit costs automatically updates catalog cost prices to keep COGS and gross profit accurate." },
+      { title: "FEFO batch, expiry & serial tracking", desc: "FEFO-aware batch numbers & expiry dates for perishables, and unit-level serial/IMEI tracking printed on invoices for warranty proof." },
+      { title: "Custom product fields", desc: "Company-defined attributes — colour, flavour, dimensions — that show up on product forms and printed invoices." },
+      { title: "Rack/shelf & quick-add", desc: "Tag a product's physical location for faster picking, and pin best-sellers to a one-tap grid at the counter." },
       { title: "Container/crate deposit tracking", desc: "Returnable-container deposits (crates, jars) tracked per party, with recovery and aging reports." },
-      { title: "Batch, expiry & serial tracking", desc: "FEFO-aware batch/expiry for perishables, and unit-level serial/IMEI tracking for electronics — printed on the invoice for warranty proof." },
-      { title: "Barcode generation & GST rate tools", desc: "Print barcode labels in bulk, and catch HSN/GST-rate mismatches across your whole catalogue in one pass." },
     ],
   },
   {
@@ -61,7 +63,7 @@ const FEATURE_CATEGORIES = [
     icon: Landmark,
     intro: "The hisab-kitab your CA actually asks for — not just total sales, the full ledger.",
     items: [
-      { title: "Party ledger with udhar reminders", desc: "Running balance per customer/supplier, with one-tap WhatsApp reminders for anything overdue." },
+      { title: "Party ledger with udhar reminders", desc: "Running balance per customer/supplier, direct invoice allocation, and one-tap WhatsApp reminders for anything overdue." },
       { title: "Credit/debit notes & bank reconciliation", desc: "Proper adjustment documents, and confidence-scored matching against your bank statement." },
       { title: "P&L, Balance Sheet, Trial Balance", desc: "Plus Aging, Stock Valuation, and HSN-wise summary — the standard set your CA expects to see." },
       { title: "GSTR-ready exports", desc: "B2B/B2C sales and purchase registers formatted for GSTR-1/3B filing, plus TDS/TCS and RCM handling on purchases." },
